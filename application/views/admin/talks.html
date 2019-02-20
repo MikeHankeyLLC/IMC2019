@@ -1,0 +1,103 @@
+ <div class="admin-title clearfix">
+        <h2 class="pull-left"><?= _('Talks'); ?></h2>
+        <? if(!empty($input['pagination']) && !empty($input['pagination']['last_page']) && $input['pagination']['last_page']!='1'): ?>
+            <span class="inline-pagination-info pull-right">
+                    <? 	$top = ($input['page']-1)*$input['max_record']+$input['max_record'];
+                        $max_on_page = $top>$input['total_results']?$input['total_results']:$top;
+                    ?>
+                    <?= sprintf('<strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong>', ($input['page']-1)*$input['max_record'],$max_on_page,$input['total_results']); ?> 
+            </span>
+        <? else: ?>	
+            <strong class="inline-pagination-info pull-right">
+                <?= count($input['talks']); ?> talks found
+            </strong>
+        <? endif; ?>
+</div>
+
+<form role="form" class="form-inline mb">
+    <input type="hidden" name="search" value="true">
+    <div class="form-group">
+        <input type="text" name="lastname" class="form-control" placeholder="Last name" value="<?= (!empty($input['lastname']))?$input['lastname']:''; ?>">
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="session">
+             <option value=""   <?if(empty($input['session'])):?>selected<?endif; ?>>All sessions</option> 
+            <? foreach($input['sessions'] as $k=>$v): ?>  
+                <option value="<?= $k; ?>" <? if($input['session']==$k):?>selected<?endif;?>><?= $v; ?></option>
+            <? endforeach; ?>   
+        </select>
+    </div>
+    <div class="form-group">
+         <select name="first_editing"  class="form-control">
+            <option value=""   <?if(empty($input['first_editing'])):?>selected<?endif; ?>>First Editing</option> 
+            <option value="-1" <?if(!empty($input['first_editing']) && $input['first_editing']==-1):?>selected<?endif; ?>>First Editing Not Ready</option>
+            <option value="1"  <?if(!empty($input['first_editing']) && $input['first_editing']==1):?>selected<?endif; ?>>First Editing Ready</option>
+        </select>
+    </div>
+    <div class="form-group">
+         <select name="final_editing"  class="form-control">
+            <option value=""   <?if(empty($input['final_editing'])):?>selected<?endif; ?>>Final Editing</option> 
+            <option value="-1" <?if(!empty($input['final_editing']) && $input['final_editing']==-1):?>selected<?endif; ?>>Final Editing Not Ready</option>
+            <option value="1"  <?if(!empty($input['final_editing']) && $input['final_editing']==1):?>selected<?endif; ?>>Final Editing Ready</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary modal_submit ">Ok</button>	
+</form>
+
+<? if(!empty($input['error'])): ?>
+    <div class="alert alert-danger"><?= $input['error']; ?></div>
+<? endif; ?> 
+
+<? if(!empty($input['confirm'])): ?>
+    <div class="alert alert-success"><?= $input['confirm']; ?></div>
+<? endif; ?> 
+
+<? if(!empty($input['talks'])): ?>
+<table class="table table-striped table-condensed mt" style="font-size: .95em">
+    <thead>
+        <tr>
+            <th>Submitted by</th>
+            <th>Author(s)</th>
+            <th>Session</th>
+            <th>Title</th>
+            <? /* <th>Abstract</th> */ ?>
+            <th>Paper expecting date</th>
+            <th>First Editing Ready</th>
+            <th>Final Editing Ready</th>
+            <th>&nbsp;</th>        
+        </tr>
+    </thead>
+    <tbody>
+        <? foreach($input['talks'] as $talk): ?>
+            <tr id="talk_<?= $talk['id']; ?>">
+                <td><?= $talk['user_id']; ?> - <a href="/admin/participants?lastname=<?= $talk['lastname']; ?>"><?= $talk['firstname']; ?> <?= $talk['lastname']; ?></a></td>
+                <td><?= $talk['authors']; ?></td>
+                <td class="nw"><?= $input['sessions'][$talk['session']]; ?></td>
+                <td><?= $talk['title']; ?></td>
+                <td>
+                    <?= $input['delivery_dates'][$talk['delivery_date']]['text']; ?>
+                </td>
+                <td>
+                    <?= $talk['first_editing']==-1?'-':'<span class="fa fa-check-square"></span>';?>                           
+                </td>
+                <td>
+                    <?= $talk['final_editing']==-1?'-':'<span class="fa fa-check-square text-success"></span>';?>                           
+                </td>
+                <td  class="nw text-right">
+                    <button data-talk_title="<?= $talk['title']; ?>" data-user_id="<?= $talk['user_id']; ?>" class="btn btn-danger btn-xs" data-talk_id="<?= $talk['id']; ?>" data-action="delete_talk"><span class="fa fa-trash-o"></span> Del</button>
+                    <button data-talk_title="<?= $talk['title']; ?>" data-user_id="<?= $talk['user_id']; ?>" class="btn btn-default btn-xs" data-talk_id="<?= $talk['id']; ?>" data-action="edit_talk"><span class="fa fa-edit"></span> Edit</button>
+                </td>
+            </tr>
+        <? endforeach; ?>
+    </tbody>
+</table> 
+<? if(!empty($input['pagination']['pagination'])) : ?>
+			<div class="mb"><?=$input['pagination']['pagination'];?></div>
+<? endif;?>	
+
+<? else: ?>
+
+    <div class="alert alert-danger">
+        No talks found based on your criteria.
+    </div>
+<? endif; ?>

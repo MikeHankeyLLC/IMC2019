@@ -1,0 +1,233 @@
+% imc2010.sty - very similar to imc2.sty but with minor changes by David
+%               Asher specifically for Proc. IMC 2010
+%               2010oct6
+
+
+% imc2.sty - version 2.2.05 (copied from imc2.sty v2.2.03), 2006jun22
+% 	Style file for IMC & RMS
+%	Currently used almost identically for both Proceedings
+% 	The only difference is that IMC defines an IMCpaper but RMS an RMSpaper.
+%	These differences are edited in manually.
+%	The two versions may diverge over the years, of course.
+
+
+% Start by loading the standard MO-wide stuff:
+\input{imo2.sty}
+
+% IMC-specific (re-)definitions here:
+
+\newcommand{\bibcode}[2]{%
+% IMC currently prints just IMO bibcodes; if time allows, the NASA-ADS
+% bibcodes may be added.
+%
+% Since IMC has \thanks at the top, the normal usage is norule.
+% If they say here or here-norule, they mean it, though.
+	\ifthenelse{\equal{#2}{} \or \equal{#2}{norule}}
+		{\bibcodeMaster{imo}{#1}{norule}}%
+		{\bibcodeMaster{imo}{#1}{#2}}%
+}
+
+\newenvironment{IMCpaper}[1]
+	{% \begin{IMCpaper}
+		\begin{IMOpaper}{twocol}{#1}
+		
+		% Note that the above blank line is needed. Without it, 
+		% the \title{} is indented slightly - don't understand why.
+	}% \begin{Rpaper}
+	{% \end{IMCpaper}
+		\end{IMOpaper}%
+	}% \end{IMCpaper}
+
+% ** IMCpaper was retained for a while, to allow an easy transition
+% \newenvironment{IMCpaper} ...
+% Removed 2006jun22
+
+% ------------------- Commands for format Qs and As -------------------
+% CT  2004sep25 - not used for 2004, saved in case useful for 2005
+% Would need to be edited into Mihaela's style.
+
+\newenvironment{QandA}%
+	{	\vspace{5mm}\noindent\rule{\textwidth}{0.1mm}
+		\section*{Questions after the paper}
+	}%
+	{}
+
+\newcommand{\QA}[4]{% params are 
+			% 1: questioner's name
+			% 2: question
+			% 3: answerer's name (normally one author)
+			% 4: answer
+\vspace{2truemm}
+\noindent\textit{Question from #1:} #2\par
+\noindent\textit{Answer from #3:} #4\par
+}
+
+
+% -------------- Modifications to standard (imo2.sty) definitions --------------
+
+% Anything defined in imo2.sty can be modified here. 
+% All that is needed is to find the relevant command(s) in imo2.sty, understand 
+% them, and write a modified form here, often using LaTeX commands such as 
+% \renewcommand and \renewenvironment to over-write existing definitions.
+
+% Some of the imo2.sty material is copied here, for two reasons:
+% 1. There are some definitions, e.g. page headers, which it will be more or 
+%	less essential to redefine. (Defaults are provided in case they are 
+%	not redefined.)
+% 2. There are things such as the style of titles which are more likely to 
+%	be modified. To save searching in imo2.sty, commented-out examples 
+%	are provided here, with explanatory comments.
+
+
+%	-	-	Headers and footers	-	-	-	-
+
+% Set the text of the headers and footers:
+% The form of these commands is
+%	\XY[format for even-numbered pages]{format for odd-numbered pages}
+% where	X is l, c or r	for left, centre and right respectively;
+% and	Y is head or foot.
+
+\lhead[{\SetHeaderFont \thepage}]{{\SetHeaderFont \PageTitle}}
+\rhead[{\SetHeaderFont \PageTitle}]{{\SetHeaderFont \thepage}}
+% In the above, note the extra surrounding sets of {} so the effects of 
+% \SetHeader/FooterStyle do not propagate beyond the headers and footers.
+\lfoot{} \rfoot{} \chead{} \cfoot{} % Set the centre head and all 3 footers to blank.
+
+% If lines below the header or above the footer are required, the following 
+% can be uncommented and modified as wished:
+\renewcommand{\headrulewidth}{0.3pt} % Thickness of horizontal line below header
+
+% The above Headers and Footers commands (other than \pagestyle) are 
+% from package fancyheadings. For further details
+% see Goossens, Mittelbach & Samarin / The LaTeX Companion
+% (Section 4.3.2, p.96, in the first edition)
+
+
+%	-	-	Styles of headings	-	-	-
+
+% Form to be used with non-Euler fonts:
+\renewcommand{\PageTitle}{Proceedings of the IMC, Pezinok-Modra, 2018}
+% Form to be used with Euler fonts (which have some characters 
+%	only in maths mde):
+%\newcommand{\PageTitle}{WGN$,$ the Journal of the IMO 
+%			\IssueVolume{}$:$\IssueNumber{} $($\IssueYear$)$}
+
+
+%	-	-	-	Fonts	-	-	-	-
+
+% The fonts are set up in imo2.sty. They can be modified here if required.
+% One or more of the following lines can be uncommented and modified as
+% required.
+% (These are copies of the lines in imo2.sty, except that there they 
+% use \newcommand not \renewcommand.)
+
+% \fontsize and \usefont: Goossens, Mittelback & Samarin sections 7.6.1 & 7.6.2 
+% (pages 188-193) describe it.
+% \fontsize is on p.189 and \usefont on p.192. The 3rd and 4th parameters to
+% \usefont are in Table 7.10 (p.190) and Table 7.11 (p.191).
+
+%\renewcommand{\SetSectionTitleFont}	{\fontsize{17.28}{17.28}\usefont{T1}{cmfib}{m} {n}}
+	% Section titles are not used in Proceedings. (In WGN, these are things 
+	% like "Leonids" at the start of one or more papers which are a section 
+	% of the journal.)
+	
+% Sizes set by Jean-Marc Wislez for RMS Proceedings 2005 (2006-03-24);
+% copied identically for IMC (2006 Jun 22).
+\renewcommand{\SetPaperTitleFont}	{\fontsize{17.28}{20}\bf\selectfont}
+\renewcommand{\SetPaperAuthorFont}	{\fontsize{12}{14}\bf\selectfont}
+\renewcommand{\SetPaperThanksFont}	{\fontsize{10}{12}\selectfont}
+			% NOTE this initially used \newcommand not \renewcommand, 
+			% as imo2.sty didn't use or define a \SetPaperThanksFont.
+			% This latter and thus the former have now changed.
+			% *** Remove this comment after autumn 2006.
+\renewcommand{\SetPaperAbstractFont}	{\fontsize{10}{12}\selectfont}
+%\renewcommand{\SetPaperSectionFont}	{\fontsize{14.4}{16}\bf\selectfont}
+%\renewcommand{\SetPaperSubsectionFont}	{\fontsize{12}{14}\bf\selectfont}
+%\renewcommand{\SetPaperSubsubsectionFont}	{\fontsize{11}{13}\bf\selectfont}
+%\renewcommand{\SetPaperBodyFont}	{\fontsize{11}{13}\selectfont}
+%\renewcommand{\SetPaperCaptionFont}	{\fontsize{10}{10}\selectfont}
+\renewcommand{\SetHeaderFont}		{\fontsize{11}{13}\selectfont}
+\renewcommand{\SetFooterFont}		{\SetHeaderFont} % Identical
+
+
+%	-	-	Paragraph indentation and spacing	-	-	-
+
+% ProcIMC prefers an inter-paragraph gap but no indent:
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{3mm plus 1pt minus 2pt}
+
+%	-	-	Section (etc.) commands		-	-	-	-
+
+% The format of the start of each paper (title, author, etc.) 
+% and of \section{} and \subsection{} are defined in imo2.sty.
+% They can be modified here if wished. 
+% Uncomment the following definitions and modify.
+% (The following are copies of the definitions in imo2.sty, except that 
+% \sectiontitle, \thankstext  and \datereceived 
+% there are \newcommand, not \renewcommand as here.)
+
+% When modifying the start-of-paper definitions, note that several rule 
+% across the page to separate their information from the next section down.
+% Testing your modifications should include a selection of papers with and 
+% without \sectiontitle, \author (some items are anonymous), \abstract 
+% and \datereceived.
+
+%\renewcommand{\sectiontitle}[1]{{% This is section of the publication 
+				% (e.g. "Ongoing meteor work" in WGN), 
+				% not as in \section{}.
+%			\setlength{\parindent}{0mm}
+%			\raggedright 
+%			\SetSectionTitleFont
+%			#1 \vspace{5truemm}\\}}
+
+\renewcommand{\title}[1]{{%
+			\SetPaperTitleFont%
+			\begin{center}#1\end{center}}}
+
+\renewcommand{\author}[1]{{%
+			\SetPaperAuthorFont%
+			\begin{center}#1\end{center}}}
+
+\renewcommand{\thanks}[1]{{%
+			\SetPaperThanksFont%
+			\begin{center}#1\end{center}}}
+
+%\renewcommand{\thankstext}[1]{\stepcounter{footnote}\footnotetext{#1}}
+				% This is used with twocol to produce the text 
+				% of the \thanks. Take copies of all the \thanks 
+				% from the \author section, place them at the start 
+				% of the article (below the first \section) and 
+				% change from \thanks to \thankstext. Keep them in 
+				% the same order! Follow the last one with a 
+				% \setcounter{footnote}{0} to reset it for 
+				% real footnotes.  CT  2004feb23
+
+\renewcommand{\abstract}[1]{{%	9mm gap to left and right of the text
+			\noindent%
+			\SetPaperAbstractFont%
+			\hspace{9truemm}%
+			\parbox{\textwidth-18truemm}{#1}% size here should be 
+						% twice that of the \hspace{}.
+                        \vspace{10mm}%
+			}}
+
+\renewcommand{\datereceived}[1]{}	% Not used - a null definition in case any 
+					% papers include a call to it.
+
+
+% Note that \maketitle{} is not used.
+
+% For details of the following, see Goossens et al p.25
+%\renewcommand{\section}{\@startsection%
+%	{section}{1}{0mm}{-1.15\baselineskip}%
+%	{0.25\baselineskip}{\SetPaperSectionFont}}
+
+%\renewcommand{\subsection}{\@startsection%
+%	{subsection}{2}{0mm}{-0.75\baselineskip}%
+%	{0.2\baselineskip}{\SetPaperSubsectionFont}}
+
+%\renewcommand{\subsubsection}{\@startsection%
+%	{subsubsection}{3}{0mm}{-0.75\baselineskip}%
+%	{0.2\baselineskip}{\SetPaperSubsubsectionFont}}
+
+% End of imc2.sty

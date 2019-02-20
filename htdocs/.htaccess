@@ -1,0 +1,24 @@
+#AddType x-mapp-php5 .php
+DirectoryIndex index.php
+ 
+AddDefaultCharset UTF-8 
+ 
+# Protect hidden files from being viewed
+<Files .*>
+    Order Deny,Allow
+    Deny From All
+</Files>
+ 
+Options +FollowSymLinks
+RewriteEngine on
+ 
+RewriteBase /
+ 
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule> 

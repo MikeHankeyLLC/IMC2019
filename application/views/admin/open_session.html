@@ -1,0 +1,72 @@
+ <div class="admin-title clearfix">
+        <h2 class="pull-left"><?= _('Open Session questions'); ?> </h2>
+        <button class="btn btn-default btn-lg btn-info  pull-right" onClick="window.print();" style="margin-left:1em"><span class="fa fa-print"></span></button>
+         <strong class="inline-pagination-info pull-right">
+          &nbsp; <?=  count($input['questions']); ?>  question(s) found
+         </strong>
+         
+ </div>      
+          
+         <? if(!empty($input['questions'])): ?>
+            <table class="table table-hover table-condensed table-results <? if(empty($input['pagination']['pagination'])) : ?>mb<?endif;?>" style="font-size: .95em">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Questions</th>
+                    <th class="no-print">&nbsp;</th>
+                </thead>
+                <tbody>
+                    <? foreach($input['questions'] as $q): ?>
+                    <tr>
+                        <td><?= $q['question_id'];?></td>
+                        <td><a href="mailto:<?= $q['email'];?>"><?= $q['name'];?></a></td>
+                        <td><?= $q['question'];?></td>    
+                        <td  class="no-print">
+                            <form  onsubmit="return confirm('Do you really want to permanently delete this question ?');">
+                                <input type="hidden" name="question_id" value="<?= $q['question_id']; ?>"/>
+                                <button type="submit" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> Del</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <? endforeach; ?>
+                </tbody>
+            </table>   
+         <? else: ?>	
+            <div class="alert alert-danger">
+                No question found.
+            </div>
+        <? endif; ?>
+        
+</div>
+ 
+<style>
+    @media print {
+       @page {size: landscape} 
+        
+       body, html {
+          color: #000;
+          background: #fff;
+          font-size:12px;
+       }
+       
+       h2 {
+            margin:0;   
+       }
+       
+       .box {
+        background-color: #fff;
+        border: none;
+        padding: 0;
+       }
+       
+       #top-bar, .admin-title .pull-right, .no-print, #footer {
+            display:none !important;
+            height:0 !important;
+       }
+       #wrap {
+            height:auto !important;
+            width:auto !important;   
+       }
+    }
+</style>
+ 

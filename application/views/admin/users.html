@@ -1,0 +1,67 @@
+<div class="container">
+
+		<div class="box box-header-like clearfix">
+			<h3 class="pull-left"><?= _('Admin Users'); ?></h3>
+			<form class="form-inline pull-right" role="form">
+			  <input type="hidden" name="add_new_user" value="1"/>
+			  <div class="form-group">
+				<label class="sr-only" for="name"><?= _('Name'); ?></label>
+				<input name="name" type="text" class="form-control" id="email" placeholder="<?= _('Name'); ?>">
+			  </div>
+ 			  <div class="form-group">
+				<label class="sr-only" for="email"><?= _('Email'); ?></label>
+				<input name="email" type="email" class="form-control" id="email" placeholder="<?= _('Email'); ?>">
+			  </div>
+			  <div class="form-group">
+				<label class="sr-only" for="password"><?= _('Password'); ?></label>
+				<input name="password" type="text" class="form-control" id="password" placeholder="<?= _('Password'); ?>">
+			  </div>
+			  <div class="form-group">
+			  	<button type="submit" class="btn btn-default"><?= _('Add new user'); ?></button>
+			  </div>
+			</form>
+		</div>
+		
+		<h5 class="table-results clearfix">
+			 <?= _('Admin users found:'); ?> <?= $input['total_results']; ?>
+		</h5>
+		
+		<? if(!empty($input['error'])): ?>
+			<div class="alert alert-danger"><?= $input['error']; ?></div>
+		<? endif; ?> 
+		
+		<? if(!empty($input['confirm'])): ?>
+			<div class="alert alert-success"><?= $input['confirm']; ?></div>
+		<? endif; ?> 
+		
+		<table class="table table-hover table-condensed table-results <? if(empty($input['pagination']['pagination'])) : ?>mb<?endif;?>">
+				<thead>
+					<tr>
+						<th><?= _('ID'); ?></th>
+						<th class="nw" title="<?= _('Name'); ?>"><?= _('Name'); ?></th>
+						<th class="nw" title="<?= _('Email'); ?>"><?= _('Email'); ?></th>
+						<!-- <th class="nw" title="<?= _('Pwd'); ?>"><?= _('Password'); ?></th>  -->
+						<th>&nbsp;</th>
+					</tr>                
+				</thead>
+				<tbody>
+					<? foreach($input['users'] as $user): ?>
+					<tr>
+						<td><?= $user['id']; ?></td>
+						<td><?= $user['lastname']; ?></td>
+ 						<td><?= $user['email']; ?></td>
+						<td>
+							<form>
+								<input type="hidden" name="id" value="<?= $user['id']; ?>" />
+								<button class="btn btn-danger btn-xs" onclick="return(confirm('<?= _('Do really want to remove this user?'); ?>'));"><span class="glyphicon glyphicon-trash"></span></button>
+							</form>
+						</td>
+					</tr>
+					<? endforeach; ?>
+				</tbody>
+		</table>
+		<? if(!empty($input['pagination']['pagination'])) : ?>
+			<div class="mb"><?=$input['pagination']['pagination'];?></div>
+		<? endif;?>	
+
+</div>

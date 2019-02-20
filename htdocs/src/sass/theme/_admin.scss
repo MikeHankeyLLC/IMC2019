@@ -1,0 +1,28 @@
+/* CSS Document */
+
+.admin {
+    
+    h2 {
+        margin-top:1em;   
+    }
+    
+    .container-fluid {
+        max-width: 98%;
+    }
+ }
+ 
+
+.admin-title {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    margin-top:3em;
+    
+    h2 {
+        margin:0;   
+    }
+}
+
+.inline-pagination-info {
+    margin: 1em 0 0;
+}

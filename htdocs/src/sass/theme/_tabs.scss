@@ -1,0 +1,12 @@
+.tab-pane {
+    border-left: 1px solid $table-border-color;
+    border-right: 1px solid $table-border-color;
+    border-bottom: 1px solid $table-border-color;
+    padding: 1em 1.5em;
+    
+    h3 {
+        background-color:$gray-lighter;
+        padding:.3em;
+        margin-bottom:1em;   
+    }
+}

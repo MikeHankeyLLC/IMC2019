@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><?= $title; ?></title>
+  
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="International Meteor Conference 2016 - June 2 - 5, Egmond aan Zee - Netherlands">
+  <meta name="keywords" content="IMC, IMO, Meteor, Conference">
+  <meta name="author" content="Vincent Perlerin for Mike Hankey and Associates LLC">
+  
+  <link href="/css/main.css" rel="stylesheet"/>
+   
+</head>
+<body class="admin">
+ 
+
+<? 
+	// SYSTEM LOAD
+	$load = sys_getloadavg();
+ 	if ($load[0] > 80) {
+		header('HTTP/1.1 503 Too busy, try again later');
+		die('<br/><div class="container"><div class="alert alert-danger"><strong>Server too busy</strong>. Please try again later.</div></div>');
+	}
+?>
+
+
+<div id="wrap">
+
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" id="top-bar" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle toggle-menu menu-right jPushMenuBtn menu-active" data-toggle="collapse" data-target="#navbar-collapse-1">              
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+            </button>
+             <a class="navbar-brand" href="/"><img src="/img/imc2017-logo.png"></a>
+            <span class="imc <? if(!empty($no_menu)):?> mb<?endif;?>">
+                <span class="imc-tit">IMC<?= CONF_YEAR; ?></span>
+                <span class="imc-info"><?= CONF_DATES; ?>, <?= CONF_LOCATION; ?></span>
+            </span>
+          </div>
+        
+ 
+        <? if( empty($no_menu)):?> 
+           <div class="collapse navbar-collapse cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                 <li class="text-center m-onl">
+                    <a class="imc-m-l" href="<?= BASE_URL; ?>"><img src="/img/imc2017-logo.png"></a>
+                    <span class="imc-m">IMC<?= CONF_YEAR; ?></span>
+                    <span class="imc-info-m"><?= CONF_DATES; ?>, <?= CONF_LOCATION; ?></span>
+                </li>
+               
+                <li <? if(!empty($active_menu) && ($active_menu=='Participants')): ?>class="active"<?endif;?>><a href="/admin/participants" title="<?= _('List of Participants'); ?>"><?= _('Participants'); ?></a></li>
+                <li <? if(!empty($active_menu) && ($active_menu=='Accomodation')): ?>class="active"<?endif;?>><a href="/admin/accomodation" title="<?= _('List of Participants with Accommodation Details'); ?>"><?= _('Accommodation'); ?></a></li>
+                <li <? if(!empty($active_menu) && ($active_menu=='Proceedings')): ?>class="active"<?endif;?>>
+                    <a title="<?= _('Proceedings'); ?>" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><?= _('Proceedings'); ?> <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li <? if(!empty($active_submenu) && ($active_submenu=='Talks')): ?>class="active"<?endif;?>><a title="Talks" href="/admin/talks">Talks</a></li>
+                        <li <? if(!empty($active_submenu) && ($active_submenu=='Posters')): ?>class="active"<?endif;?>><a title="Posters" href="/admin/posters">Posters</a></li>
+                    </ul>
+                </li>
+                
+                <? /*
+                <li class="divider"></li>
+                <li <? if(!empty($active_menu) && ($active_menu=='OpenSession')): ?>class="active"<?endif;?>>
+                     <a href="/admin/open_session">Open Session</a>
+                </li>
+                */ ?>
+                
+                <li class="divider"></li>
+                <li <? if(!empty($active_menu) && ($active_menu=='Logs')): ?>class="active"<?endif;?>>
+                    <a title="<?= _('Logs'); ?>" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><?= _('Logs'); ?> <span class="caret"></span></a>
+                     <ul role="menu" class="dropdown-menu">
+                        <li <? if(!empty($active_submenu) && ($active_submenu=='log')): ?>class="active"<?endif;?>><a title="Logs" href="/admin/logs_view">Admin Logs</a></li>
+                        <li <? if(!empty($active_submenu) && ($active_submenu=='part')): ?>class="active"<?endif;?>><a title="Participants" href="/admin/logs_view_participant">Participants</a></li>
+                    </ul>
+                </li>
+                
+               
+                
+                <li class="divider"></li>
+                <li><a href="/xls" title="<?= _('Excel Worksheets'); ?>"><span class="fa fa-file-excel-o"></span></a></li>
+                <li class="divider"></li>
+                <li><a href="/" title="<?= _('Public site'); ?>"><?= _('Public site'); ?></a></li>
+                <li class="divider"></li>
+                <li><a href="/admin/logout"><span class="fa fa-sign-out"></span> <?= _('Logout'); ?></a></li>
+                <li class="text-center m-onl nb">
+                    <p> 
+                        <a href="/disclaimer">Service agreement and disclaimer</a> <br/>
+                        developed &amp; maintained by<br/><a href="http://www.mikehankey.com/" target="_blank">Mike Hankey &amp; Associates, LLC</a><br/>
+                        &copy; <?= date('Y'); ?>
+                    </p>
+                </li> 
+            </ul>
+            <?endif;?>
+          </div> 
+        </div> 
+      </nav>
+</div>
+<div class="container-fluid">
+    <div class="row mt">
+         <div id="main-col" class="col-md-12">
+            
+                <div class="box <?if(!empty($no_box)):?>nbg<?endif;?>">
+                <!--[if lt IE 9]>
+                    <div class="alert alert-danger">
+                        <h2>Your Browser is outdated</h2>
+                        <strong>This site doesn't work with your version of Internet Explorer.</strong><br/> 
+                        <strong>It's really time to update, or even better, go for a smarter browser.<br/>Like <a href="http://www.apple.com/safari/">Safari</a>, <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.mozilla.com/en-US/firefox/firefox.html">Firefox</a> or <a href="http://www.opera.com/download/">Opera</a>.</p>
+                    </div>
+                <![endif]-->
+                <noscript>
+                    <div class="alert alert-danger">
+                        <strong>Javascript Required</strong><br/>
+                        Javascript is required: please enable javascript on your browser.
+                    </div>
+                </noscript>

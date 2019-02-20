@@ -1,0 +1,141 @@
+ <div class="admin-title clearfix">
+        <h2 class="pull-left"><?= _('Accomodation'); ?> </h2>
+         <strong class="inline-pagination-info pull-right">
+          &nbsp;/ <?=  $input['confirmed_participants']; ?> confirmed
+         </strong>
+         <? if(!empty($input['pagination']) && !empty($input['pagination']['last_page']) && $input['pagination']['last_page']!='1'): ?>
+            <span class="inline-pagination-info pull-right">
+            
+                    <? 	$top = ($input['page']-1)*$input['max_record']+$input['max_record'];
+                        $max_on_page = $top>$input['total_results']?$input['total_results']:$top;
+                    ?>
+                    <?= sprintf('<strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong>', ($input['page']-1)*$input['max_record'],$max_on_page,$input['total_results']); ?> 
+            </span>
+        <? else: ?>	
+            <strong class="inline-pagination-info pull-right">
+                <?= count($input['participants']); ?> participants found
+            </strong>
+        <? endif; ?>
+        
+</div>
+      
+		
+		<form role="form" class="form-inline mb">
+            <input type="hidden" name="search" value="true">
+            <div class="form-group">
+                <input type="text" name="lastname" class="form-control" placeholder="Last name" value="<?= (!empty($input['lastname']))?$input['lastname']:''; ?>">
+            </div>
+			<div class="form-group">
+                <input type="text" name="email" class="form-control" placeholder="Email" value="<?= (!empty($input['email']))?$input['email']:''; ?>">
+            </div>
+            <div class="form-group">
+                 <select name="country"  class="form-control">
+                    <option value="">All countries</option>  
+                    <? foreach($input['countries'] as $c): ?>
+                        <option value="<?= $c['country_id']; ?>" 
+                        <? if(!empty($input['country']) && $c['country_id']== $input['country']): ?>selected<?endif; ?>><?= $c['short_name']; ?></option>
+                    <? endforeach; ?>
+                 </select>
+            </div>
+            
+            
+            <div class="form-group">
+                 <select name="reg_type"  class="form-control">
+                    <option value=""   <?if(empty($input['reg_type'])):?>selected<?endif; ?>>All Acc.</option> 
+                    <? foreach($input['accomodations'] as $k=>$v): ?>
+                        <option value="<?= $k; ?>" <?if(!empty($input['reg_type']) && $input['reg_type']==$k): ?>selected<?endif;?>><?= $v['abbr']; ?></option> 
+                    <? endforeach; ?>
+                 </select>
+            </div>
+            
+            <div class="form-group">
+                 <select name="confirmed"  class="form-control">
+                    <option value=""    <?if(empty($input['confirmed'])):?>selected<?endif; ?>>All</option> 
+                    <option value="-1"  <?if(!empty($input['confirmed']) && $input['confirmed']==-1):?>selected<?endif; ?>>Not Confirmed</option>
+                    <option value="1"   <?if(!empty($input['confirmed']) && $input['confirmed']==1):?>selected<?endif; ?>>Confirmed</option>
+                    <option value="2"   <?if(!empty($input['confirmed']) && $input['confirmed']==2):?>selected<?endif; ?>>Confirmed but...</option>
+                    <option value="-2"  <?if(!empty($input['confirmed']) && $input['confirmed']==-2):?>selected<?endif; ?>>Cancelled</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary modal_submit ">Ok</button>	
+		</form>
+	
+		<? if(!empty($input['error'])): ?>
+			<div class="alert alert-danger"><?= $input['error']; ?></div>
+		<? endif; ?> 
+		
+		<? if(!empty($input['confirm'])): ?>
+			<div class="alert alert-success"><?= $input['confirm']; ?></div>
+		<? endif; ?> 
+		
+        <? if(!empty($input['participants'])): ?>
+  		<table class="table table-hover table-condensed table-results <? if(empty($input['pagination']['pagination'])) : ?>mb<?endif;?>" style="font-size: .95em">
+				<thead>
+					<tr>
+						<th><?= _('ID'); ?></th>
+						<th title="<?= _('Name'); ?>"><?= _('Name'); ?></th>
+						<th title="<?= _('Country'); ?>"><?= _('Ctry'); ?></th>
+                        <th title="<?= _('Accommodation'); ?>"><?= _('Acc.'); ?></th>
+                        <th title="<?= _('Room Number and details'); ?>"><?= _('Room'); ?></th>
+                        <th title="<?= _('Confirmed'); ?>" class="text-center"><?= _('Confirmed'); ?></th> 
+                        <th>&nbsp;</th>
+					</tr>              
+				</thead>
+				<tbody>
+					<? foreach($input['participants'] as $participant): ?>
+					<tr id="<?= $participant['id']; ?>">
+					        <td>
+								<?= $participant['id']; ?>
+							</td>
+							<td class="nw">
+                                <? if($participant['gender']=='M'): ?>
+                                    <span class="fa fa-male btn-sm" style="color:blue"></span>
+                                <? else: ?>
+                                    <span class="fa fa-female btn-sm" style="color:pink"></span>
+                                <? endif; ?>
+                                <a href="mailto:<?= $participant['email']; ?>" target="_blank">
+                                    <?= $participant['title']; ?>
+                                    <?= $participant['firstname']; ?>
+                                    <?= $participant['lastname']; ?>
+                                </a>
+							</td>
+                            <td class="nw">
+                                <span class="flag-<?= strtolower($participant['country_code']); ?>" title="<?= $participant['country_name']; ?>"></span> 
+							</td>
+                            <td class="nw">
+                                <?= $participant['accomodation']; ?>
+                            </td>
+                            <td class="nw">
+                                <?= $participant['roomnumber']; ?>
+                            </td>
+                            <td class="text-center">
+                                <? if($participant['confirmed']==1): ?>
+                                    <span class="fa fa-check-square text-success"></span>
+                                <? elseif($participant['confirmed']==2) : ?>
+                                    <span class="fa fa-check-square text-warning"></span>
+                                <? elseif($participant['confirmed']==-2) : ?>
+                                    <span class="fa fa-times-circle text-danger"></span>    
+                                <? else: ?>
+                                    -     
+                                <? endif; ?>
+                            </td>
+                            <td  class="nw text-right">
+                                <button data-participant_name="<?= $participant['firstname']; ?> <?= $participant['lastname']; ?>" data-participant_id="<?= $participant['id']; ?>" title="Edit" class="btn btn-default btn-xs" data-action="edit_participant"><span class="fa fa-edit"></span> Edit</button>
+                            </td>
+                        </tr>	
+ 					<? endforeach; ?>
+				</tbody>
+		</table>
+        
+		<? if(!empty($input['pagination']['pagination'])) : ?>
+			<div class="mb"><?=$input['pagination']['pagination'];?></div>
+		<? endif;?>	
+        
+        <? else: ?>
+        
+            <div class="alert alert-danger">
+                No participant found based on your criteria.
+            </div>
+        <? endif; ?>
+
+</div>

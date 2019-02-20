@@ -1,0 +1,61 @@
+<div id="main-col">  
+        
+    <div id="illustration" class="title">
+        <div class="container clearfix">
+            <h1 class="pull-left">Your Registration details</h1> 
+        </div>
+    </div> 
+
+    <div class="container">
+ 
+        <div class="row">
+    
+            <div class="col-md-12 text-only">         
+                     
+                   <? if(!empty($input['errors'])): ?>
+                        <div class="alert alert-danger">
+                            <?= $input['errors']; ?>
+                        </div>
+                   <? elseif(empty($input['logged_in'])): ?>
+                    
+                       <form class="form-signin mg-btm" method="POST" style="max-width:500px">
+                            <input type="hidden" name="access_test" value="1"/>
+                            <input type="hidden" name="edit_link" value="<?= $input['edit_link'];?>"/>
+                            <h3 class="heading-desc"><?= _('Your registration details'); ?></h3>
+                            <div class="main">	
+                                <? if(!empty($input['login_error'])): ?>
+                                    <div class="alert alert-danger"><?= $input['login_error']; ?></div>
+                                <? endif; ?> 
+                                <p><strong><?= _('Enter the email you entered in the registration form'); ?></strong>
+                                <input name="email" type="text" class="form-control" placeholder="<?= _('Email'); ?>" autofocus required autocomplete="email"/> </p>
+                                <span class="clearfix"></span>	
+                            
+                                <p>
+                                    <label style="font-weight:normal">
+                                <input type="checkbox" required name="gdpr" value="1">
+                                By clicking "Access", you agree to our <a href="/gdpr" target="_blank">Data Protection and Privacy Terms</a> in accordance to the <a href="https://www.eugdpr.org/" target="_blank">General Data Protection Regulation</a> of the European Union, and give or reaffirm your consent to the processing of your personal data in compliance with these <a href="/gdpr" target="_blank">Terms</a>.<span class="req">*</span></label></p>
+                            </div>
+                            <div class="login-footer">
+                            <div class="row">
+                                        <div class="col-xs-6 col-md-6">
+                                            <div class="left-section">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 pull-right">
+                                            <button type="submit" class="btn btn-large btn-danger pull-right"><?= _('Access'); ?></button>
+                                        </div>
+                            </div>
+                            </div>
+                        </form>     
+                   <? else: ?>
+                        Access granted     
+                        
+                   <? endif; ?> 
+                    
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>

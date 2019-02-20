@@ -1,0 +1,78 @@
+<div id="main-col">          
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Open Session</h1> 
+    </div>
+</div> 
+<div class="container">
+
+<div class="row">
+
+    <div class="col-md-12 text-center">
+        <img src="/img/construction.gif"/><br/><br/>
+        <em>Come back soon...</em>
+    </div>
+    
+    <div class="col-md-12 text-only hidden">
+       
+        <? if(empty($input['success'])): ?>
+            <p>At the previous IMC, the question was raised to which extent the conference still fills the needs of all participants, especially beginners in the field of meteors. In response to this concern, the IMC 2016 will facilitate on Friday evening a so-called <strong>Open Session</strong>. In this session, you are all invited to ask questions or raise discussion points related to meteor work or make suggestions as to how future IMCs could better satisfy your needs in this regard. A small panel of specialists in different areas of meteor work will try to address your questions, discussion points, or suggestions. </p>
+            
+            We welcome in particular:
+            <ul>
+            <li>general questions geared towards learning more on a specific topic, especially from beginners;</li>
+            <li>specialized questions, e.g., how to combine different types of observations, standardization issues, etc.</li>
+            <li>suggestions for topics that are currently underrepresented at IMCs;</li>
+            <li>ideas for bridging the gap between beginners and specialists in meteor work so that all participants would benefit better in future IMCs.</li>
+            </ul>
+            <p>This short list is of course not limitative! You do not have to submit your questions in advance, but in order to select the right specialists for the panel, we nevertheless try to collect already now as many questions as possible. You are therefore kindly invited to submit any question, discussion point, or suggestions you may already have and which would be suitable for the Open Session via the form below.</p>
+            
+            <p>Thanks for your collaboration!</p>
+            
+            <hr/>
+        <? endif; ?>
+        
+        <? if(!empty($input['success'])): ?>
+             <div class="alert alert-success mt">
+                <button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button>
+                <h4><?= _('Success'); ?></h4> 
+                <?= $input['success']; ?>
+            </div>
+        <? endif; ?>
+        
+        <? if(!empty($input['errors'])): ?>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert"><span class="fa fa-times"></span></button>
+                <h4><?= _('Error'); ?></h4>
+                <ul>
+                    <? foreach($input['errors'] as $k=>$v): ?>
+                        <li> 
+                            <a href="#<?= $k; ?>"><span class="fa fa-minus-circle alert-link"></span></a> 
+                            <? echo($v); ?>
+                        </li>
+                    <? endforeach; ?>
+                </ul>
+            </div>
+        <? endif; ?>
+        
+        
+        
+        <form  role="form" method="post">
+            <input type="hidden" value="1" name="ask_question"/>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" id="name" name="name" required  placeholder="Your Name" value="<?if(!empty($input['name'])):?><?= $input['name'];?><?endif;?>" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control input-lg" id="email" name="email" required placeholder="Your Email" value="<?if(!empty($input['email'])):?><?= $input['email'];?><?endif;?>">
+            </div>
+             <div class="form-group">
+                <textarea class="form-control input-lg" rows="6" name="question" id="question" placeholder="Your Question"><?if(!empty($input['question'])):?><?= $input['question'];?><?endif;?></textarea>
+            </div>
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="<?= reCaptcha_Site_Key; ?>"></div>
+                <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=en"></script>
+            </div> 
+            <button type="submit" class="btn btn-primary btn-lg ">Send your Question</button>
+        </form>
+      </div>
+</div>

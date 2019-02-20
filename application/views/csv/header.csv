@@ -1,0 +1,1 @@
+<? header("Content-type: application/vnd.ms-excel");header('Content-disposition: attachment; filename=IMC2015-'.$title.'.csv');?>

@@ -1,0 +1,68 @@
+<div id="main-col">  
+        
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Participants</h1> 
+    </div>
+</div> 
+
+<div class="container">
+ 
+    <div class="row">
+       
+        <div class="col-md-8 text-only dmt">         
+            <? if(empty($input['participants'])): ?>
+                <div class="alert alert-info">
+                    Nobody has been confirmed yet: come back soon!    
+                </div>
+            <? else: ?>
+               <p>
+                    <? if(count($input['participants'])>1): ?>
+                        <strong><?= count($input['participants']); ?></strong> participants are confirmed so far.
+                    <? else: ?>
+                        Only <strong>one</strong> participant is confirmed for now.
+                    <? endif; ?>
+               </p>     
+                
+                 <? $cur_country = "";
+                    $js_array = array();
+                    $flag_array = array();
+                    foreach($input['participants'] as $p):
+                        if($p['country_name'] != $cur_country ): 
+                    
+                            if(empty($js_array[$p['country_name']])):
+                                $js_array[$p['country_name']]=0;
+                            endif;  
+                    ?>     
+                        <h4 class="cnt"> <span class="flag-<?= strtolower($p['iso2']); ?>" title="<?= $p['country_name']; ?>"></span> <?= $p['country_name']; ?></h4>
+                    <? endif; ?> 
+                    <?     
+                        $cur_country = $p['country_name'];
+                        $js_array[$p['country_name']]=intval($js_array[$p['country_name']])+1;
+                        $flag_array[$p['country_name']] = strtolower($p['iso2']);
+                    ?>
+                    <strong><?= $p['title']; ?> <?= $p['firstname']; ?> <?= $p['lastname']; ?></strong> 
+                    <? if(!empty($p['org'])): ?><em> - <?= $p['org']; ?> </em><? endif; ?> 
+                    <? /*<? if($p['meteoroid_shuttle']==1): ?>&nbsp;&nbsp;(<small style="color:#888"><span class="fa fa-bus"></span> <em>Meteoroids 2016 </em></small>)<? endif;?> */?>
+                    <br/>
+            
+                    <? endforeach; ?>
+          
+          </div>
+          <div class="col-md-4">
+            <? arsort($js_array); ?>
+            <h5><strong><?= count($js_array);?> countries</strong></h5>
+            <? foreach($js_array as $k=>$v): ?>
+                <span class="flag-<?= strtolower($flag_array[$k]); ?> mr" title="<?= $k; ?> - <?=$v/(count($input['participants']))*100;?>%"></span> 
+                <?= number_format( $v/(count($input['participants']))*100, 1, '.', ''); ?>% <br/>
+            <? endforeach;?>
+           </div>
+          <? endif; ?>  
+      </div>
+    </div>
+</div>
+
+
+
+
+ 

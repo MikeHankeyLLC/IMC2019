@@ -1,0 +1,706 @@
+% imo2.sty
+
+% Version 1.3  -  CT 2006jun22
+% Version 1.2  -  CT 2004feb28
+% Version 1.1  -  CT 2003dec18
+
+% Assumptions made by this file:
+
+% 1. LaTeX, not TeX, is used.
+%
+% 2. The version of LaTeX is LaTeX2e.
+% 	This is enforced by the line
+%		\NeedsTeXFormat{LaTeX2e}
+% 	(If you only have LaTeX2.09, you could try commenting the 
+%	above line out; things might well go well. But 2.09 is really 
+%	obsolete now, and you would be well advised to move on to 2e.)
+%
+% 3. The file starts with the line
+%	\documentclass[10pt,a4paper,twoside]{article}
+%**CHECK this
+%	This sets the standard font size (i.e. that used in the body 
+%	of papers; different sizes are used in places, e.g. headings).
+%	It also calls for A4 paper.
+
+
+%	-	-	-	symbols		-	-	-
+
+% OBSOLETE:
+%\mathchardef\g="020E% ** this is at half-height
+%%\newcommand{\g}{^o} % ** find auto-$ tech
+%\mathchardef\d="0064
+%\mathchardef\h="0068
+%\mathchardef\m="006D
+%\mathchardef\s="0073
+%\newcommand{\sol}{\lambda_\odot}
+%\def \dg {\mbox{\hspace*{2.3pt}.{\hspace*{-0.7ex}{$^\circ$}}}}
+
+
+% /-------------------------- Symbol definitions -----------------------\
+%		derived from Juergen Rendtel's mdef-document.tex
+
+% The following commands use \ensuremath so they work in both text and 
+% maths mode. \ensuremath is documented in Goossens, Mittelback & Samarin:
+% Appendix A.1.1, p.440.
+
+% Angle:
+\newcommand{\g}{\ensuremath{^\circ}}	% degree symbol 
+\newcommand{\mi}{\ensuremath{'}}	% arcminute
+\newcommand{\se}{\ensuremath{''}}	% arc second
+\newcommand{\dg}{\ensuremath{\hspace*{2.3pt}.{\hspace*{-0.7ex}{^\circ}}}}	% degree over decimal point
+\newcommand{\dmi}{\ensuremath{\hspace*{1.5pt}.{\hspace*{-0.5ex}{'}}}}
+					% arcmin over decimal point
+\newcommand{\dse}{\ensuremath{\hspace*{1.5pt}.{\hspace*{-0.7ex}{''}}}}
+					% arcsec over decimal point
+
+% Time:
+\newcommand{\m}{\ensuremath{^{\rm m}}}	% minute
+\newcommand{\h}{\ensuremath{^{\rm h}}}	% hour
+\newcommand{\s}{\ensuremath{^{\rm s}}}	% second
+% NB- next one called \dhr as \dh already exists
+\newcommand{\dhr}{\ensuremath{\hspace*{2.4pt}.{\hspace*{-0.85ex}{^{\rm h}}}}}						% h over decimal point
+\newcommand{\dm}{\ensuremath{\hspace*{2.9pt}.{\hspace*{-1.1ex}{^{\rm m}}}}}						% m over decimal point
+\newcommand{\ds}{\ensuremath{\hspace*{1.9pt}.{\hspace*{-0.7ex}{^{\rm s}}}}}						% s over decimal point
+% Variants of \h, \m and \s if text is in italics:
+%	NB1- When used in maths mode these give upright (Roman) type for 
+%		the digits, but italic for the h, m and s.
+%	NB2- Why q?
+\newcommand{\hq}{\ensuremath{^h}}	% hour
+\newcommand{\mq}{\ensuremath{^m}}	% minute
+\newcommand{\sq}{\ensuremath{^s}}	% second
+
+% Sundry symbols:
+\newcommand{\diam}{\ensuremath{\oslash}} % diameter
+%\newcommand{\t}{\ensuremath{\times }}	% times (cross)
+%\newcommand{\c}{\ensuremath{\circ}}	% small circle
+\newcommand{\vi}{\ensuremath{V_\infty}}
+\newcommand{\sol}{\ensuremath{\lambda_\odot}}
+
+% Plus a capitalist one :-)
+\newcommand{\euro}{\textsf{\texteuro}}
+
+% \----------------------------------------------------------------------/
+
+%	-	-	Paper size and margins	-	-	-
+
+% These assume A4 and 10 point, as described in Assumptions at the top.
+
+% Set paper size:
+\setpapersize{A4} % This has Portrait as the default.
+% (package vmargin)
+%** doc says A4 is default - is above line needed? Commenting it
+% out makes no difference. Also - they could be given as package options;
+% would this be better? What do the Cousins need? [A4 O/P prints well 
+% according to Martin Beech, 2003 Mar.]
+
+% Set margins:
+\setmarginsrb%
+	{26mm}% left margin on odd-numbered pages, right margin on evens
+	{5mm}% top margin
+	{12mm}% right margin on odd pages, left margin on evens
+	{20mm}% bottom margin
+	{14pt}% headheight
+	{10mm}% headsep
+	{0pt}% footheight
+	{0pt}% footskip
+% (package vmargin)
+% Note that the above call effectively disables the standard 
+% 1 inch left and top offsets.
+
+% For further details on the above commands from package vmargin,
+% see (probably) /usr/share/texmf/doc/latex/styles/vmargin.dvi
+
+
+%	-	-	Spacings related to figures and tables	-	-
+
+% From Rainer Arlt (2003april):
+%	Placing figures in LaTeX is way easier if the following comands are 
+%	inserted at the beginning (taken from the Astron. & Astrophys. style):
+
+% Explanations from Lamport, pp.177-178. Note that that often recommends 
+% \renewcommand where \def is used here.
+\def\topfraction{.99}		% Max fraction of page occupied by floats at top
+\setcounter{bottomnumber}{1}	% Max no of floats at bottom
+\def\bottomfraction{.99}	% Max fraction of page occupied by floats at bottom
+				% Changed 0.3 -> 0.99 CT 2003may23
+\setcounter{totalnumber}{5}	% Max total no of floats on page
+				% Changed 3 -> 5 CT 2007jan04
+\def\textfraction{.01}		% Min fraction of page used for text
+\def\floatpagefraction{.9}	% Min fraction of page purely of floats occupied 
+				% by floats (limits blank space om float pages)
+\setcounter{dbltopnumber}{2}	% Max no of 2-column-wide floats at top of page 
+				% in double-column layout
+\def\dbltopfraction{.9}		% Max fraction of top of 2-column page used for 
+				% 2-column floats
+				% Changed 0.7 -> 0.9 CT 2007jan04
+\def\dblfloatpagefraction{.5}	% Min fraction of 2-column page purely of floats 
+				% occupied by 2-column floats 
+				% (limits blank space om float pages)
+				% NB- Rainer (2007 Jan) recommended changing this to 
+				% 0.9 or 0.99, but this proved awkward: it prevented 
+				% intended partly-blank pages.
+
+%	-	-	Headers and footers	-	-	-	-
+
+\pagestyle{fancy} % Needed for the following to be acted upon.
+
+% Set the text of the headers and footers:
+% The form of these commands is
+%	\XY[format for even-numbered pages]{format for odd-numbered pages}
+% where	X is l c or r	for left, centre and right respextively;
+% and	Y is head or foot.
+
+% The following defines a default in case the derived style file
+% (i.e. wgn2.sty or imc2.sty) does not set these up:
+\lfoot{} \rfoot{} \chead{} \cfoot{} % Set the centre head and all 3 footers to blank.
+\lhead{} \rhead{} \chead{{\SetHeaderFont \thepage}}
+
+% Typically the derived style file will want to reset 
+% these with something like the following:
+%\lhead[{\SetHeaderFont \thepage}]{{\SetHeaderFont \PageTitle}}
+%\rhead[{\SetHeaderFont \PageTitle}]{{\SetHeaderFont \thepage}}
+% In the above, note the extra surrounding sets of {} so the effects of 
+% \SetHeader/FooterStyle do not propagate beyond the headers and footers.
+%\lfoot{} \rfoot{} \chead{} \cfoot{} % Set the centre head and all 3 footers to blank.
+
+\renewcommand{\headrulewidth}{0pt} % Thickness of horizontal line below header
+\renewcommand{\footrulewidth}{0pt} % Thickness of horizontal line above footer
+
+% The above Headers and Footers commands (other than \pagestyle) are 
+% from package fancyheadings. For further details
+% see Goossens, Mittelbach & Samarin / The LaTeX Companion
+% (Section 4.3.2, p.96, in the first edition)
+
+
+%	-	-	Styles of headings	-	-	-
+
+% Form to be used with non-Euler fonts:
+\newcommand{\PageTitle}{}
+
+% Note that the declaration not the 
+% command form must be used as this command is to 
+% be placed in front of text, not called with text
+% as its parameter. (See Goossens et al, Table 7.2)
+			
+% \fontsize and \usefont: Goossens, Mittelback & Samarin sections 7.6.1 & 7.6.2 
+% (pages 188-193) describe it.
+% \fontsize is on p.189 and \usefont on p.192. The 3rd and 4th parameters to
+% \usefont are in Table 7.10 (p.190) and Table 7.11 (p.191).
+
+% \USEFONT: this caused problems with bad PDF rendering, and was abandonned 2006feb25
+
+%\newcommand{\SetSectionTitleFont}	{\fontsize{17.28}{17.28}\usefont{T1}{cmfib}{m} {n}}
+\newcommand{\SetSectionTitleFont}	{\fontsize{21}{21}\bf\selectfont}	%\usefont{T1}{cmfib}{m} {n}}
+\newcommand{\SetPaperTitleFont}		{\fontsize{14}{16}\bf\selectfont}	%\usefont{T1}{cmr}  {bx}{n}}
+\newcommand{\SetPaperAuthorFont}	{\fontsize{12}{12}\it\selectfont}	%\usefont{T1}{cmr}  {m} {it}}
+\newcommand{\SetPaperThanksFont}	{\fontsize{10}{12}\selectfont}
+					% IMC and RMS use this,
+					% though WGN uses \footnote unmodified.
+\newcommand{\SetPaperAbstractFont}	{\SetPaperBodyFont}
+\newcommand{\SetPaperSectionFont}	{\fontsize{12}{14}\bf\selectfont}	%\usefont{T1}{cmr}  {bx}{n}}
+\newcommand{\SetPaperSubsectionFont}	{\fontsize{12}{14}\bf\selectfont}	%\usefont{T1}{cmr}  {m} {n}}
+\newcommand{\SetPaperSubsubsectionFont}	{\fontsize{10}{12}\bf\selectfont}	%\usefont{T1}{cmr}  {m} {n}}
+\newcommand{\SetPaperBodyFont}		{\fontsize{10}{12}\selectfont}	%\usefont{T1}{cmr}  {m} {n}}
+\newcommand{\SetPaperCaptionFont}	{\fontsize{9}{9}\selectfont}	%\usefont{T1}{cmr}    {m} {n}}
+\newcommand{\SetHeaderFont}		{\fontsize{12}{12}\sc\selectfont}	%\usefont{T1}{cmr}  {m} {sc}}
+\newcommand{\SetFooterFont}		{\SetHeaderFont} % Identical
+
+
+%	-	-	Section (etc.) commands		-	-	-
+
+\newcommand{\sectiontitle}[1]{{% This is section of the publication 
+				% (e.g. "Ongoing meteor work" in WGN), 
+				% not as in \section{}.
+			%\setlength{\parindent}{0mm}
+			\noindent\raggedright 
+			\SetSectionTitleFont%
+			#1 \vspace{5truemm}\\}}
+\renewcommand{\title}[1]{{%
+			\noindent \raggedright%
+			%\setlength{\parindent}{0mm} \raggedright %** try \noindent
+			\SetPaperTitleFont%
+			#1 \vspace{2mm}\\}}
+\renewcommand{\author}[1]{{%
+			\noindent \raggedright 
+			\SetPaperAuthorFont
+			#1\\
+			\rule{\textwidth}{0.1mm}\vspace{2mm}\\}}
+\renewcommand{\thanks}[1]{{%
+			\footnote{\ #1}}} %** reset counter at paper start
+					%** and after use '.' real footnotes
+\newcommand{\thankstext}[1]{\stepcounter{footnote}\footnotetext{#1}}
+				% This is used with twocol to produce the text 
+				% of the \thanks. Take copies of all the \thanks 
+				% from the \author section, place them at the start 
+				% of the article (below the first \section) and 
+				% change from \thanks to \thankstext. Keep them in 
+				% the same order! Follow the last one with a 
+				% \setcounter{footnote}{0} to reset it for 
+				% real footnotes.  CT  2004feb23
+\renewcommand{\abstract}[1]{{%
+			\setlength{\parskip}{-2mm} % To reduce the space between 
+					% the line above and the top of the abs.
+			\noindent
+			\SetPaperAbstractFont
+			#1\\
+			\rule[1.5mm]{\textwidth}{0.1mm}\vspace{2mm}\\}}
+\newcommand{\datereceived}[1]{{%
+			\vspace{-7mm}\\ %** botch - used without abs, comes too high
+			\noindent
+			\SetPaperAbstractFont % KISS
+			#1 \\
+			}}
+
+\newcommand{\bibcodeII}[3]{%
+	% Maybe rule the line:
+	\ifthenelse{\equal{#3}{norule}}%
+		{\hspace{-1.8em}}% get rid of the indentation
+		{\footnoterule}%
+	% Place the codes:
+	\footnotesize\noindent%
+	% If imo or imo-ads, write the IMO bibcode:
+	\ifthenelse{\equal{#1}{imo} \or \equal{#1}{imo-ads}}%
+		{IMO bibcode \input{../#2/BibcodeIMO.txt}}%
+		{}% ... otherwise no IMO bibcode
+	% If 2-column, start a new line for the ADS bibcode,
+	% but only if both bobcodes are printed:
+	\ifthenelse{\equal{#1}{imo-ads}}%
+		{\ifthenelse{\equal{\IMOpaperType}{onecol}}{ }{\\}%
+			% \IMOpaperType is set up by \IMOpaper.
+			% The test is 'not onecol' since both twocol
+			% and multicol require the newline.
+		}{}%
+	% If ads or imo-ads, write the IMO bibcode:
+	\ifthenelse{\equal{#1}{ads} \or \equal{#1}{imo-ads}}%
+		{NASA-ADS bibcode \input{../#2/BibcodeADS.txt}}%
+		{}% ... otherwise no ADS bibcode
+}
+
+\newcommand{\bibcodeMaster}[3]{%  The publication-specific style file
+				% (e.g. wgn2.sty) defines \bibcode in terms
+				% of this, setting publication-specific standards, 
+				% such as whether ADS bibcodes are printed.
+% Typeset IMO and NASA-ADS bibcodes at the start of a paper.
+% The text to be set comes from two files BibcodeIMO.txt and
+% BibcodeADS.txt in the paper's directory; these should have 
+% been created beforehand, probably with program MakeBibcode.
+%    #1	is null, 'imo', 'ads' or 'imo-ads':
+%	'imo' to generate IMO Bibcodes, 'ads' to generate ADS Bibcodes.
+%    #2	The directory of the paper (which can't be found automatically)
+%    #3	Normally null (i.e. {}): a footnoterule will be placed above 
+%	the codes. If 'norule' (without the qoutes), the rule will 
+%	be suppressed. (Actually, any non-null string will do.)
+%	Used when there is no \thanks{}, to avoid double rules.
+%	Can also be 'here' to place the bibcode where the call is, 
+%	not as a footnote.
+%	'here-norule' combines these.
+%
+% Note: this will normally be called from a command \bibcode[2], 
+% defined in each publication's .sty file, which sets up the first 
+% two parameters. #1 will almost certainly be 'imo' to turn these on;
+% #2 will depend on what has been negociated with NASA-ADS.
+ { % So the re-definition of \thefootnote (next line) 
+   % doesn't survive beyond this command
+    \ifthenelse{\equal{#1}{}}% Null #1: neither bibcode wanted:
+    			{}%	do nothing.
+    {% else: at least one bibcode wanted.
+      \ifthenelse{\equal{#1}{imo} \or \equal{#1}{imo-ads} \or \equal{#1}{ads}}%
+      {% Valid #1
+	\renewcommand{\thefootnote}{}% Prevent footnote numbering
+	\ifthenelse{\equal{#3}{}}%		Footnote with rule
+		{\footnotetext{\bibcodeII{#1}{#2}{}}}%
+	 {\ifthenelse{\equal{#3}{norule}}%	Footnote without rule
+		{\footnotetext{\bibcodeII{#1}{#2}{#3}}}%#3 is already correct
+	  {\ifthenelse{\equal{#3}{here}}%		Here with rule
+		{\vspace{5truemm}%	A compromise: what is really needed is 
+					% this space iff there was NO \thankstext 
+					% above, as \thankstext adds some space.
+					% Here will be used mainly for onecol items 
+					% at the top part of a page. If there is extra 
+					% space added, tough, and it will show up less 
+					% on a wider page. Added CT 2007may12
+		\bibcodeII{#1}{#2}{}\\}%		"here" changed to null
+							% Note \\ added
+	   {\ifthenelse{\equal{#3}{here-norule}}%	Here without rule
+		{\bibcodeII{#1}{#2}{norule}\\}%		"here-norule" 
+							% changed to null
+							% Note \\ added
+		{%				Final Else clause: error
+		\errhelp={The command is \bibcode{dirname}{optparam},
+			where dirname is the name of the directory your are
+			editing the article in;
+			and optparam is normally null, but can include 
+			`norule' to prevent a 2nd line over it
+			and `here' to put it where you call \bibcode, rather 
+			than as a footnote.
+			'here-norule' combines these.}%
+		\errmessage{Invalid 3rd parameter '#3' for bibcode: %
+			valid values are norule, here, here-norule 
+			or an empty parameter (i.e. {})}%
+		}
+	   }
+	  }
+	}
+      }% Valid #1
+      {% Else clause: Invalid #1
+	\errmessage{Configuration bug in <publication>.sty, definition of bibcode:
+		param no.1 is #1 
+		but must be null, imo, imo-ads or ads}%
+      }% Else clause: Invalid #1
+    }% else: at least one bibcode wanted.
+ } % So the re-definition of \thefootnote (above)
+   % doesn't survive beyond this command
+} % \bibcode
+
+
+\renewcommand{\maketitle}{} % Not needed but might be used, so a NOP is provided.
+
+% For details of the following, see Goossens et al p.25
+\renewcommand{\section}{\@startsection%
+  {section}{1}{0mm}{1.15\baselineskip plus 1pt minus 2pt}%
+  {0.25\baselineskip plus 1pt minus 2pt}{\SetPaperSectionFont\raggedright}}%
+\renewcommand{\subsection}{\@startsection%
+  {subsection}{2}{0mm}{0.75\baselineskip plus 1pt minus 2pt}%
+  {0.2\baselineskip plus 1pt minus 2pt}{\SetPaperSubsectionFont}}%
+\renewcommand{\subsection}{\@startsection%
+  {subsubsection}{3}{0mm}{0.75\baselineskip plus 1pt minus 2pt}%
+  {0.2\baselineskip plus 1pt minus 2pt}{\SetPaperSubsectionFont}}%
+
+% Contents page
+% Most of these are defined there, but there is one which must be defined here.
+\newcommand{\IfContentsPage}[2]{#2}
+% This is an if-then-else construct: the 1st param is evaluated only when 
+% on the contents page, and the second param only when outside it.
+% The above def. is changed (with \renewcommand) at the start of the contents 
+% page to one which evaluates its 1st param. It is changed back again at the 
+% end of the contents page.
+
+%	-	-	-	Single & Double column environments		-	-	-
+
+% A single home-grown environment IMOpaper is provided which can be set to 
+% produce output which is one-column or two-column, the latter either by 
+% using \twocol or the multicol package. (Sometimes one of these last two 
+% works better, sometimes the other.) 
+% \begin{IMOpaper} takes two parameters:
+%	#1 one of the three words	onecol twocol multicol
+%		to specify which is to be used. An invalid option is 
+%		handled with a clumsy error mechanism.
+%	#2 material to be set single-column at the start;
+%		normally title, author and abstract.
+
+% Mechanism:
+% One of the three commands \onecolumn \twocolumn[#2] \begin{multicols}{2}[#2]
+% is called. Calling these in \begin{IMOpaper} is simple, as the parameters 
+% including #1 are available. For \end{IMOpaper}, however, LaTeX doesn't make
+% the parameters available. The workaround is for the \begin{} to set up a 
+% command (with \renewcommand) with the stuff to be used at \end{}. 
+% The command is \IMOpaperend, which is given an initial null definition below.
+
+%** FUDGE added 2006oct31
+% - NOW OBS (2006dec03) with move from doublespace.sty to setspace.sty
+%	fix missing spacing environment
+%	due to missing doublestyle.sty
+%**\newenvironment{spacing}[1]{}{}	% NOP
+
+\newcommand{\IMOpaperend}{} % Used only by the \IMOpaper (below).
+\newcommand{\IMOpaperType}{} % Changed at the start of IMOpaper (below).
+\newenvironment{IMOpaper}[2]
+	{% \begin{IMOpaper}
+		% Record (for other processes) which type is being used:
+		\renewcommand{\IMOpaperType}{#1}
+		% Set environment:
+		% Spacing (below) removed 2006dec03 -
+		% needed for doublespace.sty but not setspace.sty
+		% \begin{spacing}{1.0}% Leaves everything as normal, but is needed if the 
+				% spacing environment is to be used inside the article, 
+				% which it is in captions.
+				% There is a matching \end{spacing} in the \end section below.
+		\setcounter{footnote}{0}% used for \thanks
+		%
+		% The following iftheneslse commands implement a switch:
+		\ifthenelse{\equal{#1}{onecol}}{\renewcommand{\IMOpaperend}{}%
+						#2}%
+		  {\ifthenelse{\equal{#1}{twocol}}{\renewcommand{\IMOpaperend}{\onecolumn{}}%
+		  				\twocolumn[#2]}%
+		    {\ifthenelse{\equal{#1}{multicol}}{\renewcommand{\IMOpaperend}{\end{multicols}}%
+		    				\begin{multicols}{2}[#2]}%
+		    	% None of the above applied: invalid 1st param, issue error message:
+			{\errhelp={Try looking earlier in the file for "\begin{WGNpaper}{XXX}" or similar. %
+					The XXX should be one of onecol, twocol or multicol; %
+					you've used "#1".}%
+			 \errmessage{Invalid 1st parameter '#1' for environment WGNpaper or %
+						IMCpaper - options are onecol, twocol and multicol}%
+		}}}% Vorsicht! ;-)
+		%
+		% Actions common to all values of 1st parameter:
+		% Reset counters:
+		\setcounter{footnote}{0}	\setcounter{mpfootnote}{0}%
+		\setcounter{part}{0}%
+		\setcounter{section}{0}		\setcounter{subsection}{0}%
+		\setcounter{subsubsection}{0}	\setcounter{equation}{0}%
+		\setcounter{figure}{0}		\setcounter{table}{0}%
+		\setcounter{paragraph}{0}	\setcounter{subparagraph}{0}%
+		%
+		\noindent%
+	}% \begin{IMOpaper}
+	{% \end{IMOpaper}
+		\IMOpaperend{}%
+		% Spacing removed 2006dec03
+		% \end{spacing}%
+	}% \end{IMOpaper}
+
+
+%	-	-	-	Figure & Table commands		-	-	-
+
+\newenvironment{WGNfigure}{\noindent% Otherwise the entire following minipage will be indented
+				\begin{minipage}{\columnwidth}% To stop the fig and its 
+						% caption being on different pages.
+				\vspace{4mm}\par% Space above fig. Should really be 
+						% omitted at start of column.
+				\setlength{\parindent}{0mm}% or the image & caption will be 
+						% indented
+			}
+			{\vspace{4mm}\par% Space below fig. Should really be 
+						% omitted at end of column.
+				\end{minipage}%
+			}
+
+% For the moment, WGNtable is merely a copy of WGNfigure:
+\newenvironment{WGNtable}{\noindent% Otherwise the entire following minipage will be indented
+				\begin{minipage}{\columnwidth}% To stop the fig and its 
+						% caption being on different pages.
+				\vspace{4mm}\par% Space above fig. Should really be 
+						% omitted at start of column.
+				\setlength{\parindent}{0mm}% or the image & caption will be 
+						% indented
+			}
+			{\vspace{4mm}\par% Space below fig. Should really be 
+						% omitted at end of column.
+				\end{minipage}%
+			}
+
+\newcommand{\WGNcaption}[2]{{% For manually numbered captions (rare),
+				% also used by \renewcommand{\@makecaption} below.
+				% Param 1 is (e.g.) "Figure~3"
+	% Spacing (below) removed 2006dec03, reinstated 2007apr09
+	% to get caption fonts back to correct spacing
+	\begin{spacing}{1.1}% Without this, the lines are spaced at 11 pt, even though 
+				% \SetPaperCaptionFont specifies a smaller spacing. 
+	\SetPaperCaptionFont% Note this must be after the \begin{spacing}
+				% (pre-2007, was before it!)
+	\noindent%
+	\textit{#1} -- #2%
+	%\vspace{-1.5truemm}	% Approximately cancels out the effect (longer 
+				% post-caption spacing) of moving from 
+				% doublespace.sty to setspace.sty to provide 
+				% the spacing environment.
+				% Added CT 2006dec03
+% -5 for setspace/spacing
+	\end{spacing}% to match the \begin above.
+}} % \caption
+
+%\renewcommand{\caption}[1]{\WGNcaption{#1}} %** Needs some way of counting fig nos (and setting label?)
+%** above disabled 2002apr13
+
+% The following causes captions generated by \caption{} to 
+% adopt our form. (Added CT 2004feb28, first use 32:1)
+\renewcommand{\@makecaption}[2]{\WGNcaption{#1}{#2}}
+
+
+% For numerical alignment in tables
+% (See Goossens, Mittelback & Europa, pp.129-130
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+% The above won't handle maths mode, so the following 
+% is convenient to surround such things:
+\newcommand{\cc}[1]{\multicolumn{1}{c}{#1}}
+
+
+%	-	-	WGN-specific constructs		-	-	-
+
+% Styles for typesetting specific sorts of text:
+\newcommand{\IMOsoftwarename}[1]{\textsc{#1}} % e.g. \WGNsoftwarename{MetRec}
+\newcommand{\WGNsoftwarename}[1]{\textsc{#1}} % For backwards compatability
+
+
+% OBSERVERS
+% Various ways of typesetting lists of observers. There are five commands 
+% (plus one for supporters, not observers):
+%
+%**table needs revising & checking
+% Command	     Indent	     Font size  Baselineskip
+%		    (note 1)	     (point)	(point)(note 2)
+% observers		2		10	11.5
+% smallobservers	2		 9	10.4
+% manyobservers		1		10	11.5
+% smallmanyobservers	1		 9	10.4	(note 3)
+% fewobservers		3		10	11.5
+% supporters		1		As normal text
+%
+% Note 1:	Defined as multiples of Parindent, which is the current 
+%		indentation of new paragraphs.
+%		Applied to both left and right sides.
+% Note 2:	Baselineskip is the vertical distance between the bottom 
+%		of one line of text and the bottom of the next. Thus the 
+%		extra inter-line spacing is baselineskip - fontsize.
+% Note 3:	smallmanyobservers was called smallmobservers in the 
+%		previous, TeX WGN style file wgndef.tex.
+
+% First define some commands specifying the quantities, so they are 
+% explicit and can be changed easily:
+% Indentations:
+	% Revision: for the 2-column layout, these are all the same.
+	\newcommand{\WgnObsIndent}{\parindent}		% Was 2 \parindent
+	\newcommand{\WgnManyobsIndent}{\parindent}
+	\newcommand{\WgnFewobsIndent}{\parindent}	% Was 3 \parindent
+% Font size (other characteristics such as font and series could 
+%	also be changed if wished):
+	\newcommand{\WgnSetObsFont}{\small}
+	\newcommand{\WgnSetSmallobsFont}{\Small}
+% NB- no such definitions for \supporters as there is only one of it.
+
+% Now define a generic routine which can be called with parameterisation 
+% by the six individual routines:
+\newcommand{\WgnObservers}[3]{{% Note the extra, inner bracket to ensure 
+				% that changes made here don't propagate 
+				% to the rest of the document.
+% Param 1:	Space to indent. both left and right are indented this much.
+% Param 2:	Setup commands for any font changes.
+% Param 3:	The text to print.
+	% The mechanism is clumsy; there seems to be no straightforward 
+	% way of doing this. The indentation is achieved by typesetting 
+	% the material as a 1-item list with no list bullet. The list 
+	% environment allows sensible margins to be set.
+	\begin{list}
+	{}% No bullet or other item marker.
+	{ % Commands executed first:
+	\setlength{\leftmargin}{#1}	% Left indentation
+	\setlength{\rightmargin}{#1}	% Right indentation
+	\setlength{\topsep}{0mm}	% No extra space above first line
+	}
+	\item #2#3 % Any setup (#2) followed by the text (#3).
+	\end{list}
+	}}
+
+\newcommand{\observers}[1]
+		{\WgnObservers{\WgnObsIndent}    {\WgnSetObsFont}	{#1}}
+\newcommand{\smallobservers}[1]
+		{\WgnObservers{\WgnObsIndent}    {\WgnSetSmallobsFont}	{#1}}
+\newcommand{\manyobservers}[1]
+		{\WgnObservers{\WgnManyobsIndent}{\WgnSetObsFont}	{#1}}
+\newcommand{\smallmanyobservers}[1]
+		{\WgnObservers{\WgnManyobsIndent}{\WgnSetSmallobsFont}	{#1}}
+\newcommand{\fewobservers}[1]
+		{\WgnObservers{\WgnFewobsIndent} {\WgnSetObsFont}	{#1}}
+\newcommand{\supporters}[1]
+		{\WgnObservers{\WgnManyobsIndent}{}			{#1}}
+
+
+% Original wgndef.tex definitions follow for reference:
+%\def\observers#1{{\newpar\leftskip=2\parindent\rightskip=2\parindent\tenpoint
+%	\baselineskip 11.5pt\noindent #1\newpar}}
+%\def\smallobservers#1{{\smallnewpar\leftskip=2\parindent
+%	\rightskip=2\parindent\ninepoint
+%	\baselineskip 10.4pt\noindent #1\smallnewpar}}
+%\def\smallmobservers#1{{\smallnewpar\leftskip=\parindent
+%	\rightskip=\parindent\ninepoint
+%	\baselineskip 10.4pt\noindent #1\smallnewpar}}
+%\def\fewobservers#1{{\newpar\leftskip=3\parindent
+%    \rightskip=3\parindent\tenpoint
+%    \baselineskip 11.5pt\noindent #1\newpar}}
+%\def\manyobservers#1{{\newpar\leftskip=\parindent\rightskip=\parindent
+%    \tenpoint\baselineskip 11.5pt\noindent #1\newpar}}
+%\def\supporters#1{{\newpar\leftskip=\parindent\rightskip=\parindent
+%	\noindent #1\newpar}}
+
+
+%	-	-	-	References	-	-	-	-
+
+% The existing format appears to be:
+%
+% Papers:	[No] Author, ``Title'', {\it Jnl}, Date-and-pages.
+% Books:	[No] Author, ``Title'', All-the-rest.
+
+% New format:
+% Papers:	Author, (Year) ``Title'', \textit{Jnl}, \textbf{Vol}, 
+%				[Issue, ] 12--34.
+%				EXCEPT for WGN with \textbf{Vol:Issue}, 
+% Books:	Author, (Year) ``Title'', Publisher, Town.
+
+\newcommand{\RefAut}[1]{#1}
+\newcommand{\RefYear}[1]{(#1)}
+\newcommand{\RefTit}[1]{``#1''}
+\newcommand{\RefJnl}[1]{\textit{#1}}
+\newcommand{\RefVol}[1]{\textbf{#1}}
+\newcommand{\RefIss}[1]{#1}
+\newcommand{\RefPp}[1]{#1}
+\newcommand{\RefPub}[1]{#1}
+\newcommand{\RefConf}[1]{#1}
+\newcommand{\RefPlace}[1]{#1}
+\newcommand{\RefBkEds}[1]{#1}
+\newcommand{\RefBkTit}[1]{#1}
+\newcommand{\RefURL}[1]{\texttt{#1}}
+
+% Normal usage will be (e.g.):
+% \bibitem[Beech \& Illingworth, 2001a]{BeechPerseids} 
+%	\RefAut{Beech, M., \& Illingworth, A.}
+%	\RefYear{2001},
+%	\RefTit{Perseid Fireball Observations},
+%	\RefJnl{WGN}
+%	\RefVol{29:5},
+%	\RefPp{181--184}. 
+% maybe starting from one of the blank forms:
+% \bibitem[]{} 
+%	\RefAut{}
+%	\RefYear{},
+%	\RefTit{},
+%	\RefJnl{}
+%	\RefVol{},
+%	\RefIssue{},
+%	\RefPp{}. 
+% \bibitem[]{} 
+%	\RefAut{}
+%	\RefYear{},
+%	\RefTit{},
+%	\RefPub{}. 
+
+% The following are added to speed production of papers by authors 
+% who still use the old form.
+% The \Bookref and \Artref will need editing, but the components 
+% are in the right order.
+% These are far from perfect, in that they all have the same label, 
+% producing "LaTeX Warning: Label `' multiply defined." messages.
+\newcommand{\Bookref}[4]{%
+\bibitem[x]{}
+\RefAut{#1} \RefYear{#4} \RefTit{#2}, \RefPub{#3}.
+} % \Bookref
+
+\newcommand{\Artref}[7]{%
+\bibitem[x]{}
+\RefAut{#1} \RefYear{#6} \RefTit{#2}, 
+\RefJnl{#3} \RefVol{#4} \RefIss{#5} \RefPp{#7}.
+} % \Artref
+
+
+
+%	-	-	Dummy values of variables	-	-	-
+
+% There are several variables (such as the number of the first page) which 
+% are set up by the Editor in the master file for each issue. These are 
+% unknown until that happens, but must have some value as the variables 
+% are needed when Authors write their papers. They are given dummy values 
+% here. (These values will be over-written in final production 
+% by \renewcommand commands.)
+
+\newcommand{\WGNvolume}{XX}
+\newcommand{\WGNissue}{X}
+\newcommand{\WGNyear}{200X}
+\newcommand{\WGNmonth}{Month}
+%********* The above are being replaced with the following
+\newcommand{\IssueVolume}{XX}
+\newcommand{\IssueNumber}{X}
+\newcommand{\IssueYear}{200X}
+\newcommand{\IssueMonth}{Month}
+
+% 	-	-	Overwriting standard values	-	-	-
+
+%\renewcommand{\bottomfraction}{0.5} % TEMP - see Lamport p.178

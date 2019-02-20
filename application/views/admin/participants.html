@@ -1,0 +1,210 @@
+ <div class="admin-title clearfix">
+        <h2 class="pull-left"><?= _('Participants'); ?> </h2>
+         <strong class="inline-pagination-info pull-right">
+          &nbsp;/ <?=  $input['cancelled_participants']; ?> cancelled
+         </strong>
+         <strong class="inline-pagination-info pull-right">
+          &nbsp;/ <?=  $input['confirmed_participants']; ?> confirmed
+         </strong>
+         
+         <?  /*
+         <strong class="inline-pagination-info pull-right">
+          &nbsp;/ <?=  $input['workshop_1_total']; ?> for Visual Workshop
+         </strong>
+         <strong class="inline-pagination-info pull-right">
+          &nbsp;/ <?=  $input['workshop_2_total']; ?> for Spectroscopic Workshop
+         </strong>
+         */ ?>
+         
+         <? if(!empty($input['pagination']) && !empty($input['pagination']['last_page']) && $input['pagination']['last_page']!='1'): ?>
+            <span class="inline-pagination-info pull-right">
+            
+                    <? 	$top = ($input['page']-1)*$input['max_record']+$input['max_record'];
+                        $max_on_page = $top>$input['total_results']?$input['total_results']:$top;
+                    ?>
+                    <?= sprintf('<strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong>', ($input['page']-1)*$input['max_record'],$max_on_page,$input['total_results']); ?> 
+            </span>
+        <? else: ?>	
+            <strong class="inline-pagination-info pull-right">
+                <?= count($input['participants']); ?> participants found
+            </strong>
+        <? endif; ?>
+        
+</div>
+      
+		
+		<form role="form" class="form-inline mb">
+            <input type="hidden" name="search" value="true">
+            <div class="form-group">
+                <input type="text" name="lastname" class="form-control" placeholder="Last name" value="<?= (!empty($input['lastname']))?$input['lastname']:''; ?>">
+            </div>
+			<div class="form-group">
+                <input type="text" name="email" class="form-control" placeholder="Email" value="<?= (!empty($input['email']))?$input['email']:''; ?>">
+            </div>
+            <div class="form-group">
+                 <select name="country"  class="form-control">
+                    <option value="">All countries</option>  
+                    <? foreach($input['countries'] as $c): ?>
+                        <option value="<?= $c['country_id']; ?>" 
+                        <? if(!empty($input['country']) && $c['country_id']== $input['country']): ?>selected<?endif; ?>><?= $c['short_name']; ?></option>
+                    <? endforeach; ?>
+                 </select>
+            </div>
+            
+            
+            <div class="form-group">
+                 <select name="reg_type"  class="form-control">
+                    <option value=""   <?if(empty($input['reg_type'])):?>selected<?endif; ?>>All Acc.</option> 
+                    <? foreach($input['accomodations'] as $k=>$v): ?>
+                        <option value="<?= $k; ?>" <?if(!empty($input['reg_type']) && $input['reg_type']==$k): ?>selected<?endif;?>><?= $v['abbr']; ?></option> 
+                    <? endforeach; ?>
+                 </select>
+            </div>
+            
+            <div class="form-group">
+                 <select name="confirmed"  class="form-control">
+                    <option value=""   <?if(empty($input['confirmed'])):?>selected<?endif; ?>>All</option> 
+                    <option value="-1" <?if(!empty($input['confirmed']) && $input['confirmed']==-1):?>selected<?endif; ?>>Not Confirmed</option>
+                    <option value="1"  <?if(!empty($input['confirmed']) && $input['confirmed']==1):?>selected<?endif; ?>>Confirmed</option>
+                    <option value="2"  <?if(!empty($input['confirmed']) && $input['confirmed']==2):?>selected<?endif; ?>>Confirmed but...</option>
+                    <option value="-2"  <?if(!empty($input['confirmed']) && $input['confirmed']==-2):?>selected<?endif; ?>>Cancelled</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary modal_submit ">Ok</button>	
+		</form>
+	
+		<? if(!empty($input['error'])): ?>
+			<div class="alert alert-danger"><?= $input['error']; ?></div>
+		<? endif; ?> 
+		
+		<? if(!empty($input['confirm'])): ?>
+			<div class="alert alert-success"><?= $input['confirm']; ?></div>
+		<? endif; ?> 
+		
+        <? if(!empty($input['participants'])): ?>
+  		<table class="table table-hover table-condensed table-results tablesorter <? if(empty($input['pagination']['pagination'])) : ?>mb<?endif;?>">
+				<thead>
+					<tr>
+						<th><?= _('ID'); ?></th>
+                        <th><?= _('Reg. Date'); ?></th>
+						<th title="<?= _('Name'); ?>"><?= _('Name'); ?></th>
+                        <th title="<?= _('Country'); ?>"><?= _('Ctry'); ?></th>
+                        <? /*
+                        <th title="<?= _('Visual Workshop'); ?>"><?= _('Visual W.'); ?></th>
+                        <th title="<?= _('Spectroscopic Workshop'); ?>"><?= _('Spectro. W.'); ?></th>
+                        */ ?>
+                        <th title="<?= _('Accommodation'); ?>"><?= _('Acc.'); ?></th>
+                        <th title="<?= _('Proceedings'); ?>"><?= _('Proc.'); ?></th>
+                        <th title="<?= _('Tshirt'); ?>"><?= _('Tshirt'); ?></th>
+                        <th title="<?= _('Price'); ?>" class="text-right"><?= _('Price'); ?></th>
+                        <th title="<?= _('PP Price'); ?>" class="text-right"><?= _('Paypal Price'); ?></th>
+                        <th title="<?= _('Confirmation Email Sent'); ?>" class="text-center"><?= _('Conf. Email Sent'); ?></th> 
+                        <th title="<?= _('Confirmed'); ?>" class="text-center"><?= _('Confirmed'); ?></th> 
+                        <th>&nbsp;</th>
+                        <th title="<?= _('Pay. email sent'); ?>" class="text-center"><?= _('Pay. email sent'); ?></th> 
+						
+					</tr>              
+				</thead>
+				<tbody>
+					<? foreach($input['participants'] as $participant): ?>
+					<tr id="<?= $participant['id']; ?>">
+					        <td>
+								<?= $participant['id']; ?>
+							</td>
+                            <td>
+								<?= $participant['reg_date']; ?>
+							</td>
+							<td class="nw">
+                                <? if($participant['gender']=='M'): ?>
+                                    <span class="fa fa-male btn-sm" style="color:blue"></span>
+                                <? else: ?>
+                                    <span class="fa fa-female btn-sm" style="color:pink"></span>
+                                <? endif; ?>
+                                <a href="mailto:<?= $participant['email']; ?>" target="_blank">
+                                    <?= $participant['title']; ?>
+                                    <?= $participant['firstname']; ?>
+                                    <?= $participant['lastname']; ?>
+                                </a>
+							</td>
+                            <td class="nw">
+                                <span class="flag-<?= strtolower($participant['country_code']); ?>" title="<?= $participant['country_name']; ?>"></span> 
+                            </td>
+                            <? /*
+							<td class="nw">
+                               <? if(!empty($participant['workshop1'])): ?>
+                                    <span class="fa fa-check text-success"></span>
+                                <? else: ?>
+                                    <span class="fa fa-times"></span>
+                                <? endif; ?>
+							</td>
+                            <td class="nw">
+                               <? if(!empty($participant['workshop2'])): ?>
+                                    <span class="fa fa-check text-success"></span>
+                                <? else: ?>
+                                    <span class="fa fa-times"></span>
+                                <? endif; ?>
+							</td>
+                            */ ?>
+                            <td class="nw">
+                                <?= $participant['accomodation']; ?>
+                            </td>
+                            <td class="nw">
+                                <? if(!empty($participant['proceedings']) && trim($participant['proceedings'])!=''): ?>
+                                    <?= $participant['proceedings']; ?>
+                                <? else: ?>
+                                    <span class="fa fa-times"></span>
+                                <? endif; ?>
+                            </td>
+                            <td class="nw">
+                                <? if(!empty($participant['tshirt'])): ?>
+                                    <?= $participant['tshirt']; ?>
+                                <? else: ?>
+                                    <span class="fa fa-times"></span>
+                                <? endif; ?>
+                            </td>
+                            <td class="nw text-right">
+                                <?= number_format($participant['amount_due'], 2, '.', ''); ?>&euro;
+                            </td>
+                            <td class="nw text-right">
+                                <?= number_format($participant['amount_due_paypal'], 2, '.', ''); ?>&euro;
+                            </td>
+                            <td class="text-center">
+                                 <?= $participant['email_sent']==-1?'-':'<span class="fa fa-check-square text-success"></span>';?>
+                            </td>
+                            <td class="text-center">
+                                <? if($participant['confirmed']==1): ?>
+                                    <span class="fa fa-check-square text-success"></span>
+                                <? elseif($participant['confirmed']==2) : ?>
+                                    <span class="fa fa-check-square" style="color:#eccb13"></span>
+                                <? elseif($participant['confirmed']==-2) : ?>
+                                    <span class="fa fa-times-circle text-danger"></span>    
+                                <? else: ?>
+                                    -     
+                                <? endif; ?>
+                            </td>
+                            <td  class="nw text-right">
+                                <button data-participant_name="<?= $participant['firstname']; ?> <?= $participant['lastname']; ?>" data-participant_id="<?= $participant['id']; ?>" class="btn btn-danger btn-xs" data-report_id="64977" data-action="delete_participant"><span class="fa fa-trash-o"></span> Del</button>
+                                <button data-participant_name="<?= $participant['firstname']; ?> <?= $participant['lastname']; ?>" data-participant_id="<?= $participant['id']; ?>" title="Edit" class="btn btn-default btn-xs" data-action="edit_participant"><span class="fa fa-edit"></span> Edit</button>
+                             </td>
+                             <td class="text-center">
+                                 <? if($participant['confirmed']==-1): ?>
+                                     <button data-participant_email="<?= $participant['email']; ?>"  data-participant_name="<?= $participant['firstname']; ?>  <?= $participant['lastname']; ?>" data-participant_id="<?= $participant['id']; ?>" title="Edit" class="btn btn-default btn-info btn-xs" data-action="email_participant"><span class="fa fa-envelope "></span> Send (<?= empty($participant['num_of_emails'])?0:$participant['num_of_emails']; ?>) </button>
+                                 <? endif; ?>
+                            </td
+						></tr>	
+ 					<? endforeach; ?>
+				</tbody>
+		</table>
+        
+		<? if(!empty($input['pagination']['pagination'])) : ?>
+			<div class="mb"><?=$input['pagination']['pagination'];?></div>
+		<? endif;?>	
+        
+        <? else: ?>
+        
+            <div class="alert alert-danger">
+                No participant found based on your criteria.
+            </div>
+        <? endif; ?>
+
+</div>

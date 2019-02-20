@@ -1,0 +1,64 @@
+<div id="main-col">  
+        
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Contact</h1> 
+    </div>
+</div> 
+
+<div class="container">
+ 
+    <div class="row">
+         
+        <div class="col-md-12 mt">
+
+        
+        <? if(!empty($input['success'])): ?>
+             <div class="alert alert-success mt">
+                <button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button>
+                <h4><?= _('Success'); ?></h4> 
+                <?= $input['success']; ?>
+            </div>
+        <? endif; ?>
+        
+        <? if(!empty($input['errors'])): ?>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert"><span class="fa fa-times"></span></button>
+                <h4><?= _('Error'); ?></h4>
+                <ul>
+                    <? foreach($input['errors'] as $k=>$v): ?>
+                        <li> 
+                            <a href="#<?= $k; ?>"><span class="fa fa-minus-circle alert-link"></span></a> 
+                            <? echo($v); ?>
+                        </li>
+                    <? endforeach; ?>
+                </ul>
+            </div>
+        <? endif; ?>
+        
+        
+        
+        <form  role="form" method="post">
+            <input type="hidden" value="1" name="send_message"/>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" id="name" name="name" required  placeholder="Your Name" value="<?if(!empty($input['name'])):?><?= $input['name'];?><?endif;?>">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control input-lg" id="email" name="email" required placeholder="Your Email" value="<?if(!empty($input['email'])):?><?= $input['email'];?><?endif;?>">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" id="subject" name="subject" required placeholder="Subject" value="<?if(!empty($input['subject'])):?><?= $input['subject'];?><?endif;?>">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="6" name="message" id="message" placeholder="Your Message"><?if(!empty($input['message'])):?><?= $input['message'];?><?endif;?></textarea>
+            </div>
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="<?= reCaptcha_Site_Key; ?>"></div>
+                <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=en"></script>
+            </div> 
+            <button type="submit" class="btn btn-primary btn-lg ">Send message</button>
+        </form>
+      </div>
+</div>
+</div>
+</div>

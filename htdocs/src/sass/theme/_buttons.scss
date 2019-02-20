@@ -1,0 +1,58 @@
+.btn-social {
+    position: relative;
+    padding-left: 44px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px;
+	display:inline-block;
+	padding-top:.6em;
+	padding-bottom:.6em;
+    margin-bottom:.5em;
+	
+	&>:first-child {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 32px;
+		line-height: 40px;
+		font-size: 1.6em;
+		text-align: center;
+		border-right: 1px solid rgba(0,0,0,.2);
+	}
+	
+	&.btn-facebook {
+		color: #fff;
+		background-color: #3b5998;
+		border-color: rgba(0,0,0,.2);
+		
+		&:hover, &focus {
+			color: #fff;
+			background-color: #193e8e;
+		}
+	}
+}
+
+.b-btn {
+    padding: .5em;
+    display: block;
+	
+	.fa {
+		display:block;	
+        padding-bottom:.2em;
+	}
+
+	&:hover, &:focus {
+		text-decoration:none;	
+	}
+}
+
+
+
+@media screen and (max-width:600px) {
+	.btn-social {
+		padding-top:.3em;
+		padding-bottom:.3em;
+	}
+}

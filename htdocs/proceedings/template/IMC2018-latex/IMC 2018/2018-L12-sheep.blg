@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Cygwin)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: 2018-L12-sheep.aux
+The style file: imo2.bst
+Database file #1: sheep.bib
+You've used 4 entries,
+            2135 wiz_defined-function locations,
+            536 strings with 4509 characters,
+and the built_in function-call counts, 1485 in all, are:
+= -- 152
+> -- 43
+< -- 5
++ -- 12
+- -- 12
+* -- 108
+:= -- 260
+add.period$ -- 15
+call.type$ -- 4
+change.case$ -- 25
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 66
+empty$ -- 120
+format.name$ -- 18
+if$ -- 307
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 3
+newline$ -- 24
+num.names$ -- 15
+pop$ -- 21
+preamble$ -- 1
+purify$ -- 25
+quote$ -- 0
+skip$ -- 51
+stack$ -- 0
+substring$ -- 85
+swap$ -- 11
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 22
+warning$ -- 0
+while$ -- 14
+width$ -- 0
+write$ -- 56

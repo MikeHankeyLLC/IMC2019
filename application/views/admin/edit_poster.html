@@ -1,0 +1,87 @@
+<div class="container">
+    <form class="form-horizontal" >
+        <input type="hidden" name="submit" value="1"/>
+        <input type="hidden" name="poster_id" value="<?= $input['poster_id']; ?>"/>
+         
+        <? if (!empty($input['errors']) ) : ?>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><?= (count($input['errors'])>=1)?_('Errors'):_('Error'); ?></strong>
+                <ul>
+                    <? foreach($input['errors'] as $error): ?>
+                        <li><?= $error; ?></li>
+                    <? endforeach; ?>
+                </ul>
+            </div>
+        <? endif; ?>  
+        
+        
+        <fieldset>
+            <div class="form-group">
+                <label for="first_editing" class="col-sm-3 control-label text-right">First Editing Ready</label>
+                <div class="col-sm-9">
+                    <select class="form-control auto poster_dur" name="first_editing" id="first_editing">
+                        <option value="-1"  <? if(empty($input['poster']['first_editing']) ||  $input['poster']['first_editing']==-1):?>selected<?endif; ?>>No</option>
+                        <option value="1"  <? if(!empty($input['poster']['first_editing'])&& $input['poster']['first_editing']==1):?>selected<?endif; ?>>Yes</option>
+                    </select>
+                 </div>
+            </div>
+            <div class="form-group">
+                <label for="final_editing" class="col-sm-3 control-label text-right">Final Editing Ready</label>
+                <div class="col-sm-9">
+                    <select class="form-control auto poster_dur" name="final_editing" id="final_editing">
+                        <option value="-1"  <? if(empty($input['poster']['final_editing']) ||  $input['poster']['final_editing']==-1):?>selected<?endif; ?>>No</option>
+                        <option value="1"  <? if(!empty($input['poster']['final_editing'])&& $input['poster']['final_editing']==1):?>selected<?endif; ?>>Yes</option>
+                    </select>
+                 </div>
+            </div>
+        </fieldset> 
+        <hr/> 
+        <fieldset>
+ 
+         <div class="form-group">
+            <label for="title" class="col-sm-3 control-label text-right">Poster Title</label>
+            <div class="col-sm-9">
+                <input type="text" name="title" id="title" class="form-control auto" size="50" placeholder="Poster Title" required="" value="<?= $input['poster']['title']; ?>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="authors" class="col-sm-3 control-label text-right">Poster Author(s)</label>
+            <div class="col-sm-9">
+                <input type="text" name="authors" id="authors" class="form-control auto" size="50" placeholder="Poster Authors" required="" value="<?= $input['poster']['authors']; ?>">
+                <span class="help-block">Enter the full list of authors - separate each author with a comma</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="abstract" class="col-sm-3 control-label text-right">Poster  Abstract</label>
+            <div class="col-sm-9">
+                <textarea name="abstract" id="abstract" class="form-control" placeholder="Poster Abstract" required><?= $input['poster']['abstract']; ?></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="session" class="col-sm-3 control-label text-right">Most suitable IMC session</label>
+            <div class="col-sm-9">
+                <select class="form-control auto poster_session" name="session" id="session">
+                <? foreach($input['sessions'] as $k=>$v): ?>  
+                   <option value="<?= $k; ?>" <? if($input['poster']['session']==$k):?>selected<?endif;?>><?= $v; ?></option>
+                <? endforeach; ?>   
+                </select>
+             </div>
+        </div>
+         <div class="form-group">
+            <label for="delivery_date" class="col-sm-3 control-label text-right">Paper delivery date</label>
+            <div class="col-sm-9">
+                <select class="form-control auto delivery_date" name="delivery_date" required id="delivery_date">
+                      <? foreach($input['delivery_dates'] as $k=>$v): ?>
+                        <option value="<?=$k;?>" <? if($input['poster']['delivery_date']==$k):?>selected<?endif;?>>
+                            <?=$v['text'];?>
+                        </option>
+                    <? endforeach; ?>
+                </select>
+                  <span class="help-block"><strong>For all lectures presented at an IMC a paper is mandatory for publication in the IMC Proceedings.
+                 </strong></span> 
+            </div>
+        </div>
+    </fieldset>
+ </form>
+ </div>

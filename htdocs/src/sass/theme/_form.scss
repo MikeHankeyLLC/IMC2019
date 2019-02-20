@@ -1,0 +1,22 @@
+legend, .legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+    line-height: inherit;
+    border-bottom: 1px solid $table-border-color;
+}
+
+.req, label span {
+    color: #ad0002;
+}
+
+label span.hh {
+    color:inherit;
+}
+
+@media screen and (min-width: 768px) {
+    .auto {
+        width: auto !important; 
+    } 
+}

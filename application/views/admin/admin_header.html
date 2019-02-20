@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><?=  !(empty($title))?$title:_('Admin'); ?></title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= ORGANIZATION_NAME; ?>" />
+  	<meta name="keywords" content="<?= _('fireball,meteor,meteorite,report'); ?>" />
+	
+	<meta charset="UTF-8" />
+	<meta name="google" content="notranslate">
+	<meta http-equiv="Content-Language" content="<?= getenv('LANG'); ?>" />
+ 	 
+  </head>
+<body class="admin">
+
+ 
+
+<? 
+	// SYSTEM LOAD
+	$load = sys_getloadavg();
+ 	if ($load[0] > 80) {
+		header('HTTP/1.1 503 Too busy, try again later');
+		die('<br/><div class="container"><div class="alert alert-danger"><strong>Server too busy</strong>. Please try again later.</div></div>');
+	}
+?>
+
+
+<div class="navbar navbar-main">
+  <div class="container col-lg-12">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <? if(!empty($large)): ?>
+		<? /* Side bar toggle for event page */ ?>
+		<a id="sidebar-toggle" href="#" class="navbar-toggle sidebar-toggle-btn btn btn-default">
+			<small class="glyphicon glyphicon-tasks"></small>
+		</a>
+ 	  <? endif; ?>
+      <a class="navbar-brand" href="http://<?= ORGANIZATION_WEBSITE; ?>" title="<?= ORGANIZATION_NAME; ?>">
+      	<img src="<?= ORGANIZATION_ICON; ?>" title="<?= ORGANIZATION_NAME; ?>"/>
+      </a>
+    </div>
+	
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+	  	
+		<li class="dropdown <? if(!empty($active_menu) && ($active_menu=='Pending_Reports' || $active_menu=='Partial_Events')): ?>active<?endif;?>">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<?= _('Pending Reports'); ?>"><?= _('Pending'); ?> <b class="caret"></b></a>
+         	<ul class="dropdown-menu">
+				 <li><a href="/members/imo_admin/pending_reports" title="<?= _('Pending Reports'); ?>"><?= _('Pending Reports'); ?></a></li>
+				 <li><a href="/members/imo_admin/partial_events" title="<?= _('Pending Reports by Events'); ?>"><?= _('Partial Events'); ?></a></li>
+			</ul>
+		</li>
+	  
+	  
+		<li class="dropdown <? if(!empty($active_menu) && ($active_menu=='Edit_Event')): ?>active<?endif;?>">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<?= _('Events'); ?>"><?= _('Events'); ?> <b class="caret"></b></a>
+ 			<ul class="dropdown-menu">
+				 <li><a href="/members/imo_admin/edit_event" title="<?= _('Edit Events'); ?>"><?= _('Edit Events'); ?></a></li>
+				 <li><a href="/members/imo_admin/trajectories" title="<?= _('Trajectories'); ?>"><?= _('Trajectories'); ?></a></li>
+			</ul>
+		</li>
+		 
+	  	<? /*
+	  	<li class="dropdown <? if(!empty($active_menu) && ($active_menu=='Edit_Report' || $active_menu=='Edit_Event')): ?>active<?endif;?>">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= _('Edit'); ?> <b class="caret"></b></a>
+       		<ul class="dropdown-menu">
+				 <li><a href="/members/imo_admin/edit_report"><?= _('Edit Report'); ?></a></li>
+				 <li><a href="/members/imo_admin/edit_event"><?= _('Edit Event'); ?></a></li>
+			</ul>
+		</li>
+		*/ ?>
+		
+        <li <? if(!empty($active_menu) && $active_menu=='Users'): ?>class='active'<?endif;?>><a href="/members/imo_admin/admin_users" title="<?= _('Users'); ?>"><?= _('Users'); ?></a></li>
+		<li <? if(!empty($active_menu) && $active_menu=='Help'): ?>class='active'<?endif;?>><a href="/members/imo_admin/admin_help" title="<?= _('Help'); ?>"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+		<li class="divider"></li>
+        <li><a href="/members/"><?= _('Public site'); ?></a></li>
+        <li class="divider"></li>
+		<li><a href="/members/imo_admin/logout"><span class="glyphicon glyphicon-remove"></span> <?= _('Logout'); ?></a></li>
+		<? /*
+		<li class="dropdown">
+		 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			 <? if(empty($LANG) || $LANG=="en_US"):?>
+					English
+			 <? elseif($LANG=="fr_FR") : ?>
+					Français
+			 <? endif; ?>
+		 <b class="caret"></b></a>
+         <ul class="dropdown-menu" id="language_switcher_dd">
+          	 <? if((empty($LANG) || $LANG=="en_US")):?>
+				<li><a href="#" rel="fr_FR">Français</a></li>
+			 <? elseif($LANG=="fr_FR") : ?>
+				<li><a href="#"  rel="en_US">English</a></li>
+			 <? endif; ?>
+		  </ul>
+        </li>
+		*/ ?>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>

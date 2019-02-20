@@ -1,0 +1,47 @@
+h3.brdd {
+	padding-bottom:.3em;
+	border-bottom:1px solid #f0f0f0;
+	margin-right:15px;
+}
+
+.program {
+	div {
+		position:relative;
+		margin-bottom:.25em;
+
+		&:before,&:after {
+			content: " ";
+    		display: table;
+    		clear:left;
+		}
+
+		i {
+		    display: block;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    font-style: normal;
+		    overflow: hidden;
+		    font-weight: bold;
+		}
+
+		span {
+			display:block;
+		}
+
+		
+	}	
+
+
+	&.one-hour div {
+			i {
+				max-width:2.8em;
+			}
+
+			span {
+				margin-left: 3.5em;
+				margin-bottom: 1em;
+			}
+	}
+
+}

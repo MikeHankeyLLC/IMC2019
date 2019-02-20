@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><?= (!empty($title))?$title:'IMC ' . CONF_YEAR .' - ' . CONF_DATES  .', ' . CONF_LOCATION;?></title>
+  
+  <link rel="shortcut icon" href="/img/ico/favicon.png" type="image/png" />
+  
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="International Meteor Conference (IMC <?= CONF_YEAR; ?>) <?= CONF_DATES; ?> <?= CONF_YEAR; ?>, <?= CONF_LOCATION; ?>">
+  <meta name="keywords" content="IMC, IMO, Meteor, Conference">
+  <meta name="author" content="Vincent Perlerin for Mike Hankey and Associates LLC">
+  
+  
+  <meta property="og:url"                content="<?= PUBLIC_URL; ?>" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="International Meteor Conference (IMC <?= CONF_YEAR; ?>) <?= CONF_DATES; ?> <?= CONF_YEAR; ?>, <?= CONF_LOCATION; ?>" />
+  <meta property="og:description"        content="Come to the annual meeting of the International Meteor Organization and meet amateurs from all over the world who engage in meteor observation, analysis and instrumentation." />
+  <meta property="og:image"              content="<?= PUBLIC_URL; ?>/img/imc2018-fb.jpg" />
+  
+  <script data-pace-options='{ "eventLag": true, "document": true }' src="/js/pace.min.js"></script>
+  <style>.pace { -webkit-pointer-events: none; pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; }  .pace-inactive { display: none; }  .pace .pace-progress { background: #29d; position: fixed; z-index: 2000; top: 0; left: 0; height: 2px;  -webkit-transition: width 1s; -moz-transition: width 1s; -o-transition: width 1s; transition: width 1s; }  .pace .pace-progress-inner { display: block; position: absolute; right: 0px; width: 100px; height: 100%; box-shadow: 0 0 10px #29d, 0 0 5px #29d; opacity: 1.0; -webkit-transform: rotate(3deg) translate(0px, -4px); -moz-transform: rotate(3deg) translate(0px, -4px); -ms-transform: rotate(3deg) translate(0px, -4px); -o-transform: rotate(3deg) translate(0px, -4px); transform: rotate(3deg) translate(0px, -4px); }  .pace .pace-activity { display: block; position: fixed; z-index: 2000; top: 15px; right: 15px; width: 14px; height: 14px; border: solid 2px transparent; border-top-color: #29d; border-left-color: #29d; border-radius: 10px; -webkit-animation: pace-spinner 400ms linear infinite; -moz-animation: pace-spinner 400ms linear infinite; -ms-animation: pace-spinner 400ms linear infinite; -o-animation: pace-spinner 400ms linear infinite; animation: pace-spinner 400ms linear infinite; }  @-webkit-keyframes pace-spinner { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); } 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } } @-moz-keyframes pace-spinner { 0% { -moz-transform: rotate(0deg); transform: rotate(0deg); } 100% { -moz-transform: rotate(360deg); transform: rotate(360deg); } } @-o-keyframes pace-spinner { 0% { -o-transform: rotate(0deg); transform: rotate(0deg); } 100% { -o-transform: rotate(360deg); transform: rotate(360deg); } } @-ms-keyframes pace-spinner { 0% { -ms-transform: rotate(0deg); transform: rotate(0deg); } 100% { -ms-transform: rotate(360deg); transform: rotate(360deg); } } @keyframes pace-spinner { 0% { transform: rotate(0deg); transform: rotate(0deg); } 100% { transform: rotate(360deg); transform: rotate(360deg); } } </style>
+  
+  <link href="/css/main.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.22.0/css/blueimp-gallery.min.css"  rel="stylesheet"/>
+   
+</head>
+<body id="<? if($active=="index"):?>home<?endif;?>">
+
+<div id="wrap">
+
+    <? if(!empty($slider)): ?>
+        <div id="illustration">
+            <div id="illus_cont"  >
+                <img src="/img/imc2019.svg" class="img-responsive anim-down"/>    
+                <h1>International Meteor Conference</h1>
+                <h2><?= CONF_DATES; ?>, <?= CONF_LOCATION; ?></h2>
+            </div>
+        </div>
+     <? endif; ?>
+ 
+
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" id="top-bar" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle toggle-menu menu-right jPushMenuBtn menu-active" data-toggle="collapse" data-target="#navbar-collapse-1">              
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+            </button>
+            <a class="navbar-brand" href="/"><img src="/img/imc2019-logo.svg"></a>
+            <a href="/" class="imc">
+                <span class="imc-tit">IMC <?= CONF_YEAR; ?></span>
+                <span class="imc-info"><?= CONF_DATES; ?>, <?= CONF_LOCATION; ?></span>
+            </a>
+          </div>
+         
+           <div class="collapse navbar-collapse cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+    
+                <li class="text-center m-onl">
+                    <a class="imc-m-l" href="<?= BASE_URL; ?>"><img src="/img/imc2017-logo-t.png"></a>
+                    <span class="imc-info-m"><?= CONF_DATES; ?>, Slovakia</span>
+                </li>
+                <li class="dropdown">
+                  <?  $act = ($active=="ex"|| $active=="prog"|| $active=="participants"|| $active=="proceedings"|| $active=="open"); ?>
+                  <a href="#" class="dropdown-toggle <?if($act):?>active<?endif;?>" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Program <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li <?if($active=="prog"):?>class="active"<?endif; ?>><a href="/program">Program</a></li> 
+                   <? /*   <li <?if($active=="open"):?>class="active"<?endif; ?>><a href="/opensession">Open Session</a></li> 
+                   <li <?if($active=="work1"):?>class="active"<?endif; ?>><a href="/workshop1">Visual Workshop</a></li>
+                   <li <?if($active=="work2"):?>class="active"<?endif; ?>><a href="/workshop2">Spectroscopic Workshop</a></li> */ ?>
+                    <li <?if($active=="ex"):?>class="active"<?endif; ?>><a href="/excursion">Excursion</a></li>
+                    <? /*    <li <?if($active=="soc"):?>class="active"<?endif; ?>><a href="/soc">Scientific Organizing Committee</a></li> */ ?>
+                     <li <?if($active=="participants"):?>class="active"<?endif; ?>><a href="/participants">Participants</a></li> 
+                  <? /*     <li <?if($active=="proceedings"):?>class="active"<?endif; ?>><a href="/proceedings">Proceedings</a></li>    */ ?>
+                  </ul>
+                </li>
+                  
+                <li class="dropdown">
+                  <?  $act = ( $active=="topics"|| $active=="guideline"); ?>
+                  <a href="#" class="dropdown-toggle <?if($act):?>active<?endif;?>" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Submissions <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li <?if($active=="guideline"):?>class="active"<?endif; ?>><a href="/guideline">Proceedings Guidelines</a></li>
+                    <li <?if($active=="topics"):?>class="active"<?endif; ?>><a href="/topics">Topics</a></li>
+                    <li <?if($active=="post_award"):?>class="active"<?endif; ?>><a href="/posteraward">Best Poster Award</a></li>
+                    <li <?if($active=="photo_comp"):?>class="active"<?endif; ?>><a href="/photocompetition">Best Meteor Photo Competition</a></li>
+                   </ul>
+                </li>
+                
+                <li class="dropdown">
+                  <?  $act = ($active=="acc"|| $active=="ven" || $active=="trav"); ?>
+                  <a href="#" class="dropdown-toggle <?if($act):?>active<?endif;?>" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li <?if($active=="bollmannsruh"):?>class="active"<?endif; ?>><a href="/bollmannsruh">Bollmannsruh</a></li>
+                    <li <?if($active=="ven"):?>class="active"<?endif; ?>><a href="/venue">Conference Venue</a></li>
+                    <li <?if($active=="acc"):?>class="active"<?endif; ?>><a href="/acc">Accommodation</a></li>  
+                    <li <?if($active=="trav"):?>class="active"<?endif; ?>><a href="/travel">Travel Info</a></li>
+                    <li <?if($active=="pra"):?>class="active"<?endif; ?>><a href="/praticalinfo">Practical Info</a></li>
+                  </ul>
+                </li>
+                
+                <li class="dropdown">
+                  <?  $act = ($active=="reg" || $active=="payment" || $active=="participants" || $active=="proceedings"); ?>
+                  <a href="#" class="dropdown-toggle <?if($act):?>active<?endif;?>" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registration <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li <?if($active=="reg"):?>class="active"<?endif; ?>><a href="/registration">Registration</a></li>
+                    <li <?if($active=="payment"):?>class="active"<?endif; ?>><a href="/payment">Payment</a></li>
+                    <li <?if($active=="imo"):?>class="active"<?endif; ?>><a href="/imo">IMO Membership</a></li>
+                  </ul>
+                </li>
+                
+                <li>
+                    <?  $act = ($active=="contact"); ?>
+                    <a href="/contact"><span class="fa fa-send-o"></span> Contact</a>
+                </li>
+                <li class="text-center m-onl nb">
+                    <p> 
+                        <a href="/disclaimer">Service agreement and disclaimer</a> <br/>
+                        developed &amp; maintained by<br/><a href="http://www.mikehankey.com/" target="_blank">Mike Hankey &amp; Associates, LLC</a><br/>
+                        &copy; <?= date('Y'); ?>
+                    </p>
+                </li> 
+            </ul>
+          </div> 
+        </div> 
+      </nav>
+</div>
+
+
+
+
+<!--[if lt IE 9]>
+    <div class="container"><div class="alert alert-danger dmt text-center">
+        <h2 class="nmt nmb">Your Browser is outdated</h2>
+        <strong>This site doesn't work with your version of Internet Explorer.</strong><br/> 
+        <strong>It's really time to update, or even better, go for a smarter browser.<br/>Like <a href="http://www.apple.com/safari/">Safari</a>, <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.mozilla.com/en-US/firefox/firefox.html">Firefox</a> or <a href="http://www.opera.com/download/">Opera</a>. 
+    </div></div>
+<![endif]-->
+
+<noscript>
+    <div class="container">
+        <div class="alert alert-danger dmt text-center">
+            <h2 class="nmt nmb">Javascript Required</h2>
+            Javascript is required: please enable javascript on your browser.
+        </div>
+    </div>
+</noscript>

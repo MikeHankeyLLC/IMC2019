@@ -1,0 +1,388 @@
+
+<div id="main-col">          
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Program</h1>
+        <? /*
+        <a class="btn btn-info pull-right dmt" href="/program_pdf/IMC2016 Program v1.3.pdf" target="_blank">
+                <span class="fa fa-file-pdf-o"></span> Download (PDF)
+        </a>
+        */ ?>
+    </div>
+</div> 
+<div class="container">
+
+<div class="row">
+      
+    <? /*
+
+        $pdf = array(
+            's2_balaz.pdf',
+            's2_IMC_2018_Slansky.pdf',
+            's3_1415 Lauriston_Encontreitor - IMC 2018.pdf',
+            's3_Andreic_spectral_sensitivity.pdf',
+            's3_Bagrov_Adapter to meteor TV camera for meteor observations.pdf',
+            's3_Barghini_IMO2018.pdf',
+            's3_Vincent Perlerin, Mike Hankey_Universal Cam API.pdf',
+            's4_1430 IMC2018_Zoladek_V4.pdf',
+            's4_1445 Wisniewski_IMC 2018 - Results PFN 2017 .pdf',
+            's4_1500 IMC2018.pdf',
+            's4_1520 NEMO-PR-012_1_0-IMC2018-NEMO-Vol2_2018-08-30.pdf',
+            's4_1605 IMC2018_Kereszturi3.pdf',
+            's4_1640 IMC2018_Yang.pdf',
+            's5_1650 VisualMeteorWorkshop2018.pdf',
+            's5_1700 Spectroscopic_Workshop.pdf',
+            's5_1715 MALBECv1.pdf',
+            's5_1725 Ocaña_IMC2018_20180831.pdf',
+            's5_1735 imc2018_amp_spade.pdf',
+            's5_1745 Hajdukova_Spurious_meteoroid_orbits.pdf',
+            's6_0900IMC2018_Gural_ANDESFIRE.pdf',
+            's6_0920 Segon_IMC2018.pdf',
+            's6_0940 PRISMA_Pezinok.pdf',
+            's6_0955Beck_Pezinok 2018.pdf',
+            's7_0945-Nagy-IMC2018.pdf',
+            's7_1000_Matlovic_IMC18.pdf',
+            's7_1055_Ferus_Meteors Slovakia.pdf',
+            's7_1115_Vojacek_IMC2018.pdf',
+            's7_1130_EgorovaIMC2018_new.pdf',
+            's7_1145_Brykina_Bragin_IMC.pdf',
+            's8_1045_Tomezzoli_EARS-Obs-Fu-0005.pdf',
+            's8_BRAMS_major_showers.pdf',
+            's9_1135_Ryabova_IMC2018.pdf',
+            's9_1150_IMC2018_Rendtel.pdf',
+            's9_1220_SPE_Shrbeny.pdf',
+            's9_1240_Sambarov_IMC.pdf'
+         );
+
+         function get_p($index, $pdf) {
+            return "<a href='/proceedings/".$pdf[$index]."' target='_blank' class='pdf'><strong><span class='fa fa-file-pdf-o'></span> PDF</strong><sup class='fa fa-external-link'></sup></a>";
+        } 
+    */ ?>
+        <? /*
+    <style>.pdf { padding-left: .5rem;
+        border: 1px solid #337ab7;
+        padding: 0 .2rem .2rem;
+        border-radius: 4px;
+        margin-left: .5rem;} .pdf:hover { text-decoration:none; color:#fff; background:#337ab7}sup.fa {    font-size: 0.55rem;
+        padding-left: .3rem;) }</style>
+        */ ?>
+
+        <? 
+        function get_p($index, $pdf) {
+        } ?>
+    
+    <div class="col-md-12 text-only">
+       
+         <div class="alert alert-info">
+            <span class="fa fa-info-circle"></span> 
+            <? /* <strong>You can download the presentation (PDF format) of some of the lectures by clicking "PDF" next to the title.</strong> */ ?>
+            <strong>The official IMC2019 program will be soon available.</strong>
+        </div>
+       
+        
+        <? 
+            // Find the active by default
+        $days = array('03.11.2018','04.11.2018','05.11.2018','06.11.2018');
+            $d = date('d.m.Y'); 
+        ?>
+ 
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li <? if($d==$days[0] || !in_array($d,$days)):?>class="active"<? endif; ?>><a href="#thursday" role="tab" data-toggle="tab"><strong>Thursday</strong>,<br> 3 October 2019</a></li>
+            <li <? if($d==$days[1] ):?>class="active"<? endif; ?>><a href="#friday" role="tab" data-toggle="tab"><strong>Friday</strong>,<br> 4 October 2019</a></li>
+            <li <? if($d==$days[2] ):?>class="active"<? endif; ?>><a href="#saturday" role="tab" data-toggle="tab"><strong>Saturday</strong>,<br> 5 October 2019</a></li>
+            <li <? if($d==$days[3] ):?>class="active"<? endif; ?>><a href="#sunday" role="tab" data-toggle="tab"><strong>Sunday</strong>,<br> 6 October 2019</a></li>
+            <li><a href="#posters" role="tab" data-toggle="tab"><strong>Posters</strong><br> <em>Poster sessions</em></a></li>
+        </ul>
+  
+        <div class="tab-content">
+            <div class="tab-pane <? if($d==$days[0] || !in_array($d,$days)):?>active<? endif; ?>" id="thursday">
+                 <h3> Thursday, 3 October 2019</h3>
+                    <dl class="dl-horizontal" style="display:none">
+                        <dt>14:00-18:00</dt><dd><strong>Arrival of participants</strong></dd>
+                        <dt>18:00-18:45</dt><dd><strong>Welcome reception and opening of the conference by president of IMO and LOC</strong></dd>
+                        <dt>18:45-20:00</dt><dd><strong>Dinner</strong></dd>
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem"><strong>SESSION 1 - Introductory Session</strong><br> <span style="text-transform:none">Session Chair: <em>Juraj Toth</em></span></dd>
+                        <dt class="mb">20:00-20:30</dt> <dd class="mb"><strong>Detection of bolides from space with the Global Lightning Mapper on GOES.</strong><br/><em>Peter Jenniskens</em></dd>
+                        <dt class="mb">20:30-21:00</dt> <dd class="mb"><strong>Current status of the European Fireball Network - instruments, methods and examples of data.</strong><br/><em>Pavel Spurný and Jiří Borovička</em></dd>
+                    </dl>
+            </div>  
+              
+            <div class="tab-pane <? if($d==$days[1] ):?>active<? endif; ?>" id="friday">
+                <h3>Friday, 4 October 2019</h3>
+                <dl class="dl-horizontal" style="display:none">
+                        <dt>07:30-09:00</dt> <dd>Breakfast</dd>
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION 2 - Observing techniques</strong><br>
+                            <span style="text-transform:none">Session Chair: <em>Denis Vida</em></span></dd>
+                        <dt class="mb">09:00-09:20</dt> <dd class="mb"><strong>The perfect observing direction.</strong><br/><em>Sirko Molau</em></dd>
+                        <dt class="mb">09:20-09:40</dt> <dd class="mb"><strong>SCAMPI - Single Camera Measurement of the Population Index.</strong><?= get_p(1,$pdf); ?><br/><em>Peter C. Slansky</em></dd>
+                        <dt class="mb">09:40-09:55</dt> <dd class="mb"><strong>Numerical Simulation of Meteors as a Means of Debiasing AMOS Data.</strong> <?= get_p(0,$pdf); ?><br/><em>Martin Balaz and Juraj Toth</em></dd>    
+                        <dt class="mb">09:55-10:15</dt> <dd class="mb"><strong>New spectroscopic program of the European Fireball Network.</strong> <br/><em>Jiří Borovička and Pavel Spurny</em></dd>
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION 3 - Instruments, data pipelines and software</strong><br>
+                            <span style="text-transform:none">Session chair:<em> Theresa Ott and Esther Drolshagen</em></span></dd>
+                            <dt class="mb">10:15-10:25</dt> <dd class="mb"><strong>Correction for meteor centroids obtained using rolling shutter cameras.</strong><br/><em>Patrik Kukić, Denis Vida, Peter Gural, Damir Šegon and Aleksandar Merlak </em></dd>
+                            <dt class="mb">10:25-10:45</dt> <dd class="mb"><strong>Which trajectory solver is best for your optical meteor data? Algorithm implications for radiant and orbit accuracy.</strong><br/><em>Denis Vida, Peter Brown, Margaret Campbell-Brown, Paul Wiegert and Peter Gural</em></dd>
+                       
+                      
+                        <dt class="mb">10:45-11:00</dt> <dd class="mb"><strong>Truth about videometeor photometry.</strong><br/><em>Roman Piffl</em></dd>
+                        <dt class="mb">11:00-11:30</dt> <dd class="mb">Coffee break and <strong>poster session</strong></dd>
+                        <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>Improving Astrometry and Photometry reduction for all-sky cameras.</strong><?= get_p(5,$pdf); ?><br/><em>Dario Barghini, Daniele Gardiol and Albino Carbognani </em></dd>
+                        <dt class="mb">11:45-12:00</dt> <dd class="mb"><strong>Spectral sensitivity of photographic emulsions.</strong><?= get_p(3,$pdf); ?><br/><em>Željko Andreić, Damir Šegon and Peter Gural</em></dd>
+                      
+                        <dt class="mb">12:00-12:15</dt> <dd class="mb"><strong>Adapter to meteor TV camera for observation of shower’s weakest meteors. 
+                            </strong><?= get_p(4,$pdf); ?><br/>
+                                        <em>Vladislav Leonov and Alexander Bagrov 
+                                            </em></dd>
+                        <dt class="mb">12:15-12:30</dt> <dd class="mb"><strong>Universal Cam Network API. 
+                        </strong><?= get_p(6,$pdf); ?><br/><em>Vincent Perlerin and Mike Hankey</em></dd>
+                        <dt>12:30</dt> <dd> Group photo in front of the horse statue </dd>
+                        <dt>12:45-14:15</dt> <dd>Lunch</dd>
+                        <dt class="mb mt">14:15-14:30</dt> <dd class="mb mt"><strong>Encontreitor: a new approach to meteor shower research software.
+                        </strong><?= get_p(2,$pdf); ?><br/><em>Leonardo Scanferla Amaralil,Carlos Augusto Di Pietro Bella, Lauriston Trindade and Carlos Fernando Jung 
+                        </em></dd>
+
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                                <strong>SESSION 4 - Fireballs and meteorite recovery</strong><br>
+                                <span style="text-transform:none">Session chair:<em> Hadrien Devillepoix</em></span></dd>
+                                <dt class="mb">14:30-14:45</dt> <dd class="mb"><strong>Fireball over Germany and Poland, 6-th October 2017.
+                                    </strong><?= get_p(7,$pdf); ?><br/><em>Przemysław Żołądek, Arkadiusz Olech, Mariusz Wiśniewski, Dieter Heinlein, Anastasios Margonis, Sirko Molau, Jurgen Oberst and Marcin Stolarz 
+                                    </em></dd>
+                                    <dt class="mb">14:45-15:00</dt> <dd class="mb"><strong>Results of Polish Fireball Network 2017. 
+
+                                        </strong><?= get_p(8,$pdf); ?><br/><em>Mariusz Wiśniewski, Przemysław  Żołądek, Arkadiusz Olech, A. Raj,  Zbigniew Tyminski, Maciej Maciejewski, Karol  Fietkiewicz,  Maciej  Myszkiewicz, Marcin Przemysław Gawroński, Tomasz Suchodolski,  Marcin Stolarz and Mariusz  Gozdalski 
+ 
+                                        </em></dd>
+                                        <dt class="mb">15:00-15:20</dt> <dd class="mb"><strong>Simulating meteorite impacts - an outdoor field experiment. 
+
+                                            </strong><?= get_p(9,$pdf); ?><br/><em>Felix Bettonvil
+
+                                            </em></dd>
+                                            <dt class="mb">15:20-15:35</dt> <dd class="mb"><strong>NEMO Vol 2. – Status of the NEar real-time MOnitoring system. 
+                                                </strong><?= get_p(10,$pdf); ?><br/><em> Esther Drolshagen, Theresa Ott, Detlef Koschny, Gerhard Drolshagen, Pierrick Mialle, Jeremie Vaubaillon and Björn Poppe 
+                                                </em></dd>
+                                                <dt class="mb  ">15:35-16:05</dt> <dd class="mb  ">Coffee break and <strong>poster session</strong></dd>                                                                                          
+                                           
+                                    <dt class="mb">16:05-16:20</dt> <dd class="mb"><strong>Connecting meteors and meteorites: flight track, spectra, finding and laboratory analysis – suggestion for a collaborative action.
+                                                    </strong><?= get_p(11,$pdf); ?><br/><em>Akos Kereszturi, Martin Ferus, Krisztián Sárneczky, Alexey Berezhnoy, Elias Chatzitheodoridis, Jakub Koukal, Libor Lenža and Miroslav Krůs 
+                                                    </em></dd>                                            
+                                    <dt class="mb">16:20-16:40</dt> <dd class="mb"><strong>Calculating Orbits and Finding Meteorites with the Desert Fireball Network. </strong><br/><em> Eleanor K. Sansom, Hadrien Devillepoix, Phillip A. Bland, Trent Jansen-Sturgeon, Robert M. Howie, Benjamin A. D. Hartig, Martin C. Towner, Martin Cupák and Morgan A. Cox </em></dd>                                            
+                                    <dt class="mb">16:40-16:50</dt> <dd class="mb"><strong>The appearances of meteorite streams.</strong><?= get_p(12,$pdf); ?><br/><em> Yang I-Ching, Jann-Yenq Liu </em></dd>                                            
+
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                                            <strong>SESSION 5 - Miscellaneous </strong><br>
+                                            <span style="text-transform:none">Session chair: <em>David Asher</em></span></dd>                                    
+                        <dt class="mb">16:50-17:00</dt> <dd class="mb"><strong>Visual Workshop 2018: analyzing the Perseids 2016.</strong><?= get_p(13,$pdf); ?><br/><em>Cis Verbeeck, Jürgen Rendtel, Kristina Veljković, Vincent Perlerin and Mike Hankey </em></dd>                                            
+                        <dt class="mb">17:00-17:15</dt> <dd class="mb"><strong>Spectroscopy Workshop 2018. </strong><?= get_p(14,$pdf); ?><br/><em>Regina Rudawska and Juraj Tóth </em></dd>                                            
+                        <dt class="mb">17:15-17:25</dt> <dd class="mb"><strong>The MALBEC project.</strong><?= get_p(15,$pdf); ?><br/><em>J. Vaubaillon, A. Caillou, C. Colomer, P. Deverchere, A. Christou, D. Baratoux, P. Beck, M. Birlan, B. Carry, S. Bouley, F. Colas, L. Maquet, P. Vernazza</em></dd>    
+                        <dt class="mb">17:25-17:35</dt> <dd class="mb"><strong>Balloon-borne video observations of Geminids 2016.</strong><?= get_p(16,$pdf); ?><br/><em>
+                            Francisco Ocaña</em></dd>    
+                        <dt class="mb">17:35-17:45</dt> <dd class="mb"><strong>Using SPADE for radio meteor observations – Status Update.</strong><?= get_p(17,$pdf); ?><br/><em> Antonio Martínez Picar and Christophe Marqué </em></dd>    
+                        <dt class="mb">17:45-18:00</dt> <dd class="mb"><strong>Spurious meteoroid orbits.</strong><?= get_p(18,$pdf); ?><br/><em>Maria Hajdukova and Leonard Kornoš</em></dd>    
+                        <dt class="mb">18:00</dt> <dd>Dinner</dd>
+                        <dt class="mb">20:00-21:00</dt> <dd class="mb"><strong>IMO General Assembly Meeting</strong></dd>    
+
+                         
+                </dl>
+            </div>
+             
+            <div class="tab-pane <? if($d==$days[2] ):?>active<? endif; ?>" id="saturday">
+                <h3>Saturday, 5 October 2019</h3>
+                <dl class="dl-horizontal" style="display:none">
+                    <dt>07:30-09:00</dt> <dd>Breakfast</dd>
+                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION 6 - Camera Networks</strong><br>
+                            <span style="text-transform:none">Session chair: <em>Mike Hankey</em></span></dd>
+                    <dt class="mb">09:00-09:20</dt> <dd class="mb"><strong>ANDES-FIRE: The Argentina All-sky Video System.</strong><?= get_p(19,$pdf); ?><br/><em>Peter Gural</em></dd>    
+                    <dt class="mb">09:20-09:40</dt> <dd class="mb"><strong>Croatian Meteor Network - Ongoing Work 2017-2018. </strong><?= get_p(20,$pdf); ?><br/><em>Damir Šegon et al. </em></dd> 
+                    <dt class="mb">09:40-09:55</dt> <dd class="mb"><strong>News from the italian PRISMA fireball network. </strong><?= get_p(21,$pdf); ?><br/><em>Daniele Gardiol </em></dd> 
+                    <dt class="mb">09:55-10:05</dt> <dd class="mb"><strong>Mendocino College - Ukiah Latitude Observatory CAMS Project: First Light. </strong><?= get_p(22,$pdf); ?><br/><em>Timothy William Beck, Martin Bradley, Edward Cannon, Jesse Glazier, Daniel Hunchard, Jeremy Ronco, Emerald Sherwood and Chatnaree Upton </em></dd> 
+                    <dt class="mb">10:05-10:25</dt> <dd class="mb"><strong>Towards a Global Fireball Observatory: new fireball observation hardware. </strong><br/><em>Hadrien Devillepoix, Robert Howie, Benjamin Hartig, Philip Bland, Eleanor Sansom, Daniel-Cristian Busan, Stuart Buchan, Martin Towner, Martin Cupák, Trent Jansen-Sturgeon, Patrick Shober and Jonathan Paxman </em></dd> 
+                    <dt>10:25-10:55</dt> <dd>Coffee break and <strong>poster session</strong></dd>
+
+                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION  7 - Atmospheric processes and phenomena (part I)</strong><br>
+                            <span style="text-transform:none">Session chair: <em>Eleanor Sansom</em></span></dd>    
+                    <dt class="mb">10:55-11:15</dt> <dd class="mb"><strong>Simulation of Meteor Plasma using Terawatt Laser. </strong><?= get_p(25,$pdf); ?><br/><em>Martin Ferus, Petr Kubelík, Jakub Koukal, Libor Lenža, Miroslav Krůs, Vojtěch Laitl, Lukáš Petera and Svatopluk Civiš </em></dd>    
+                    <dt class="mb">11:15-11:30</dt> <dd class="mb"><strong>Yet another result of the spectral and fragmentation study of small meteoroids. </strong><br/><em>Vlastimil Vojáček, Jiří  Borovička, Pavel Koten, Pavel Spurný and Rostislav Štork </em></dd>    
+                    <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>On the energy release after meteoroids fragmentation.</strong><?= get_p(27,$pdf); ?><br/><em>Lidia Egorova and Valeriy Lokhin</em></dd>    
+                    <dt class="mb">11:30-12:00</dt> <dd class="mb"><strong>Testing of the new meteoroid fragmentation model applied to the Chelyabinsk event. </strong><?= get_p(28,$pdf); ?><br/><em>Irina Brykina and Michael Bragin </em></dd>    
+
+                    <dt>12:00</dt> <dd>Lunch</dd>
+
+                    <dt>13:30</dt> <dd>Buses leave for the excursion: Red Stone castle and AGO Observatory </dd> 
+                    <dt>17:00</dt> <dd>Buses leave from the Red Stone castle to the AGO Observatory</dd> 
+                    <dt>19:00</dt> <dd>Buses leave from the AGO Observatory back to Rozalka Hotel, Pezinok</dd>  
+                    <dt>20:00</dt> <dd><strong>Conference dinner</strong>
+                    <dt>21:00</dt> <dd>Traditional folklore performance</dd>   
+                    
+                        </dd>  
+
+                </dl>
+            </div>
+ 
+            
+           
+             
+             
+            
+            
+ 
+
+         
+            <div class="tab-pane <? if($d==$days[3] ):?>active<? endif; ?>" id="sunday">
+                <h3>Sunday, 6 October 2019</h3>
+                <dl class="dl-horizontal" style="display:none">
+                    <dt>07:45-09:45</dt> <dd>Breakfast</dd>
+                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION  7 - Atmospheric processes and phenomena (part II)</strong><br>
+                            <span style="text-transform:none">Session chair: <em>Eleanor Sansom</em></span></dd>    
+                    <dt class="mb">09:45-10:00</dt> <dd class="mb"><strong>The effect of the solar wind on the evolution of dust grains trapped in the mean motion orbital resonance with Jupiter
+                    </strong><?= get_p(23,$pdf); ?><br/><em>Jozef Klačka, Roman Nagy, Milan Jurči</em></dd>    
+                     <dt class="mb">10:00-10:15</dt> <dd class="mb"><strong>Spectral properties of slow meteors: Na-rich spectra as tracers of Apollo-type meteoroids. </strong><?= get_p(24,$pdf); ?><br/><em>Pavol Matlovič, Juraj Tóth and Leonard Kornoš </em></dd>    
+                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION  8 - Ongoing meteor work - Radio technique</strong><br>
+                            <span style="text-transform:none">Session chair: <em>Christian Steyaert </em></span></dd>    
+                    <dt class="mb">10:15-10:30</dt> <dd class="mb"><strong>BRAMS radio observations analyzed: activity of some major meteor showers. </strong><?= get_p(30,$pdf); ?><br/><em>Cis Verbeeck, Hervé Lamy, Stijn Calders, Cédric Tétard and Antonio Martínez Picar </em></dd>    
+                    <? /* <dt class="mb">10:15-10:30</dt> <dd class="mb"><strong>First comparisons of BRAMS/CAMS-Benelux observations. </strong><br/><em>Hervé Lamy, Michel Anciaux, Cédric Tétard, Sylvain Ranvier, Stijn Calders, Cis Verbeeck and Antonio Martinez Picar </em></dd>  */ ?>  
+                    <dt class="mb">10:30-10:45</dt> <dd class="mb"><strong>Sun influence in meteor height. </strong><br/><em>Lorenzo Barbieri </em></dd>    
+                    <dt class="mb">10:45-11:05</dt> <dd class="mb"><strong>EARS Geminids 2017 Radio Observation.</strong><?= get_p(29,$pdf); ?><br/><em> Giancarlo Tomezzoli</em></dd>    
+                    <dt>11:05-11:35</dt> <dd>Coffee break and <strong>poster session</strong></dd>
+                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                            <strong>SESSION 9 - Meteor showers (observations and modelling)</strong><br>
+                            <span style="text-transform:none">Session chair:<em> Maria Hadjukova</em></span></dd>                     
+                    <dt class="mb">11:35-11:50</dt> <dd class="mb"><strong>Modelling the Geminid meteor shower activity.</strong><?= get_p(31,$pdf); ?><br/><em>  Galina O. Ryabova </em></dd>    
+                    <dt class="mb">11:50-12:10</dt> <dd class="mb"><strong>Geminid rates over century. </strong><?= get_p(32,$pdf); ?><br/><em> Jurgen Rendtel</em></dd>    
+                    <dt class="mb">12:20-12:40</dt> <dd class="mb"><strong>September ε Perseids observed by the Czech Fireball Network in 2013, 2015, 2016, and 2017. </strong><?= get_p(33,$pdf); ?><br/><em>Lukáš Shrbený, Pavel Spurný and Jiří Borovička </em></dd>    
+                    <dt class="mb">12:40-12:55</dt> <dd class="mb"><strong>What resonances are manifested in the Quadrantid meteoroid stream and asteroid (196256) 2003 EH1? </strong><?= get_p(34,$pdf); ?><br/><em> Georgy Sambarov, Tatyana Galushina and Olga Syusina  </em></dd>    
+ 
+                    <dt>13:00-14:00</dt> <dd>Lunch</dd>
+                    <dt>14:00-</dt>      <dd>Departure of the participants</dd>
+                </dl>
+            </div> 
+            
+            <div class="tab-pane" id="posters">
+            
+                 <h3>Poster sessions</h3>
+                 <ol class="poster-lists" style="display:none"> 
+                        <li> 
+                            <dd><strong>Comparative study of the hypothetical strewn fields of a few previous bolides and real historical ones. </strong><br><em>Tibor Hegedüs, Zoltán Jäger, Szilárd Csizmadia, Zoltán Zelkó and Zsolt Kereszty </em> </dd>
+                        </li>
+                        <li> 
+                            <dd><strong>Meteor observations by optical and acoustical methods. </strong><br><em>Anna P. Kartashova, Galina Bolgova, Yuriy Rybnov, Olga P. Popova, Dmitry O. Glazachev and Vladimir Efremov </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Photographic &amp; Visual Observation of the Perseids in Greece 2018 - Earlier Video Observations</strong><br><em>Vagelis Tsamis </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Optimization of multistation observation.</strong><br><em>Roman Piffl</em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>The Plasma Radiation Database (PARADE) to simulate meteor ablation species.</strong><br><em>Joe Zender, Regina Rudawska, Detlef Koschny, Stefan Loehle, Martin Eberhart, Fabian Zander and Arne Meindl </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Initial design and results of a fireball network add-on radiometer to collect meteor light curves.</strong><br><em>Stuart R. G. Buchan, Robert M. Howie, Jonathan Paxman and Hadrien Devillepoix 
+                                </em> </dd>
+                        </li>   
+                        <li> 
+                            <dd><strong>Regular and transitory meteor showers  of comet C/1979 Y1.</strong><br><em>Mária Hajduková  and Luboš Neslušan </em> </dd>
+                        </li>    
+                        <li> 
+                            <dd><strong>Comparison of radio meteor detections at 143 MHz and 50 MHz.</strong><br><em>Peter Dolinský </em> </dd>
+                        </li>   
+                        <li> 
+                            <dd><strong>MT – a software for calculating meteor trajectories and orbits from multiple-stations observations. </strong><br><em>František Ďuriš, Leonard Kornoš and Juraj Tóth </em> </dd>
+                        </li>   
+                        <li> 
+                            <dd><strong>AMOS cameras status. </strong><br><em>Juraj Tóth , Leonard Kornoš, Pavol Zigo, Jozef Vilagi, Jaroslav Simon, Dusan Kalmancok, Jiri Silha and Pavol Matlovič 
+                                </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Towards an autonomous BRAMS network. </strong><br><em>Stijn Calders, Hervé Lamy, Antonio Martinez-Picar, Cis Verbeeck , Michel Anciaux and Sylvain Ranvier </em> </dd>
+                        </li> 
+                        <li> 
+                            <dd><strong>Bolidozor network. </strong><br><em>Roman Dvořák and Jakub Kákona</em> </dd>
+                        </li> 
+                        <li> 
+                            <dd><strong>NEMETODE Meteor Network used for Citizen Science and Education at Dunsink Observatory. </strong><br><em>Sam Green, Jonathan Mackey, Luke Drury, Hilary O’Donnell, Martin Topinaka, Michael O’Connell, William Stewart, Mike Foylan, Peter Stewart, Gordon Reineke, Kevin Smith, David Malone and Paul Dempsey. </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>The first confirmed lunar impact flash observed from Brazil.</strong><br><em>David Duarte C. Pinto, Lauriston Trindade, Marcelo L. do P. Villarroel Zurita, Romualdo A. A. Caldas and Marcelo Domingues</em> </dd>
+                        </li> 
+                        <li> 
+                            <dd><strong>Hardware Optimization for Video Network Station</strong><br><em>Stevan Golubović and Aleksa Đokić </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Automation of the Video Network. </strong><br><em>Vladimir Nikolić </em> </dd>
+                        </li>   
+                        <li> 
+                            <dd><strong>“Star Counters” - A Citizen Science Project for registering the meteor showers. </strong><br><em>Raquel Cedazo, Esteban Gonzalez,  Miguel R. Alarcón, Miquel Serra-Ricart and Samuel. Lemes </em> </dd>
+                        </li>  
+                        <li> 
+                            <dd><strong>Extending all-sky photography into twilight. </strong><br><em>Felix Bettonvil </em> </dd>
+                        </li>      
+                        <li> 
+                            <dd><strong>CAMS Update on Hardware Interfaces and Software Enhancements. </strong><br><em>Pete Gural </em> </dd>
+                        </li>    
+                        <li> 
+                            <dd><strong>AllSky6 Meteor Camera. </strong><br><em>Mike Hankey and Vincent Perlerin </em> </dd>
+                        </li>    
+                        <li> 
+                            <dd><strong>Low-cost Raspberry Pi meteor station - data quality assessment and first results. </strong><br><em>Denis Vida, Damir Šegon, Michael J. Mazur, Aleksandar Merlak and Dario Zubović </em> </dd>
+                        </li>     
+                        <li> 
+                            <dd><strong>Search for faint iron meteoroids.</strong><br><em>Pavel Koten, Vlastimil Vojáček, Jiří  Borovička, Pavel Spurný, Rostislav Štork and David Čapek </em> </dd>
+                        </li>    
+                        <li> 
+                            <dd><strong>Building a better shower look-up table.</strong><br><em>Peter Jenniskens </em> </dd>
+                        </li>    
+                        <li> 
+                            <dd><strong>Meteor Detecting Efficiency of Video Cameras. </strong><br><em>Peter C. Slansky </em> </dd>
+                        </li>   
+                        <li> 
+                            <dd><strong>Whether any particle in meteor stream has the same chemical composition?</strong><br><em>Vladislav Leonov and Alexander Bagrov</em> </dd>
+                        </li>  
+                        <li> 
+                            <strong>Determination of the Meteor Particles Properties</strong><br><em>V.V. Efremov, O. P. Popova, D.O. Glazachev, A.P. Kartashova</em> 
+                        </li>  
+                        <li> 
+                            <strong>Impact Effects Calculator. Scaling Relations For Shock Wave And Radiation Effects Applied To Chelyabinsk And Tunguska Events.</strong><br><em>Vladislav Leonov and Alexander Bagrov</em> 
+                        </li>  
+                        <li> 
+                            <strong>Adapter to meteor TV camera for observation of shower's weakest meteors</strong>. (2 POSTERS)<br><em>V. A. Leonov, A. V. Bagrov</em> 
+                        </li>  
+                        <li> 
+                            <strong>Trail development of the brightest Perseid during the night of August 12 - 13.</strong><br><em>S. Kaniansky, J. Skvarka.</em> 
+                        </li>  
+                        <li> 
+                            <strong>Meteor section of the Israeli Astronomical Association.</strong>
+                        </li>  
+                        <li> 
+                            <strong>The Italian bolide of May 2017: trajectory, orbit and preliminary fall data.</strong><br><em>A. Carbognani, D. Barghini, D. Gardiol, M. di Martino, G. B. Valsecchi, 
+                                P. Triverof, A. Buzzoni, S. Rasetti, D. Selvestrel, C. Knapic, E. Londero, S. Zorba, C. A. Volpicelli, M. Di Carlo, J. Vaubaillon, C. 
+                                Marmo, F. Colas, D. Valeri, F. Zanotti, M. Morini, P. Demaria, B. Zanda, 
+                                S.Bouley, P. Vernazza, J. Gattacceca, J.-L. Rault, L. Maquet, M. Birlan 
+                                </em>
+                        </li>  
+                        <li> 
+                            <strong>Determination of the meteor particle's properties from observational data.</strong><br><em>V. V. Efremov, O. P. Popova, D. O. Glasachev, A. P. Kartashova</em>
+                        </li>  
+                        <li> 
+                            <strong>Impact effects calculator. Scaling relations from shockwave and radiation effects applied to Chelyabinks and Tungunska event.</strong><br><em>
+                                D.O. Glasachev, E.D. Podobnaya, O.P. Popova, A. P. Kartashova, N.A. Artemyeva, V. V. Shuvalov, V.V. Svetsov.</em>
+                        </li>
+                </ol>
+            </div>
+         
+        </div>
+
+    </div>
+ </div>
+</div>
+</div> 
+
+<style>
+    .poster-lists li {
+        margin:0 0 .5rem 2rem;
+    }
+</style>

@@ -1,0 +1,41 @@
+$margin-default:1em;
+
+.hmt { margin-top:$margin-default/2; }
+.hmr { margin-right:$margin-default/2; }
+.hml { margin-left:$margin-default/2; }
+.hmb { margin-bottom:$margin-default/2; }
+
+.mt { margin-top:$margin-default; }
+.mr { margin-right:$margin-default; }
+.ml { margin-left:$margin-default; }
+.mb { margin-bottom:$margin-default; }
+
+.dmt { margin-top:$margin-default*2; }
+.dmr { margin-right:$margin-default*2; }
+.dml { margin-left:$margin-default*2; }
+.dmb { margin-bottom:$margin-default*2; }
+ 
+.nm { margin:0!important; }
+.nmt { margin-top:0!important; }
+.nmr { margin-right:0!important; }
+.nml { margin-left:0!important; }
+.nmb { margin-bottom:0!important; }
+
+.inl-f-f, .inl-f-f .auto {
+    display: inline-block;
+}
+
+@media(max-width:768px) {
+	.inl-f-f {
+		white-space:nowrap;
+		margin-top:.3em;
+
+		.auto {
+			width:auto!important;
+		}
+	}
+
+	.control-label.text-right {
+		text-align:left !important;
+	}
+}

@@ -1,0 +1,58 @@
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'#message',  selection_toolbar: 'bold italic | quicklink h2 h3 blockquote', height :300 });</script>
+
+<div class="container-fluid">
+    
+    <div class="alert alert-info">
+        <? if((!empty($input['email']['num_of_emails']))): ?>
+            You already send <?= (!empty($input['email']['num_of_emails']))?$input['email']['num_of_emails']:0 ; ?> emails to this participant.<br/>
+            <? if((!empty($input['email']['num_of_emails']))): ?>
+                The last time was on <?= $input['email']['last_email_date']; ?>.
+            <? endif; ?>
+        <? else: ?>
+            You never sent an email to this participant yet.    
+        <? endif; ?>
+    </div>
+    
+    
+    <form class="form-horizontal" id="send_email_iframe">
+    
+        <input type="hidden" name="submit" value="1"/>
+        <input type="hidden" name="user_id" value="<?= $input['user_id']; ?>"/>
+        <input type="hidden" name="email" value="<?= $input['email']['email']; ?>"/>
+        
+        <div class="form-group">
+            <label  class="col-sm-2 control-label text-right">To:</label>
+            <div class="col-sm-10">
+                <input type="text" disabled  class="form-control auto" size="50" value="<?= $input['email']['email']; ?>">
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="cc" class="col-sm-2 control-label text-right">CC:</label>
+            <div class="col-sm-10">
+                <input type="text" name="cc" id="cc" class="form-control auto" size="50" placeholder="Emails to CC" required="" value="">
+                <span class="help-block nm"><em>Comma separated list of emails - ex: vperlerin@gmail.com,marc.gyssens@uhasselt.be</em></span> 
+            </div>
+        </div>
+      
+        <div class="form-group">
+            <label for="object" class="col-sm-2 control-label text-right">Object</label>
+            <div class="col-sm-10">
+                <input type="text" name="object" id="object" class="form-control auto" size="50" placeholder="Email object" required="" value="IMC <?= CONF_YEAR; ?> Reminder">
+            </div>
+        </div>
+ 
+        
+         <div class="form-group">
+            <label for="message" class="col-sm-2 control-label text-right">Message</label>
+            <div class="col-sm-10">
+                <textarea id="message" name="message" class="form-control" rows="10" placeholder="Type your message here">Dear <?= $input['user'][0]['lastname']; ?> <?= $input['user'][0]['firstname']; ?>,<br/><br/>Thank you for registering for the IMC <?= CONF_YEAR;?>!<br/>I have one question ...<br/><br/><? if(!empty($input['user'][0]['amount_due'])): ?>Amount due: <?= number_format($input['user'][0]['amount_due'], 2, '.', ''); ?>€<br/>Amount due including Paypal fees: <?= number_format($input['user'][0]['amount_due_paypal'], 2, '.', ''); ?>€<?endif; ?><br/><br/>Kind regards,<br/><br/><strong>Marc Gyssens</strong><br/><strong>IMO, Treasurer </strong>
+                </textarea>
+            </div>
+         </div>
+    </form>
+</div>    
+
+<div class="modal-footer" style="margin-top:0px"><button type="button" class="btn btn-primary" id="send_email_modal">Send</button> </div>

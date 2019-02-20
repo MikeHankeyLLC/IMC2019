@@ -1,0 +1,12 @@
+.box {
+
+	&.bg {
+		color:$menu-color;
+		background-color:$menu-bg;	
+		
+		a {
+			color:$menu-color;	
+		}
+	}
+	
+}

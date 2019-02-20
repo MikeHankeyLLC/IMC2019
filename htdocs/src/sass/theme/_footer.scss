@@ -1,0 +1,23 @@
+.icon-container {
+    background-color:$icon-container-bg!important;   
+}
+
+
+#footer {
+    color:$footer-color;
+    background-color:$footer-bg;
+    p {
+        padding:1.3em .5em;   
+        margin:0;
+        font-size:80%;
+    }
+    a {
+        color:$footer-link-color;
+    } 
+}
+
+@media (max-width:768px) {
+    #footer-container .fa.fa-4x {
+            font-size: 3em;
+    }
+}

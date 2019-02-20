@@ -1,0 +1,116 @@
+<div id="main-col">  
+        
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Payment</h1> 
+    </div>
+</div> 
+
+<div class="container">
+  
+ 
+        <div class="alert alert-info hmb hmt">
+            <i class="fa fa-warning fa-2x pull-left hidden-xs"></i>
+            <p>After <strong><?= date('l, jS F Y', strtotime(EARLY_BIRD_DATE)); ?></strong>,  a late booking fee of <strong><?= FEE_AFTER_EARLY;?>&euro;</strong> is added to the registration fee.<br/>Registration deadline: <strong><?= date('l, jS F Y', strtotime(DEADLINE)); ?></strong>.</p>
+        </div>
+  
+  
+        <h2>Registration fees</h2> 
+    
+        <p>Together with the IMC registration form, <strong>the full IMC registration fee together with supplements for tshirt and printed proceedings must be paid</strong>. The IMC registration fee is either:</p>
+   
+   <ul>
+    <? foreach($input['accomodations'] as $k=>$v) : ?>
+         
+    
+         <?if(strtotime($v['early_bird_date'])-strtotime("now")>0): ?>
+    
+            <li class="mb">
+                <strong><?= $v['price']; ?><?= !empty($v['price'])?$v['currency'].' - ':''; ?>  <?= $v['details'];?></strong>
+                <em>(<?= $v['price_late']; ?><?= $v['currency']; ?> after <?= date('D, j F Y', strtotime($v['early_bird_date'])); ?>)</em>
+                <br/><?= $v['covers']; ?>
+            </li>
+        
+        <? else: ?>
+        
+            <li>
+                <strong><?= $v['price_late']; ?><?= !empty($v['price_late'])?$v['currency'].' - ':''; ?>  <?= $v['details'];?></strong>
+                <em>(the price was <?= $v['price']; ?><?= $v['currency']; ?> before <?= date('D, j F Y', strtotime($v['early_bird_date'])); ?>)</em>
+                <br/><?= $v['covers']; ?>
+            </li>
+        
+        <? endif; ?>
+    <? endforeach; ?>
+   </ul>
+   
+   <p>The registration fees include full board (accommodation, breakfast, lunch, and dinner) from <?=CONF_DATE_START;?> (dinner included) till <?=CONF_DATE_END;?>  afternoon (lunch included), IMC lectures, conference materials, coffee breaks, excursion and Saturday evening program.
+</p>
+   
+   <div class="alert alert-info hmb">
+        <i class="fa fa-warning fa-2x pull-left hidden-xs"></i>
+        <p>Mind that registration <strong>may have to be closed earlier</strong> if full capacity is reached before the registration deadline. The total number of participants is limited to 130, on a first-come first-serve basis.</p>
+   </div>
+   <p><strong class="text-danger">Be aware that you are responsible for finding suitable accommodation as well transportation to and from the conference venue if you choose the “no-accommodation” option. Please read what is written about this on the <a href="acc#alt_acc">accommodation page</a>.</strong></p>    
+   
+    <p>T-shirts and printed proceedings can be purchased upon registering at an additional charge.</p>
+    
+    <p>Accompanying persons older than 12 years sharing a room with a participant must also register as a participant. </p>
+   
+   
+   
+   <h2>Payment</h2>
+   <p>You can pay in one of the following ways:</p>
+   
+   <div class="payment">
+           <div class="payment">
+       <h3>1. PayPal payments or credit card Payments through PayPal</h3>    
+       <p>For credit or debit card payments we use the services of PayPal. However, PayPal charges us a fee for each transaction. Because we try to keep the conference fee as low as possible, we are obliged to charge this cost to participants paying with PayPal. If you pay with PayPal, please make sure that you transfer the amount due including costs. You will find the total amount due including PayPal costs on your registration confirmation. To pay, click the PayPal logo on the confirmation screen you will see after registration or the PayPal logo below to be redirected to their secure website to complete the payment.  Your payment will be made to the IMO (<a href="mailto:payment@imo.net">payment@imo.net</a>).
+         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                <input name="cmd" type="hidden" value="_xclick" />
+                <input name="business" type="hidden" value="payment@imo.net" />
+                <input name="item_name" type="hidden" value="IMC <?= CONF_YEAR;?> Registration" />
+                <input name="no_note" type="hidden" value="1" />
+                <input name="currency_code" type="hidden" value="EUR" />
+                <input name="tax" type="hidden" value="0" />
+                <input name="lc" type="hidden" value="GB" />
+                <input class="btn btn-default" alt="Make your IMC <?= CONF_YEAR;?> payment with PayPal" border="0" name="submit" src="https://www.paypal.com/nl_NL/i/logo/paypal_logo.gif" type="image" /></p>
+        </form>
+    </div>
+   
+   
+       <h3>2. International bank transfer</h3>
+       <p>International bank transfer payments should be made to:</p>
+       <p>
+            International Meteor Organization, Mattheessensstraat 60, 2540 Hove, Belgium <br/>
+            Bank account at BNP Paribas Fortis Bank Belgium <br/>
+            BIC bank code: GEBABEBB <br/>
+            IBAN account number: BE30 0014 7327 5911 <br/>
+            e-mail: <a href="mailto:treasurer@imo.net">treasurer@imo.net</a>
+        </p>
+        <p>When paying, make sure that the IBAN account number and BIC bank code are both mentioned! Always contact your local bank to verify charges for international transfers, which are at the participant’s expense.</p>
+        <p>Transfers in Euro from an EU member state or another EEA country (Norway, Iceland, and Liechtenstein) should be free, however, or at least no more expensive than a domestic bank transfer, provided they are done correctly.</p>
+    </div>
+
+ 
+    
+    <div class="payment">
+        <h3>3. Other payment methods</h3>
+        <p>If you cannot use either the international bank transfer or the PayPal service, please contact the <a href="mailto:treasurer@imo.net">IMO Treasurer</a> for instructions.</p>
+    </div>  
+    
+    <? /*
+          <h3>4. Other payment methods</h3>
+        <p>If you cannot use either the international bank transfer or the PayPal service, and if you are not a Serbian participant, please contact the <a href="mailto:treasurer@imo.net">IMO Treasurer</a> for instructions.</p>
+*/ ?>
+    
+      
+    <h2>Cancellation Policy</h2>
+    <p>The cancellation policy for the IMC <?= CONF_YEAR; ?> is as follows:</p>
+    <ul class="dmb">
+        <li><strong>Until <?= date("l, F jS Y", strtotime(FULL_REIMBURSEMENT)); ?>:</strong> full reimbursement, except for 15€ administrative costs.</li>
+       
+        <li><strong>Between <?= date("l, F jS Y", strtotime(FULL_REIMBURSEMENT . ' +1 day')); ?> and <?= date("l, F jS Y", strtotime(DEADLINE)); ?> :</strong> partial reimbursement of half of the registration fee;</li>
+        <li><strong>After  <?= date("l, F jS Y", strtotime(DEADLINE)); ?>:</strong> no reimbursement.</li>
+    </ul>
+ 
+ 

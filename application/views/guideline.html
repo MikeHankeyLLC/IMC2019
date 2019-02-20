@@ -1,0 +1,168 @@
+<div id="main-col">  
+        
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <h1 class="pull-left">Proceedings Guidelines</h1> 
+    </div>
+</div> 
+
+<div class="container">
+ 
+    <div class="row">
+         
+        <div class="col-md-12 text-only hmt">         
+            <h2 class="nmt">Introduction</h2>
+        
+            <div class="alert alert-info">Deadline for the registration of presentations is <strong class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE)); ?></strong>.</div>
+        
+        <p class="text-danger"><strong>For ALL IMC presentations (poster or lecture), a paper for the IMC Proceedings is mandatory. Only in case of a specific reason, e.g. information of confidential nature related to submission in a professional journal, exceptions will be honored.</strong></p>
+        <p>If you intend to have a presentation at the IMC, please:</p>
+        <ul>
+            <li>Remember the purpose of the IMC: the IMC is an annual meeting of the most active amateur meteor workers 
+                and professionals with the purpose to inform each other about the ongoing work directly related to the 
+                activities of the amateur community.</li>
+            <li>Do not register a presentation without having a topic: 
+                registrations such as 'TBD' will be removed.</li>
+            <li>You can register a presentation at any time, 
+                with your <a href="/registration">IMC registration</a>, or later by updating your IMC registration using the link provided in your registration confirmation or via <a href="/contact">email</a>. 
+                Deadline for the registration of presentations is <strong class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE)); ?></strong>.
+            </li>
+            <li> 
+                <strong>It is strongly recommended</strong> to have your paper ready before the IMC and 
+                submitted in order to allow the editors to discuss any issues with your paper
+                during the IMC. 
+              <strong class="text-danger">Absolute deadline to submit <?= CONF_YEAR; ?> IMC papers is <?= date("l, F jS Y",strtotime(DEADLINE_PAPER)); ?></strong>. 
+                 Respecting this deadline is just a matter to start working on your paper in time. 
+                 <strong>  Help the editors of the Proceedings and do not cause delay!</strong></li>
+            <li>More lecture time may be sollicited than available. 
+                The SOC may propose to consider a poster rather than a lecture. 
+                Presentations that are not in line with the aim of the IMC may be rejected.</li>
+        </ul>
+        <p>All messages regarding the IMC program and the IMC Proceedings should be addressed to the <a href="mailto:imc<?=CONF_YEAR;?>@imo.net">Scientific Organization Committee</a>.</p>
+
+        <blockquote class="t">
+            Proceedings are a crucial key to justify the efforts invested in a conference. 
+            Timely publication of the papers is essential. We insist that you do not postpone your paper. 
+            <strong>Delivery of papers before the conference is very much appreciated.</strong>
+         </blockquote>
+        
+         <h2>Topics</h2>
+        <p>Presentations should be related to the domain of <a href="/topics">meteor astronomy</a>,
+         off-topic items cannot be admitted.</p>
+          
+        <h2>Lectures and posters</h2>
+        <p>For each lecture or poster presented at the IMC a paper for Proceedings is<strong> mandatory</strong>. Only in case of a specific reason, e.g. information of confidential nature related to submission in a professional journal, exceptions will be honored.</p>
+        <p>All presentations must be registered by the deadline of <strong class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE)); ?></strong>, either via your registration form or later by updating your IMC registration using the link provided in your registration confirmation via <a href="/contact">email</a> and must be sent before <strong class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE_PAPER)); ?></strong>. No unannounced topics will be admitted at the conference. All presentations must be in English. Lectures have a minimal duration of 10 and maximum 30 minutes, this duration must always include 2-3 minutes for questions or comments. Although the SOC will do its utmost best to accommodate all lectures, they may propose to consider a reduced time slot or in some cases also a  poster rather than a lecture.</p>
+         
+        <p>Many contributions are less suitable for a lecture and therefore the poster session offers a valuable alternative to present topics without the constraints of an oral presentation.</p>
+        
+
+        <p>The poster panel dimension at the conference venue is 65x118cm.</p>
+        <p></p><a href="/img/poster.jpg" data-gallery=""><img src="/img/poster.jpg" class="img-responsive mt" style="max-width: 350px; margin:0 auto"></a></div>
+
+        <h2>Instructions for all authors</h2>
+        <ul>
+            
+           <li>The quality control of the IMC as a scientific and technical conference may exclude questionable or off-topic presentations.</li>
+           <li><strong>People with a presentation are required to deliver their paper before <span class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE_PAPER)); ?></span>.</strong> 
+                If you have for some reason problems with this deadline please <a href="mailto:imc<?=CONF_YEAR;?>@imo.net">contact us</a>
+                 to agree another deadline in our planning, 
+                 otherwise send your paper in to the <a href="mailto:imc<?=CONF_YEAR;?>@imo.net" target="_blank"><?= CONF_YEAR; ?> IMC Proceedings editors</a>.
+           </li>
+        </ul>
+
+        <blockquote class="t">
+            The <?=CONF_YEAR;?> IMC Proceedings will be prepared in PDFLaTeX. Those of you familiar with PDFLaTeX are encouraged to use the template you will find in <strong><a href="/proceedings/template/IMC2018-latex.zip">this archive</a></strong>, which also contains a sample article. Those of you who are less familiar with PDFLaTeX, however, are welcome to submit your article in Word. The editors will then take care of converting your article to PDFLaTeX. Word users may use <strong><a href="/proceedings/template/IMC2018-template.docx">this document</a></strong> to produce their article in the style of proceedings. Feel free to <strong> <a href="mailto:<?=MAIN_CONTACT;?>" target="_blank">contact us</a></strong> if you need help.
+        </blockquote>
+        
+        <p>Please, note:</p>
+        <ul>
+           <li>There is no formal page limit, but contributions should be concise. Most contributions fit within 4 pages (as printed in the proceedings), few exceed 6 pages. If you think you need more pages and can justify this, please contact <a href="mailto:<?=MAIN_CONTACT;?>" target="_blank">the <?=CONF_YEAR;?> IMC Proceedings editors</a>.</li>
+           <li>Convey content. Your contribution must have a purpose, and the text of your contribution should make that clear to the reader. Just a title and a collection of pictures with captions, for example, is not acceptable.</li>
+           <li>Writing style should be formal and scientific. Avoid mixing in your own emotions in your writing, prefer written language over spoken language, and avoid abbreviations such as “don’t” or “can’t” but write “do not” and “cannot.” Scientific writing furthermore requires that statements not substantiated in your paper are supported by properly cited references. These general principles also apply to papers that are more descriptive by nature.</li>
+           <li>Use simple language. The larger part of the IMC audience does not have English as native language. Make your paper accessible to as many interested persons as possible by avoiding long sentences, difficult grammatical constructions, or fancy words. Also, avoid needless words. If you can convey a thought in five words rather than ten, go for the former.</li>
+        </ul>
+        <p>It is always a good idea to browse through previous IMC Proceedings to get a better feel of what is expected of you as an author.<? /* You can find preview articles of the IMC 2015 Proceedings <a href="http://www.imo.net/imcs/imc2015/proceedings.php" target="_blank">here</a>. */ ?></p>
+
+
+        <h3>Your paper should contain the following elements</h3>
+        <h4 class="cnt">1. Title</h4>
+                    <p>The title of your contribution is preferably identical to the title of your talk/poster, although this is not a requirement. Notwithstanding, the contribution must of course deal with what you presented in your talk or poster. A good title is neither too short nor too long and should be telling. From the title, readers must get a representative idea of what your contribution is about. “Fancy” or “clever” titles must be avoided. Do not capitalize each word in your title (in other words, write your title as if it were a normal sentence in a text).</p>
+
+                    <h4 class="cnt">2. Authors</h4>
+                    <p>Immediately under the title comes the list of all contributing authors. Each author must be identified with his/her full first name and last name (middle names and/or initials are optional). Please be careful not to misspell the names of your co-authors, especially if they contain characters which have accents on them. Do not use "et al." in the heading of your article.</p>
+
+                    <h4 class="cnt">3. Affiliations/addresses and email addresses</h4>
+                    <p>The affiliations/addresses and email addresses follow immediately under the list of authors. Use superscript numbers to link each author to his/her correct affiliation and/or address. Under the affiliation or address, mention the email addresses of all authors with that affiliation, in the same order as in the author list.</p>
+                    <p>Notice that, for at least one author, an affiliation or address and an email address is required.</p>
+
+                    <h4 class="cnt">4. Abstract</h4>
+                    <p>The last part of the contribution’s header is the abstract. It contains typically five to fifteen lines explaining (1) what the paper is about, (2) which results or type of results are described in it, and (3) what is generally concluded from them. Unless explicitly building on previous work, avoid citing references in your abstract. Ideally, your abstract should be able to stand alone. Mind that the content of scientific publications is often described by giving title, authors, and abstract of each contribution.</p>
+                    
+                    <h4 class="cnt">5. Introduction</h4>
+                    <p>The actual paper typically starts with an introduction. This introduction must introduce the subject of your contribution by providing the necessary context. You should aim at writing this introduction in such a way that a serious meteor amateur, irrespective of his specialization in meteor astronomy, can understand it. (The later sections can of course be more technical). The context you describe here may contain some historical background, give a description of the problem in general terms, and compare with other relevant work in the literature. In all cases, the introduction should clearly state the aims of the contribution.</p>
+                    
+                    <h4 class="cnt">6. Technical/detailed sections</h4>
+                    <p>The Introduction is the first in a series of numbered sections.</p>
+                    <p>After the Introduction, some more technical or detailed sections will follow. Section headings must be representative for the content of that section, but should also be short. Preferably a section heading should fit on one line, but certainly not require more than two lines.</p>
+                    <p>You may also use subsections, provided the organization of the paper benefits from it. As a general rule of thumb, avoid sections or subsections that are unreasonably short. Subsections are best avoided in very short contributions, and “sub-subsections” are to be avoided altogether. Remember, the purpose of sections and subsections is to organize the paper so that its structure becomes apparent to the reader, and not to hide its structure from the reader!</p>
+                    <p>The rules for capitalization of the title also apply to section and subsection headers.</p>
+                    
+                    <h4 class="cnt">7. Concluding section(s)</h4>
+                    <p>In one or more concluding sections (Discussion, Conclusions, Future work, …), the authors should reflect on the meaning of their results, provide a short summary of what they have accomplished, and optionally discuss ongoing and future work.</p>
+                    
+                    <h4 class="cnt">8. Acknowledgments</h4>
+                    <p>This is an optional unnumbered section in which the authors can thank persons or institutions who provided help in either writing the paper or doing the work described in the paper. If this work is part of a project sponsored by a third party, and you must acknowledge this support, this is the place to do so!</p>
+                    
+                    <h4 class="cnt">9. References</h4>
+                    <p>The references are also listed in the very last section, which is also unnumbered. References should be relevant to the text of the paper, meaning that each and every reference must be cited in the paper! Even if you want to add some references providing further background information to the interested reader, they should be cited, for example in the Introduction, where you might say “The interested reader is referred to … (followed by the references concerned). Uncited references will be removed in the editing process!</p>
+                    <p>References are cited by the author’s last name (if there is only one), both authors’ last names (if there are two), or first author’s last name followed by “et al.” In each case, the year of publication follows. Distinct references for the same claim are separated by semicolons.</p>
+                    <p>This is a (fictitious) example of how to do it:<br>
+                    Many authors have shown this (Asher, 2011; 2012; Arlt and Rendtel, 2009; Brown et al., 2010).</p>
+                    <p>An alternative way to cite references is the following:<br>
+                    This has been shown by Asher (2011; 2012), Arlt and Rendtel (2009), and Brown et al. (2010).</p>
+                    <p>Depending on whether the authors are part of your sentence or not, you choose the latter or the former form.</p>
+                    <p>References should conform the following format:</p>
+                    
+                      <ul class="list-with-icons">
+                       <li><strong>For journals:</strong><p>
+Asher D. J., Arlt R., and Brown P. (2010). “Title of the paper&rdquo;. <em>Name of the Journal</em>, <strong>27</strong>, 32–35.</p>
+                       </li>
+
+                       <li><strong>For books:</strong><p>
+Arlt R. and Rendtel J. (2011). <em>Name of the Book</em>. Publisher Name.<br>
+(You may add the publisher’s location, but only if this is essential to identify the publisher, e.g., in the case of local publishers.)<br>
+You may also add additional information if you are only referring to part of a book:<br>
+Arlt R. and Rendtel J. (2011). <em>Name of the Book</em>. Publisher Name, Chapter 2, pages 3-14.</p></li>
+
+                       <li><strong>For proceedings:</strong><p>Brown P. (2013). &ldquo;Title&rdquo;. In Rault J.-L. and Roggemans P., editors, <em>Proceedings of the Name of the Conferenc</em>e, Giron, France, 12-15 October 2014. Publisher Name, pages 124–128. </p>
+                       </li>
+
+                       <li><strong>URLs</strong><p>
+In general, it is not such a good idea to refer to a URL, as URLs tend to change and links tend to become obsolete after a while. Preferably, the reference list of a paper should be timeless. It is therefore better to use footnotes in the text if you wish to refer to a website.</p></li>
+
+                       <li><strong>For other types of publications:</strong><p>
+The three types of publications above cover the vast majority of references, except perhaps URLs (see below), even though the examples above do not cover all possible variations. If in doubt, check previous IMC proceedings, or, even simpler, use your common sense.</p></li>
+                      </ul>
+
+                      <p>In the bibliography, references must be ordered alphabetically on the full list of authors. If two references share exactly the same list of authors, they should be ordered according to the year of publication. References with the same list of authors and the same year of publication should be distinguished by adding a lowercase letter to the year of publication, e.g., 2012a, 2012b, etc. This letter must, of course, also be added in citations of this reference.</p>
+
+                    <h4 class="cnt">10. Figures</h4>
+                    <p>As must be the case for references, figures should be relevant to the paper you are writing. Hence, each and every figure must be referred to in your text! Figures are numbered consecutively (Figure 1, 2, 3, and so on). Always refer to a figure by its number! Never use “the figure above” or “the figure below” as the precise location of the figure in print may change due to the editing.</p>
+                    <p>Your figures may be in full color, which is now for the on-line version, but mind that the Proceedings are printed in black-and-white, and that there is invariably a loss of quality in the printing process. Therefore, make sure your figures are of good resolution, not too dark and of sufficient contrast. Be aware that very fine details will get lost. In particular, pay attention to the readability of text and numbers, in particular along the axes of a graph. Mind in particular that many screenshots we receive do not meet these minimal quality requirements!</p>
+                    <p>We can deal with most common formats for figures, although jpeg and png are preferred. Make sure to send us the original figures also separately, in the highest possible resolution.</p>
+                    <p>Each figure should have a figure caption beneath it explaining what the figure represents. Make sure to explain the symbols used in the figure.</p>
+                    
+                    <h4 class="cnt">11. Tables</h4>
+                    <p>Just like figures, tables must be relevant: each and every table must be referred to in your text! Tables are numbered consecutively (Table 1, 2, 3, and so on). Always refer to a table by its number! Never use “the table above” or “the table below” as the precise location of the table in print may change due to the editing.</p>
+                    <p>The sample article gives a very general idea how a table looks like in the style of the IMC Proceedings. Notice that no vertical lines are used to separate columns! For more complex tables, please check previous IMC proceedings.</p>
+                    <p>Each table should have a caption, which should appear above the actual table. Make sure all symbols used in the table heading are explained in the caption, unless they are standard, such as “ZHR”.</p>
+                    <h4 class="cnt">12. Responsibility of the author(s)</h4>
+                    <p>The copyright for the paper remains with the author. Although the editors will inform the authors about any problems with the content and suggest corrections, the content of the papers remain the responsibility of the author. Mistakes in the English language will be corrected during the editing procedure. The authors are strongly recommended to have their paper checked by a native English speaker before delivering the paper. All communication between the editors and the authors will go via the corresponding author only.</p>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+ 

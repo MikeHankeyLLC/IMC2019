@@ -1,0 +1,44 @@
+{
+  "name": "imo",
+  "description": "International Meteor Organization",
+  "version": "0.0.1",
+  "homepage": "http://imo.net",
+  "repository": "https://github.com/MikeHankeyLLC/IMO.git",
+  "author": "Vincent Perlerin for MikeHankey LLC",
+  "tags": [
+    "build",
+    "make",
+    "tool",
+    "asset",
+    "pipeline"
+  ],
+  "man": "gulp.1",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "browser-sync": "^2.12.2",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-install": "^0.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "node-sass": "^3.6.0",
+    "gulp-uglifycss": "*"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.12.2",
+    "gulp": "^3.9.0",
+    "gulp-clean-css": "*",
+    "gulp-concat": "*",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-install": "^0.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "gulp-uglifycss": "*",
+    "imagemin-pngquant": "^5.0.0",
+    "node-sass": "^3.6.0",
+    "video.js": "^5.11.6"
+  },
+  "license": "MIT"
+}

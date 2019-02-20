@@ -1,0 +1,33 @@
+<div id="main-col" class="dmt">  
+  
+    <div class="container dmt">
+     
+        <div class="row">
+        
+        <form class="form-signin mg-btm" method="POST">
+            <h3 class="heading-desc"><?= _('Login'); ?></h3>
+            <div class="main">	
+                <? if(!empty($input['error'])): ?>
+                    <div class="alert alert-danger"><?= $input['error']; ?></div>
+                <? endif; ?> 
+                <input name="email" type="text"     class="form-control" placeholder="<?= _('Email'); ?>" autofocus />
+                <input name="pwd"   type="password" class="form-control" placeholder="<?= _('Password'); ?>"/>
+                <span class="clearfix"></span>	
+            </div>
+            <div class="login-footer">
+                <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="left-section">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 pull-right">
+                            <button type="submit" class="btn btn-large btn-danger pull-right"><?= _('Login'); ?></button>
+                        </div>
+                    </div>
+        
+            </div>
+        </form>
+        
+     </div>
+     </div>
+ </div> 

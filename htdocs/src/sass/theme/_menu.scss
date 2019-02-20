@@ -1,0 +1,456 @@
+body {
+  margin-top:$body-margin-top;
+
+    &.admin, &.modalb {
+           margin-top: 2em;
+    }
+}
+
+
+.navbar-default, .navbar-default .navbar-brand > img, .navbar-default .navbar-nav > li > a, #affix-lm {
+  @include transition(all .15s ease-out);   
+}
+
+
+// Scrollfollow left menu 
+.col-menu {
+  padding:0;
+
+  #affix-lm {
+    &.affix-f {
+      position: fixed;
+      top: 4.5em;
+    }
+
+    a {
+      display:block;
+      padding: .3em 0 .3em .3em;
+      margin-bottom:.3em;
+
+      &:hover {
+        text-decoration:none;
+        background-color:#f2f2f2; 
+      }
+
+      &.active {
+        color: $sm_active_menu;
+        background-color:#f0f0f0; 
+      }
+    }
+  }
+}
+ 
+
+// Main Menu
+.navbar-default {
+	
+    min-height: 0;
+    margin-bottom: 0;	
+	
+    background-color: $menu-bg;
+    border-bottom:0px transparent; 
+    color: $menu-color;
+	padding:0 1em;
+	 
+	
+	.navbar-nav > li > a {
+   	 	color: $menu-color;
+		line-height:2.5em;
+		font-size:1.2em;
+		
+		&:hover {
+			color: $menu-color;
+			background-color: $menu-bg-hover;
+		}
+	}	
+	
+	.imc {
+ 		font-size: 1.7em;
+		line-height: 1;
+		font-weight: 400;
+		padding-top: .53em;
+		padding-left: 0;
+		color:$logo-color;
+		display:inline-block; 
+		
+		.imc-info {
+			display: block;
+			font-weight: 400;
+			font-size: .55em;
+			padding-top: .2em;
+		}
+		
+		&:hover, &:focus {
+			text-decoration:none;
+		}
+	}
+ 	
+	.navbar-nav > .open > a,  .navbar-nav > .open > a:hover,   .navbar-nav > .open > a:focus {
+		background-color: $menu-bg-hover!important;
+		color: $menu-color-hover!important;
+	}
+	
+	.navbar-brand {
+		padding:0;	
+		
+		&> img {
+			width:$logo_max_width;
+            margin-right:$logo-margin-right;
+			padding:.5em 0;
+			height:auto;
+		}
+		
+		& > .open > a {
+			color: $menu-color !important;
+			background-color: $menu-bg-hover!important;
+			
+			&:hover, &focus {
+				color: $menu-color;
+				background-color: $menu-bg-hover;
+			}
+		}
+	}
+ 
+ 	.dropdown-menu {
+		padding:0;
+		border-color:$menu-sep !important;
+		 
+		& > li > a {
+			padding:1em 2em;	
+			background-color:$menu-drop-down-bg;
+			color:$menu-color-hover;	
+			border-bottom:$menu-sep;
+			
+			
+			&:hover, &:focus {
+				background-color:$menu-sub-bg-hover;
+				color:$menu-sub-color-hover;	 
+ 			}
+		}
+	}
+	
+}
+
+
+
+@media screen and (min-width: 820px) {
+    #top-bar.z {
+        background-color: $menu-down-bg;
+         
+        .imc-info {
+            display:none;   
+        }
+         
+        &.navbar-default  {
+            .navbar-brand > img {
+                max-width:$logo_max_width-bg;   
+            }
+        
+            .imc {
+                padding-top: .38em;
+            }
+        
+            .navbar-nav >  li > a {
+                line-height: 1.5em;
+                font-size: 1em;
+            }
+        }
+        
+        &:hover {
+               background-color: $menu-bg;
+         }
+    }
+}
+
+
+// Mobile Menu
+@media screen and (max-width: 1031px) {
+	
+	body {
+		margin-top: 3.8em;	
+	}
+	
+	.navbar-default .imc .imc-info {
+		display:none;	 
+	}
+	.navbar-default .imc {
+		padding-top: .72em; 
+		display: inline-block;	
+	}
+	.navbar-default .navbar-nav > li > a {
+		font-size:1em;
+        padding:.7em !important;
+	}
+    
+    .navbar-default .navbar-brand > img {
+        max-width: 29px;
+        padding-top: .3em;
+        padding-bottom: 0;
+    }
+     
+}
+
+
+// Mobile Menu
+@media screen and (max-width: 768px) {
+	
+	body {
+		margin-top: 2.5em;	
+	}
+    
+     .navbar-default .navbar-brand > img {
+        padding-top:.3em 0 0 0;
+    }
+ 	
+	// New Main Menu 
+	.navbar-default .navbar-brand > img {
+		max-width:$logo_mobile_main_menu_max_width;
+	}
+	
+ 	
+	.navbar-default .imc {
+		 padding-top: .42em;
+		
+		 .imc-info {
+			display:none;	
+		}
+	}
+ 	
+	// Mobile Menu
+    
+    .navbar-default .navbar-toggle {
+		
+	  border-color: transparent;
+ 	  
+	  .icon-bar {
+		  background-color:$menu-color;
+	  }
+	 
+ 	  &:hover, &:focus   {
+		
+		background-color:transparent;  
+		  
+	  	.icon-bar {
+		  background-color: $menu-color-hover;
+	  	} 
+	  }
+    }
+    
+    .navbar-default .navbar-collapse { 
+		background-color: $menu-bg;
+     }
+  
+    .navbar-brand {
+		padding: 1em 1em 0 1em;
+    }
+      
+    .imc-m, .imc-info-m, .imc-m-l {
+    	display:block;   
+    }
+	
+	// Logo on Mobile menu
+    .navbar-nav>li>a.imc-m-l {
+    	background-color: $logo_bg_color;
+     	display: inline-block;
+    	margin: .5em auto 0;
+    	text-align: center;
+    	padding: 0;
+		
+		&:hover {
+			background:transparent;	
+		}
+		  
+    	img {
+    		max-width:$logo_mobile_max_width !important;
+    	}
+    } 
+  
+    // Subtitle (location on mobile menu)
+    .imc-info-m {  
+		color: $location-color;
+    	text-transform: uppercase;
+    	font-size: 1em;
+    	padding-bottom: 1.2em;
+    }
+ 	
+	// Subtitle (IMC Title)
+    .imc-m {
+    	color: $imc-color;
+    	font-weight: 700;
+    	font-size: $imc-size;
+    }
+	
+	.navbar-nav .open .dropdown-menu {
+		background-color: $menu-bg-hover;
+	}
+	
+	.navbar-default .navbar-nav > li > a {
+		 color: $menu-color;
+		 line-height:1;
+		 padding:1em;
+		 
+		 &:hover,  &focus {
+			  color: $menu-color-hover;
+			  background-color: $menu-bg-hover;
+		 }
+	}
+     
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a, .dropdown-menu {
+		 @include transition(all .3s ease);
+	 }
+	 
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+		background-color:  $menu-bg-hover;
+		color: $menu-color-hover;
+		border-bottom:$menu-sub-sep;
+    }
+    
+    .navbar-default .navbar-nav .open .dropdown-menu {
+		margin:0;
+		padding:0;
+		border-top:$menu-sub-sep;
+	
+		& > li > a {
+			color: $menu-color;
+			border-bottom:$menu-sub-sep;
+			padding-top:.6em;
+			padding-bottom:.6em;
+			
+			&:hover, &:focus {
+				color: $menu-color-hover;	
+				background-color:  $menu-sub-bg-hover;
+			}
+  			
+		}
+		
+		& > li {
+		 
+			&::last-child > a {
+				border-bottom:none;
+			}	
+		}
+	}
+	
+	.nav>li {
+      border-bottom: $menu-sep;
+      
+      &.nb {
+          border: none;
+          margin: 1em .5em 0;
+          font-size: 1em;
+          color: $menu-footer-color;
+          
+          a, a:hover {
+            color: $menu-footer-link-color;
+          }
+      }
+  }
+	
+ 
+  .navbar-fixed-top {
+    width:100%;
+  }
+  .navbar-fixed-top .navbar-collapse, 
+  .navbar-fixed-bottom .navbar-collapse {
+    max-height:none;
+  }
+  .navbar-nav {
+    margin:0;
+  }
+  .navbar-form {
+    margin:0;
+  }
+ 
+  /* General styles for all menus */
+   .cbp-spmenu {
+    position: fixed;
+    padding:0;
+    margin:0 !important;
+    overflow-x:hidden;
+    overflow-y:visible;
+    display:block;
+    visibility:visible;
+  }
+  .navbar-fixed-top .cbp-spmenu {
+    bottom:0;
+  }
+  
+  /* Orientation-dependent styles for the content of the menu */
+   
+  .cbp-spmenu-vertical {
+    width: 260px;
+    height: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  .cbp-spmenu-horizontal {
+    width: 100%;
+    height: 150px;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  .cbp-spmenu-horizontal h3 {
+    height: 100%;
+    width: 20%;
+    float: left;
+  }
+  .cbp-spmenu-horizontal a {
+    float: left;
+    width: 20%;
+    padding: 0.8em;
+    border-left: 1px solid #258ecd;
+  }
+  
+  /* Vertical menu that slides from the left or right */
+  .cbp-spmenu-left {
+    left: -260px;
+  }
+  .cbp-spmenu-right {
+    right: -260px;
+  }
+  .cbp-spmenu-left.cbp-spmenu-open,
+  .cbp-spmenu-push-toright .navbar-fixed-top .cbp-spmenu-left.cbp-spmenu-open {
+    left: 0px;
+  }
+  .cbp-spmenu-right.cbp-spmenu-open,
+  .cbp-spmenu-push-toleft .navbar-fixed-top .cbp-spmenu-right.cbp-spmenu-open {
+    right: 0px;
+    box-shadow: 0 0 10px rgba(0,0,0,.9);
+  }
+  /* Horizontal menu that slides from the top or bottom */
+  .cbp-spmenu-top {
+    top: -150px;
+  }
+  .cbp-spmenu-bottom {
+    bottom: -150px;
+  }
+  .cbp-spmenu-top.cbp-spmenu-open {
+    top: 0px;
+  }
+  .cbp-spmenu-bottom.cbp-spmenu-open {
+    bottom: 0px;
+  }
+  /* Push classes applied to the body */
+  .cbp-spmenu-push {
+    overflow-x: hidden;
+    position: relative;
+    left: 0;
+  }
+  .cbp-spmenu-push-toright,
+  .cbp-spmenu-push-toright .navbar-fixed-top {
+    left: 260px;
+  }
+  .cbp-spmenu-push-toleft,
+  .cbp-spmenu-push-toleft .navbar-fixed-top {
+    left: -260px;
+  }
+  /* Transitions */
+  .cbp-spmenu,
+  .cbp-spmenu-push,
+  .navbar {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+}

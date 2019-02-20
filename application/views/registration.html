@@ -1,0 +1,838 @@
+
+<div id="main-col">          
+<div id="illustration" class="title">
+    <div class="container clearfix">
+        <? /*
+       <? if(!isset($_GET['waiting_list'])): ?>
+            <h1 class="pull-left">Registration</h1> 
+        <? else: ?>
+            <h1 class="pull-left">Waiting List Registration</h1> 
+        <? endif; ?>
+        */ ?>
+        <h1 class="pull-left">Registration</h1> 
+    </div>
+</div> 
+<div class="container">
+
+<div class="row">
+
+
+<? /* <? if(empty($input['marc_wants_to_test'])): ?> */ ?>
+<? /*
+    <div class="alert alert-info">
+        The registration form will be available shortly.<br/>
+        Please come back soon.
+    </div>
+    */?>
+<? /* <? else: ?> */ ?>
+    
+ 
+<? if (!empty($input['success']) ) : ?>
+    <script>
+        document.getElementById("reg_form").reset();
+    </script>
+
+    <div class="btn-lg alert alert-success">
+        <h2 class="nm"><span class="fa fa-thumbs-o-up fa-2x pull-left"></span> <?= THANK_YOU; ?></h2>
+        <?= $input['success']; ?> 
+    </div>
+    
+    
+    <p class="text-center">
+           <strong> <span class="fa fa-hand-o-right"></span>
+            <a href="/imo" target="_blank">Not an  International Meteor Organization  member yet?</a> 
+            <span class="fa fa-hand-o-left"></span></strong>
+    
+    </p>
+    
+    <? if(defined(FB_EVENT_PAGE)):?>
+        <p>
+            Keep in touch with IMC<?= CONF_YEAR;?> on Facebook:
+            <a href="<?= FB_EVENT_PAGE; ?>" class="btn btn-social btn-facebook" target="_blank">
+                <span class="fa fa-facebook"></span> IMC <?= CONF_YEAR; ?>
+            </a>
+        </p>    
+    <? endif; ?>
+    
+    <h3>Summary</h3>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2"><?= $input['bill']; ?></div>
+    </div>
+    <? if($input['payment_meth']==1): ?>
+        <p class="text-center"><strong><span class="fa fa-warning"></span> Click the button below to pay immediately with Paypal.</strong></p>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="text-center">
+            <input name="cmd" type="hidden" value="_xclick" />
+            <input type="hidden" name="amount" value="<?= $input['amount_due_paypal']; ?>">
+            <input name="business" type="hidden" value="payment@imo.net" />
+            <input name="item_name" type="hidden" value="IMC <?= CONF_YEAR; ?> Registration" />
+            <input name="no_note" type="hidden" value="1" />
+            <input name="currency_code" type="hidden" value="EUR" />
+            <input name="tax" type="hidden" value="0" />
+            <input name="lc" type="hidden" value="GB" />
+            <input class="btn btn-default" alt="Make your IMC <?= CONF_YEAR; ?> payment with PayPal" border="0" name="submit" src="https://www.paypal.com/nl_NL/i/logo/paypal_logo.gif" type="image" /> 
+        </form>
+        <br/><a href="/'"><span class="fa fa-toggle-left"></span> Go back to the IMC <?= CONF_YEAR; ?> Website</a>
+     <? elseif($input['payment_meth']==2): ?>
+        <p><strong><span class="fa fa-warning"></span> The IMC fee is due without any delay. Please, transfer the total amount mentioned in order to confirm your registration immediately.</strong></p>
+        <pre><strong>International Meteor Organization</strong><br/>Mattheessensstraat 60,<br/>2540 Hove, Belgium<br/>Bank account at BNP Paribas Fortis Bank Belgium<br/>BIC bank code: GEBABEBB<br/>IBAN account number: BE30 0014 7327 5911</pre>
+    <? endif; ?>
+    
+    
+    
+<? else: ?>  
+
+
+    
+        <? if(isset($_GET['waiting_list'])): ?>      
+        <div class="col-md-12 ">
+            <div class="btn-lg alert alert-info hmb hmt hidden">
+                <span class="fa fa-warning pull-left" style="padding-top: .25em;"></span>REGISTRATION DEADLINE:<br><strong>June 30, 2018</strong> <small>or earlier if full capacity is reached</small>
+        </div>
+       
+         <div class="alert alert-danger mt">
+            <h3 class="nmt" style="margin:0!important">IMC <?= CONF_YEAR; ?> Online registration is now closed</h3>
+            
+            <?if(strtotime(DEADLINE)-strtotime("now")>0): ?>
+                <p>Due to the overwhelming interest we have reached full capacity.</p>         
+                <p>However, until June 15, we maintain a <strong>waiting list</strong>, such that you can 
+                <a href="registration?waiting_list=1"><strong>communicate your interest to participate</strong></a>.
+                 Soon after the registration deadline, we will inform you if participation still is possible. We truly 
+                 apologize for any inconvenience resulting from this.</p>
+             <?endif; ?>    
+             
+         </div>
+      <? endif; ?>   
+       
+     
+        <div class="well">
+            <strong>People who need an invitation letter for Visa</strong> must send their request without any delay to <a href="mailto:<?= MAIN_CONTACT; ?>"><?= MAIN_CONTACT; ?></a>. Please, provide you legal private domicile or professional address, passport number and the address of the Slovak consulate where your visa application will be submitted.
+        </div>
+ 
+       <? /*  To add:       */ ?>
+      <form method="post" action="" class="form-horizontal <? if(isset($_GET['waiting_list'])): ?> hidden<? endif; ?>" id="reg_form" onsubmit="submit.disabled = true; return true;">
+        <input type="hidden" name="submit" value="1"/>
+        <input type="hidden" name="year" value="<?= CONF_YEAR; ?>"/> <? /* see registration_model */ ?>
+        
+        <? if (!empty($input['errors']) ) : ?>
+             
+            <script>
+                var error_field = ['<?= implode("','", array_keys($input['errors'])); ?>'];
+            </script>
+        
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong><?= (count($input['errors'])>=1)?_('Errors'):_('Error'); ?></strong>
+                <ul>
+                    <? foreach($input['errors'] as $k=>$v): ?>
+                        <li><?= $v; ?> - <a href="#<?=$k;?>">Here</a></li>
+                    <? endforeach; ?>
+                </ul>
+            </div>
+        <? endif; ?>  
+         
+        <fieldset>
+                <legend>Personal &amp; Contact information</legend>
+                
+                <div class="form-group">
+                    <label for="title" class="col-sm-3 control-label text-right">Title</label>
+                    <div class="col-sm-9">
+                        <select name="title" id="title" class="form-control auto">
+                            <option value="Mr."  <? if(!empty($input['title']) && $input['title']=='Mr.'):?>selected<?endif; ?>>  Mr.</option>
+                            <option value="Ms."  <? if(!empty($input['title']) && $input['title']=='Ms.'):?>selected<?endif; ?>>   Ms.</option>
+                            <option value="Mrs." <? if(!empty($input['title']) && $input['title']=='Mrs.'):?>selected<?endif; ?>> Mrs.</option>
+                            <option value="Dr."  <? if(!empty($input['title']) && $input['title']=='Dr.'):?>selected<?endif; ?>>  Dr.</option>
+                            <option value="Prof." <? if(!empty($input['title']) && $input['title']=='Prof.'):?>selected<?endif; ?>>Prof.</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-3 control-label text-right">First name <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="firstname" id="firstname" class="form-control auto" size="30" placeholder="First Name" value="<?= !empty($input['firstname'])?$input['firstname']:''; ?>" required/>
+                        <span class="help-block">
+                            <strong>In case you need an invitation letter to obtain visa write your names exactly as mentioned on your Passport.</strong>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-3 control-label text-right">Last name <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="lastname" id="lastname" class="form-control auto" size="30" placeholder="Last Name" value="<?= !empty($input['lastname'])?$input['lastname']:''; ?>" required/>
+                        <span class="help-block">
+                            In case you need an invitation letter to obtain visa write your names exactly as mentioned on your Passport.
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender" class="col-sm-3 control-label text-right">Gender <span>*</span></label>
+                    <div class="col-sm-9">
+                        <select name="gender" id="gender" class="form-control auto" required>
+                            <option value=""  <? if(empty($input['gender'])):?>selected<?endif; ?>>Please, select your gender</option>
+                            <option value="F"  <? if(!empty($input['gender']) && $input['gender']=='F'):?>selected<?endif; ?>>Female</option>
+                            <option value="M" <? if(!empty($input['gender']) && $input['gender']=='M'):?>selected<?endif; ?>>Male</option>
+                            <option value="O" <? if(!empty($input['gender']) && $input['gender']=='O'):?>selected<?endif; ?>>Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label text-right">Phone Number <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="phone" id="phone" class="form-control auto" size="30" placeholder="Phone Number" required value="<?= !empty($input['phone'])?$input['phone']:''; ?>"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="col-sm-3 control-label text-right">Email <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="email" name="email" id="email" class="form-control auto" size="30" placeholder="Email" required value="<?= !empty($input['email'])?$input['email']:''; ?>"/>
+                    </div>
+                </div>
+              
+                
+                <div class="form-group">
+                    <label for="address" class="col-sm-3 control-label text-right">Address <span>*</span></label>
+                    <div class="col-sm-9">
+                        <span class="help-block">
+                            <strong>In case you need an invitation letter to obtain a visa</strong>, the address above
+                             should be your official legal domicile or your professional contact address at your institute.
+                        </span>
+                        <input type="text" name="address" id="address" class="form-control  "   placeholder="Your address" required value="<?= !empty($input['address'])?$input['address']:''; ?>"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="post_code" class="col-sm-3 control-label text-right">Postal Code</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="post_code" id="post_code" class="form-control auto" size="20" placeholder="Postal Code" value="<?= !empty($input['post_code'])?$input['post_code']:''; ?>"/>
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="city" class="col-sm-3 control-label text-right">City (+ state/province/region) <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="city" id="city" class="form-control auto" size="35" placeholder="City (+ state/province/region)" required value="<?= !empty($input['city'])?$input['city']:''; ?>"/>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="country" class="col-sm-3 control-label text-right">Country <span>*</span></label>
+                    <div class="col-sm-9">
+                         <select id="country" name="country" class="form-control auto" required >
+                            <option value=""></option>
+                            <? foreach($input['countries'] as $c): ?>
+                                <option value="<?= $c['country_id']; ?>"
+                                <?= (!empty($input['country']) && $input['country']==$c['country_id'])?'selected':''; ?>><?= $c['short_name']; ?></option>
+                            <? endforeach; ?>
+                        </select>
+                        
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="org" class="col-sm-3 control-label text-right">Organization</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="org" id="org" class="form-control auto" size="30" placeholder="Organization"  value="<?= !empty($input['org'])?$input['org']:''; ?>"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob" class="col-sm-3 control-label text-right">Date of Birth <span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" required name="dob" id="dob" class="form-control auto" size="11" placeholder="1976-09-10"  value="<?= !empty($input['dob'])?$input['dob']:''; ?>"> 
+                         <span class="help-block">
+                            Underaged IMC participants must be accompanied and have the legalized documents for travelling abroad without parents.
+                         </span>
+                    </div>
+                </div>
+        </fieldset>
+    
+    
+        <fieldset>
+                <legend>Travel &amp; Arrival</legend>
+                 
+                 <div class="alert alert-info">
+                       <strong>Extra nights</strong> at the conference venue should be arranged by the participants themselves.
+                 </div>
+                 
+                 <div class="form-group">
+                    
+                    <label for="arrival_date" class="col-sm-3 control-label text-right">Arrival Day &amp; Time at the IMC Host<span>*</span></label>
+                    <div class="col-sm-9 form-inline">
+                  
+                            <select class="form-control auto" name="arrival_day">
+                               <? 
+                                    $arrival_start_day =  CONF_ARRIVAL_DAY;
+                                    $arrival_end_day    = date('Y-m-d', strtotime($arrival_start_day . ' +3 day'));
+                                    
+                                    while (strtotime($arrival_start_day) <= strtotime($arrival_end_day)) {
+                               ?>                 
+                                                 <option value="<?=$arrival_start_day;?>" <? if(!empty($input['arrival_day']) && $input['arrival_day']==$arrival_start_day):?>selected<?endif;?>
+>
+                                                  <?= date("l, F jS", strtotime($arrival_start_day)); ?>
+                                                 </option>
+                               
+                               <?    $arrival_start_day = date ("Y-m-d", strtotime("+1 day", strtotime($arrival_start_day)));
+                                    } 
+                               ?>     
+                            </select>
+                             
+                         <div class="inl-f-f">
+                             at
+                             <select class="form-control auto" name="arrival_time_h">
+                                <? for($i=0; $i<24; $i++): ?>
+                                    <option value="<?= sprintf('%02d', $i); ?>" 
+                                        <?= !empty($input['arrival_time_h'])&& $input['arrival_time_h']==sprintf('%02d', $i)?'selected':''; ?>
+                                    >
+                                         <?= sprintf("%02d", $i); ?></option>
+                                    </option>
+                                <? endfor; ?>                        
+                            </select> :
+                            <select class="form-control auto" name="arrival_time_m">
+                                <? for($i=0; $i<60; $i+=10): ?>
+                                    <option value="<?= sprintf('%02d', $i); ?>" 
+                                        <?= !empty($input['arrival_time_m'])&& $input['arrival_time_m']==sprintf('%02d', $i)?'selected':''; ?>
+                                      >
+                                        <?= sprintf("%02d", $i); ?>
+                                    </option>
+                                <? endfor; ?>                        
+                            </select> 
+                        </div>
+                    </div>
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="departure_date" class="col-sm-3 control-label text-right">Departure Day &amp; Time at the IMC Host<span>*</span></label>
+                    <div class="col-sm-9 form-inline">
+                            <select class="form-control auto" name="departure_day">
+                               <? 
+                                    $arrival_start_day =  CONF_ARRIVAL_DAY;
+                                    $arrival_end_day    = date('Y-m-d', strtotime($arrival_start_day . ' +3 day'));
+                                    
+                                    while (strtotime($arrival_start_day) <= strtotime($arrival_end_day)) {
+                               ?>                 
+                                                 <option value="<?=$arrival_start_day;?>"
+                                                    <? if(!empty($input['departure_day']) && $input['departure_day']==$arrival_start_day):?>selected<?endif;?>
+                                                 >
+                                                  <?= date("l, F jS", strtotime($arrival_start_day)); ?>
+                                                 </option>
+                               
+                               <?    $arrival_start_day = date ("Y-m-d", strtotime("+1 day", strtotime($arrival_start_day)));
+                                    } 
+                               ?>     
+                            </select>
+  
+                       <div class="inl-f-f">
+                            at
+                            <select class="form-control auto" name="departure_time_h">
+                                <? for($i=0; $i<24; $i++): ?>
+                                    <option value="<?= sprintf('%02d', $i); ?>"                                    
+                                         <?= !empty($input['departure_time_h'])&& $input['departure_time_h']==sprintf('%02d', $i)?'selected':''; ?>
+    >
+                                    <?= sprintf("%02d", $i); ?></option>
+                                <? endfor; ?>                        
+                            </select> :
+                            <select class="form-control auto" name="departure_time_m" >
+                                <? for($i=0; $i<60; $i+=10): ?>
+                                    <option value="<?= sprintf('%02d', $i); ?>"  <?= !empty($input['departure_time_m'])&& $input['departure_time_m']==sprintf('%02d', $i)?'selected':''; ?>
+    ><?= sprintf("%02d", $i); ?></option>
+                                <? endfor; ?>                        
+                            </select> 
+                        </div>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <label for="travel_type" class="col-sm-3 control-label text-right">Travelling by</label>
+                    <div class="col-sm-9">
+                        <select id="travel_type" name="travel_type" class="form-control auto" required>
+                            <option value="car"     <?= !empty($input['travel_type']) && $input['travel_type']=='car'?'selected':''; ?> >Car</option>
+                            <option value="bus"     <?= !empty($input['travel_type']) && $input['travel_type']=='bus'?'selected':''; ?>>Bus</option>
+                            <option value="plane"   <?= !empty($input['travel_type']) && $input['travel_type']=='plane'?'selected':''; ?>>Plane</option>
+                            <option value="train"   <?= !empty($input['travel_type']) && $input['travel_type']=='train'?'selected':''; ?>>Train</option>
+                            <option value="local"   <?= !empty($input['travel_type']) && $input['travel_type']=='local'?'selected':''; ?>>Local resident</option>
+                            <option value="unknown" <?= !empty($input['travel_type']) && $input['travel_type']=='unknown'?'selected':''; ?>>Not yet decided</option>
+                        </select>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <label for="details" class="col-sm-3 control-label text-right">Travel details</label>
+                    <div class="col-sm-9">
+                        <textarea name="details" id="details" class="form-control" placeholder="Travel details"><?= !empty($input['details'])?$input['details']:''  ; ?></textarea>
+                        <span class="help-block">
+                            If you travel in group, indicate with whom you share your journey. If you travel by bus, plane or train indicate which bus,
+                            plane (date, flight number, airport) or train. Indicate this for both arrival and departure. 
+                        </span>
+                    </div>
+                 </div>     
+                 
+        </fieldset>
+   
+ 
+      
+        <fieldset class="dmt">
+                <legend>Lectures and posters</legend>
+                 <div class="form-group">
+                    <label for="prog" class="col-sm-3 control-label text-right">Do you wish to contribute to the program?</label>
+                    <div class="col-sm-9 form-group">
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="no_prog" name="prog" type="radio" value="no" <?if(empty($input['prog']) || $input['prog']=='no'):?>checked<?endif; ?>>
+                              No  
+                             </label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="yes_prog" name="prog" type="radio" value="yes" <?if(!empty($input['prog']) && $input['prog']=='yes'):?>checked<?endif; ?>>
+                              Yes 
+                             </label>
+                        </div>
+                    </div>
+                 </div>
+                 
+                 <? /* LECTURES & POSTERS */ ?>
+                 <div id="lectures_and_posters" class="hidden" >
+                    <div class="well">
+                        <strong>
+                        <span class="fa fa-info-circle"></span>
+                        Do not register a lecture or poster without having a topic.</strong>
+                        <br/>
+                    
+                        
+                        If you consider to present a lecture or a poster but have not yet decided on the topic, skip this item and for now just continue with your registration. Using a link that will be provided to you in your registration confirmation, you can add your talk or poster later. Alternatively, you can send us title, abstract and (for a talk) duration via email. The absolute deadline for submitting talks and posters is <?= date("l, F jS Y",strtotime(DEADLINE)); ?>, but if we cannot accommodate all presentations, priority may be given to those registered early.<br/><br/>
+                        
+                        
+                        
+                        <strong><span class="fa fa-info-circle"></span>For all lectures and posters, a paper for the IMC Proceedings is <a href="/guideline" target="_blank">required</a>. </strong>
+                        <br/>Ideally, papers should be submitted before the start of the conference. The absolute deadline for paper delivery is <strong class="text-danger"><?= date("l, F jS Y",strtotime(DEADLINE_PAPER)); ?></strong>.
+                    </div>
+                    
+                    <input type="hidden" id="talks_num" name="talks_num" value="<? if(!empty($input['talks'])): ?><?= count($input['talks']); ?><? else: ?>0<? endif; ?>"/> 
+                    <input type="hidden" id="posters_num" name="posters_num" value="<? if(!empty($input['posters'])): ?><?= count($input['posters']); ?><? else: ?>0<? endif; ?>"/> 
+                    <div id="contrib_holder"></div>
+                    
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <div class="form-group">
+                            <a class="btn btn-default" id="add_talk"><strong>+</strong> Add a talk</a>
+                            <a class="btn btn-default" id="add_poster"><strong>+</strong>  Add a Poster</a>
+                        </div>
+                    </div>
+                   
+                 </div>
+                 <? /* / LECTURE & POSTERS */ ?>
+
+        </fieldset> 
+    
+
+        <fieldset class="dmt">
+                <legend>Registration &amp; Accommodation</legend>
+                  
+                  
+                 <div class="alert alert-info">
+                    <span class="fa fa-warning"></span>&nbsp;&nbsp;<? /*<strong>Accommodations</strong><br/> 
+                    All <strong>single rooms</strong> have been booked. If you insist on single accommodation, please see the list of <a href="acc#alt_acc" target="_blank"><strong>Alternative Accommodations</strong></a>.
+                   */?>
+                   <strong>All rooms in the conference hotel are taken</strong>. We can however allow a few more participants if they arrange there accommodation themselves (for more info, see <a href="acc#alt_acc" target="_blank"><strong>Alternative Accommodations</strong></a>). Even so, you are welcome to indicate in the comment field that you would prefer to stay in the conference hotel. If a room there would become available due to a cancellation, we will contact you on a first-come, first-serve basis.
+                    <? /*
+                    <ul>
+                       <li>All <strong>single rooms</strong> have been booked.</li>
+                        <li>There are a limited number of <strong>double rooms</strong> available, which will be assigned on a first-come, first-serve basis.</li>  
+                       <li>If you insist on single accommodation, please see the list of <a href="acc#alt_acc" target="_blank"><strong>Alternative Accommodations</strong></a>.</li>
+                    </ul>
+                    */ ?>
+                 </div>
+                 
+                               
+                    <div class="form-group">
+                        <label for="reg_type" class="col-sm-3 control-label text-right">Registration type <span>*</span></label>
+    
+                         <div class="col-sm-9 form-group">
+                            <? foreach($input['accomodations'] as $k=>$v) : ?>
+                              
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="reg_type" type="radio" value="<?= $k; ?>" required <?if(!empty($input['reg_type']) && $input['reg_type']==$k):?>checked<?endif; ?>>
+                                        <?if(strtotime($v['early_bird_date'])-strtotime("now")>0): ?>
+                                            <strong><?= $v['price']; ?><?= !empty($v['price'])?$v['currency'].' - ':''; ?>  <?= $v['details'];?></strong>
+                                            <em>(<?= $v['price_late']; ?><?= $v['currency']; ?> after <?= date('D, j F Y', strtotime($v['early_bird_date'])); ?>)</em>
+                                            <span class="help-block"><?= $v['covers']; ?></span>
+                                            <input type="hidden" name="<?= $k; ?>_price" value="<?= !empty($v['price'])?$v['price']:'0'; ?>"/>
+    
+                                        <? else: ?>
+                                            <strong><?= $v['price_late']; ?><?= $v['currency']; ?> - <?= $v['details'];?></strong>
+                                            <span class="help-block"><?= $v['covers']; ?></span>
+                                            <input type="hidden" name="<?= $k; ?>_price" value="<?= !empty($v['price_late'])?$v['price_late']:'0'; ?>"/>
+    
+                                        <? endif; ?>
+                                    </label>
+                                </div>
+                                <?   if( $k!='1_bed_room' && $k!='2_bed_room'):  ?>  <?    endif; /* if($k!='2_bed_room' && $k!='1_bed_room'):  */  ?>  
+                            <? endforeach; ?>
+                         </div>
+                     </div>
+                 
+                  
+                 <div id="roommate" class="form-group hidden">
+                        <label for="roomate" class="col-sm-3 control-label text-right">Preferred Roommate(s) in the IMC Host</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="roomate" id="roomate" class="form-control" placeholder="Preferred roommate name(s)" value="<?= !empty($input['roomate'])?$input['roomate']:''; ?>"/>
+                        </div>
+                 </div>
+                 
+                  <div class="form-group">
+                        <label for="payment_meth" class="col-sm-3 control-label text-right">Method of payment <span>*</span></label>
+                        <div class="col-sm-9 form-group">
+                            <? foreach($input['payment_methods'] as $key=>$val) : ?>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="payment_meth" type="radio" value="<?= $key; ?>" required <?if(!empty($input['payment_meth']) && $input['payment_meth']==$key):?>checked<?endif; ?>>
+                                        <strong><?= $val; ?></strong>
+                                        <? if($val=="Paypal or Credit Card"):?>
+                                            <span class="help-block nmt"><em>(additional fees apply)</em></span>
+                                        <? elseif($val=="Bank Transfer"): ?>
+                                            <span class="help-block nmt"><em>(usually free from EU and EEA countries; costs are always at participants' expense)</em></span>
+                                        <? elseif($val=="Other"): ?>
+                                            <span class="help-block nmt"><em>(requires prior approval from the <a href="mailto:treasurer@imo.net" target="_blank">IMO Treasurer</a> and statement of the agreed arrangement)</em></span>
+                                        <? else: ?>
+                                            <span class="help-block nmt"><em>(Serbian participants are requested to pay in Dinar directly to the LOC. The LOC will send you payment instructions upon receiving your registration)</em></span>
+                                        <? endif; ?>
+                                     </label>
+                                </div>
+                             <? endforeach; ?>
+                            
+                         </div>
+                    </div>
+        
+         </fieldset>
+         
+         <? /*
+         <fieldset class="dmb">
+                <legend>August 29<sup>th</sup>-30<sup>th</sup> Workshops</legend>
+                
+                <div class="alert alert-info mt ml">
+                            <strong><span class="fa fa-info-circle"></span>&nbsp;&nbsp;Workshops Info</strong>
+                            <ul>
+                            <li>Participation in the August 29<sup>th</sup>-30<sup>th</sup> Workshops is free.</li> 
+                            <li><strong>The extra night of August 29<sup>th</sup>-30<sup>th</sup> and the extra meals
+                            (lunch and dinner on August 29 and lunch on August 30) should be arranged with the hotel by the
+                            participants themselves, just like any other additional nights or meals you may wish.</strong></li>
+                            <li>If you
+                            mention <strong>“IMC2018”</strong> while booking, a double room for one night costs 50&euro; plus 0.33&euro;
+                            tax (including breakfast), and a meal costs 8.50&euro;. These prices are not guaranteed if you use
+                            third parties such as booking.com to book the hotel. If you would like to share a <strong>double room</strong>
+                            during the workshop, please <a href="/contact" target="_blank" style="text-decoration:underline"><strong>contact the  LOC</strong></a> before booking the room. The
+                            LOC can then assist you with finding a roommate with whom you can share the room cost.</li>
+                            </ul>
+                </div>    
+                        
+                
+               
+                <div class="form-group">
+                    <label for="workshop1" class="col-sm-7 control-label text-right">Do you wish to participate to the <a href="/workshop1" target="_blank">VISUAL WORKSHOP</a> on August 29<sup>th</sup>-30<sup>th</sup>?</label>
+                    <div class="col-sm-5 form-group">
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="no_workshop1" name="workshop1" type="radio" value="0" <?if(empty($input['workshop1']) || $input['workshop1']=='no'):?>checked<?endif; ?>>
+                              No  
+                             </label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="yes_workshop1" name="workshop1" type="radio" value="1" <?if(!empty($input['workshop1']) && $input['workshop1']=='yes'):?>checked<?endif; ?>>
+                              Yes 
+                             </label>
+                        </div>
+                     </div>
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="workshop2" class="col-sm-7 control-label text-right">Do you wish to participate to the <a href="/workshop2" target="_blank">SPECTROSCOPIC WORKSHOP</a> on August 29<sup>th</sup>-30<sup>th</sup>?</label>
+                    <div class="col-sm-5 form-group">
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="no_workshop2" name="workshop2" type="radio" value="0" <?if(empty($input['workshop1']) || $input['workshop1']=='no'):?>checked<?endif; ?>>
+                              No  
+                             </label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="yes_workshop2" name="workshop2" type="radio" value="1" <?if(!empty($input['workshop1']) && $input['workshop1']=='yes'):?>checked<?endif; ?>>
+                              Yes 
+                             </label>
+                        </div>
+                    </div>
+                 </div>
+                 
+         </fieldset>        
+         */ ?>
+         
+         <fieldset>
+                <legend>Other Information</legend>
+                                
+                <div class="form-group">
+                    <label for="tshirt-q" class="col-sm-3 control-label text-right">Do you want to buy the official IMC<?= CONF_YEAR;?> T-Shirt for <?= TSHIRT_PRICE; ?>&euro;?</label>
+                    <div class="col-sm-9 form-group">
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="no_tshirt" name="tshirt_q" type="radio" value="no" <?if(empty($input['tshirt_q']) || $input['tshirt_q']=='no'):?>checked<?endif; ?>>
+                              No  
+                             </label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label>
+                              <input id="yes_tshirt" name="tshirt_q" type="radio" value="yes" <?if(!empty($input['tshirt_q']) && $input['tshirt_q']=='yes'):?>checked<?endif; ?>>
+                              Yes 
+                             </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tshirt-holder" class="form-group <? if(empty($input['tshirt_q']) || $input['tshirt_q']=='no'):?>hidden<?endif; ?>">
+                    <label for="tshirt" class="col-sm-3 control-label text-right">T-shirt size</label>
+                    <div class="col-sm-9">
+                        <select id="tshirt" name="tshirt" class="form-control auto">
+                            <option value="" <?= empty($input['tshirt'])?'selected':''; ?>>Select a size</option>
+                            <option value="S" <?= !empty($input['tshirt']) && $input['tshirt']=='S'?'selected':''; ?>>S (small)</option>
+                            <option value="M" <?= !empty($input['tshirt']) && $input['tshirt']=='M'?'selected':''; ?>>M (medium)</option>
+                            <option value="L" <?= !empty($input['tshirt']) && $input['tshirt']=='L'?'selected':''; ?>>L (large)</option>
+                            <option value="XL" <?= !empty($input['tshirt']) && $input['tshirt']=='XL'?'selected':''; ?>>XL (extra large)</option>
+                            <option value="XXL" <?= !empty($input['tshirt']) && $input['tshirt']=='XXL'?'selected':''; ?>>XXL (extra extra large)</option>
+                        </select>
+                    </div>
+                </div>
+                 
+                
+                <div class="form-group">
+                    <label for="food" class="col-sm-3 control-label text-right">Food requirements</label>
+                    <div class="col-sm-9">
+                        <select id="food" name="food" class="form-control auto" required>
+                            <? foreach($input['food_requirements'] as $k=>$v): ?>
+                                <option value="<?=$k;?>" <?if(!empty($input['food']) && ($input['food']==$k)):?>selected<?endif; ?>><?= $v; ?></option>
+                             <? endforeach; ?>
+                         </select>
+                         <input type="text" name="food_other" id="food_other" class="form-control auto mt <? if(empty($input['food_other'])):?>hidden<?endif;?>" size="80" value="<?= !empty($input['food_other'])?$input['food_other']:''; ?>" placeholder="Please, describe the requirement" />
+                         <span class="help-block">As far as the catering can take requests into account</span>
+                    </div>
+                </div> 
+                
+                
+                 <div class="form-group">
+                    <label for="proceedings" class="col-sm-3 control-label text-right">Proceedings as</label>
+                    <div class="col-sm-9">
+                        <select name="proceedings" class="form-control auto">
+                            <? foreach($input['proceeding'] as $k=>$v): ?>
+                                <option value="<?=$k;?>" <?if(!empty($input['proceedings']) && ($input['proceedings']==$k)):?>selected<?endif; ?>><?= $v; ?></option>
+                             <? endforeach; ?>
+                         </select>
+                    </div>
+                </div>
+     </fieldset>
+     
+     
+      <fieldset class="dmt">
+                <legend>General comments</legend>
+                    <div class="form-group">
+                        <label for="comments" class="col-sm-3 control-label text-right">Comments or specific instructions</label>
+                        <div class="col-sm-9">
+                            <textarea   name="comments" id="comments" class="form-control" placeholder="Comments"><?= !empty($input['comments'])?$input['comments']:''; ?></textarea>                        
+                        </div>
+                    </div>
+                      
+                    <? /*
+                    <div class="form-group">
+                        <label for="recaptcha_challenge_field" class="col-sm-3 control-label text-right">&nbsp;</label>
+                        <div class="col-sm-9" id="captcha">
+                            <div class="g-recaptcha" data-sitekey="<?= reCaptcha_Site_Key; ?>"></div>
+                            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=en"></script>
+                        </div> 
+                    </div> 
+                    */ ?>
+        </fieldset>
+
+
+        <fieldset class="dmt">     
+
+                <legend>Data Protection and Service Agreement</legend>       
+                
+                
+                <p><strong><? printf(_('%s values your personal data and holds them in accordance with the General Data Protection Regulation (<a href="%s" target="_blank">GDPR</a>). '),'IMO', 'https://www.eugdpr.org/'); ?></strong></p>
+                     <? include(ROOT_DIR . '/application/views/legal.php');  
+                                       echo $legal; 
+                ?>
+                                
+                <div class="checkbox">
+                        <label>
+                              <input type="checkbox" required name="ok" id="ok">By ticking this box, I acknowledge that I have read and that I accept the <a href="/disclaimer" target="_blank"><strong>service agreement and disclaimer</strong></a> <span>*</span>. 
+                        </label>
+                </div>   
+
+        </fieldset>      
+          
+        <fieldset class="dmt">    
+           
+                <input type="submit" name="submit" value="Submit" class="btn btn-primary"/>
+           
+         </fieldset>   
+        
+        
+        <div class="well text-center dmt dmb"><strong>Please, report any problems you experienced using this form to <a href="/contact" target="_blank">Vincent Perlerin</a> from Mike Hankey &amp; Associates, LLC.</strong></div> 
+         
+    </form>
+    
+          
+    <? endif; ?>
+    
+    
+    <? /*<? endif; ?>  TMP BEFORE TESTING */ ?>
+     </div>
+</div>
+</div> 
+ 
+ 
+ 
+
+ 
+<? /**= TALK TEMPLATE =**/ ?>
+<script id="talk_template" type="x-tmpl-mustache">
+    <div id="talk{{ id }}_content" class="alert alert-dismissible contrib fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"  class="btn btn-danger">&times;</span>
+        </button>
+        <div class="form-group">
+            <label for="talk{{ id }}" class="col-sm-3 control-label text-right">Talk Title</label>
+            <div class="col-sm-8">
+                <input type="text" name="talk[]" id="talk{{ id }}" class="form-control auto" size="50" placeholder="Talk Title" required value="{{ title }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="talk_authors{{ id }}" class="col-sm-3 control-label text-right">Talk Author(s)</label>
+            <div class="col-sm-9">
+                <input type="text" name="talk_authors[]" id="talk_authors{{ id }}" class="form-control auto" size="50" placeholder="Talk Authors" required value="{{ authors }}">
+                <span class="help-block">Enter the full list of authors - separate each author with a comma<br/>(ex: author_1_firstname author_1_lastname, author_2_firstname author_2_lastname  ...)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="talk_abstract{{ id }}" class="col-sm-3 control-label text-right">Talk  Abstract</label>
+            <div class="col-sm-9">
+                <textarea maxlength="3000" rows="5" name="talk_abstract[]" id="talk_abstract{{ id }}" class="form-control" placeholder="Talk  Abstract" required>{{ abstract }}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="talk_session{{ id }}" class="col-sm-3 control-label text-right">Most suitable IMC session</label>
+            <div class="col-sm-9">
+                <select class="form-control auto talk_session" name="talk_session[]" required id="talk_session{{ id }}">
+                <? foreach($input['sessions'] as $k=>$v): ?>  
+                   <option value="<?= $k; ?>"><?= $v; ?></option>
+                <? endforeach; ?>   
+                </select>
+             </div>
+        </div>
+        <div class="form-group">
+            <label for="talk_duration{{ id }}" class="col-sm-3 control-label text-right">Talk Duration</label>
+            <div class="col-sm-9">
+                <select class="form-control auto talk_dur" name="talk_duration[]" required id="talk_duration{{ id }}">
+                    <option value="10">10 min</option>
+                    <option value="15">15 min</option>
+                    <option value="20">20 min</option>
+                    <option value="30">30 min</option>
+                 </select>
+                  <span class="help-block"><strong>Include 2-3 minutes</strong> for questions/comments. Keep your presentation short and leave details for the Proceedings.
+                 </span>
+             </div>
+        </div>
+         <div class="form-group">
+            <label for="talk_delivery_date{{ id }}" class="col-sm-3 control-label text-right">Paper delivery date</label>
+            <div class="col-sm-9">
+                <select class="form-control auto talk_delivery_date" name="talk_delivery_date[]" required id="talk_delivery_date{{ id }}">
+                    <? foreach($input['delivery_dates'] as $k=>$v): ?>
+                        <option value="<?=$k;?>">
+                            <?=$v['text'];?>
+                        </option>
+                    <? endforeach; ?>
+                 </select>
+                  <span class="help-block"><strong>For all lectures presented at an IMC a paper is mandatory for publication in the IMC Proceedings.
+                 </span>
+             </div>
+        </div>
+    </div>
+</script>
+
+
+<? /**= POSTER TEMPLATE =**/ ?>
+<script id="poster_template" type="x-tmpl-mustache">
+    <div id="poster{{ id }}_content"  class="alert alert-dismissible contrib fade in">
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true" class="btn btn-danger">&times;</span>
+        </button>
+        <div class="form-group">
+            <label for="poster{{ id }}" class="col-sm-3 control-label text-right">Poster Title</label>
+            <div class="col-sm-8">
+                <input type="text" name="poster[]" id="poster{{ id }}" class="form-control auto" size="50" placeholder="Poster Title" required value="{{ title }}">
+                <span class="help-block">Each poster gets about 1m&sup2;.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="poster_authors{{ id }}" class="col-sm-3 control-label text-right">Poster Author(s)</label>
+            <div class="col-sm-8">
+                <input type="text" name="poster_authors[]" id="poster_authors{{ id }}" required class="form-control auto" size="50" placeholder="Poster Authors" required value="{{ authors }}">
+                <span class="help-block">Enter the full list of authors - separate each author with a comma<br/>(ex: author_1_firstname author_1_lastname, author_2_firstname author_2_lastname  ...)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="poster_abstract{{ id }}" class="col-sm-3 control-label text-right">Poster Abstract</label>
+            <div class="col-sm-9">
+                <textarea maxlength="3000" rows="5" name="poster_abstract[]" required id="poster_abstract{{ id }}" class="form-control" placeholder="Poster Abstract" required>{{ abstract }}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="poster_session{{ id }}" class="col-sm-3 control-label text-right">Most suitable IMC session</label>
+            <div class="col-sm-9">
+                <select class="form-control auto poster_session" name="poster_session[]" required id="poster_session{{ id }}">
+                <? foreach($input['sessions'] as $k=>$v): ?>  
+                   <option value="<?= $k; ?>"><?= $v; ?></option>
+                <? endforeach; ?>   
+                </select>
+             </div>
+        </div>
+         <div class="form-group">
+            <label for="poster_delivery_date{{ id }}" class="col-sm-3 control-label text-right">Paper delivery date</label>
+            <div class="col-sm-9">
+                <select class="form-control auto poster_delivery_date" name="poster_delivery_date[]" required id="poster_delivery_date{{ id }}">
+                    <? foreach($input['delivery_dates'] as $k=>$v): ?>
+                        <option value="<?=$k;?>">
+                            <?=$v['text'];?>
+                        </option>
+                    <? endforeach; ?>
+                 </select>
+                  <span class="help-block"><strong>For all posters presented at an IMC a paper is mandatory for publication in the IMC Proceedings.
+                 </span>
+             </div>
+        </div>
+    </div>
+</script>
+
+<? if(!empty($input['talk'])): ?>
+<script>
+    var talks_titles        =    <?= json_encode($input['talk']); ?>;
+    var talks_authors       =    <?= json_encode($input['talk_authors']); ?>;
+    var talks_abstracts     =    <?= json_encode($input['talk_abstract']); ?>;
+    var talks_sessions      =    <?= json_encode($input['talk_session']); ?>;
+    var talks_durations     =    <?= json_encode($input['talk_duration']); ?>;
+    var talks_delivery_date =    <?= json_encode($input['talk_delivery_date']); ?>;
+    
+</script>
+<? endif; ?>
+
+<? if(!empty($input['poster'])): ?>
+<script>
+    var posters_titles          = <?= json_encode($input['poster']); ?>;
+    var posters_authors         = <?= json_encode($input['poster_authors']); ?>;
+    var posters_abstracts       = <?= json_encode($input['poster_abstract']); ?>;
+    var posters_sessions        = <?= json_encode($input['poster_session']); ?>;
+    var posters_delivery_date   = <?= json_encode($input['poster_delivery_date']); ?>;
+</script>
+<? endif; ?>
+

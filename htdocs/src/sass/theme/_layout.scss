@@ -1,0 +1,51 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#main-col {
+    margin-bottom: 1rem;
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+    #wrap {
+        margin-bottom: 2rem;
+    }
+    
+    .dl-horizontal dt {
+        text-align: left;
+        margin-left: .5em;
+    }
+    
+    .navbar-header {
+        white-space:nowrap;   
+    }
+    
+    #main-col {
+        margin-bottom: 12rem;
+    }
+    
+    #footer-container {
+        position: absolute;
+        bottom: 0;
+        width: 100%;  
+     }
+     
+     .admin {
+         
+         .g {
+             background:$admin-bg; 
+         }
+         #wrap {
+            margin-bottom:3.2em;
+         }
+         #footer-container {
+            height:3.2em;
+         }
+     }
+}
+ 
+ 
