@@ -76,13 +76,13 @@ define ('ENC_KEY', 'your_crypt_key_here');
 
 
 // Conference official email (for the confimation email)
-define ('IMC_EMAIL','imc2018@imo.net');
+define ('IMC_EMAIL','imc2019@imo.net');
 
 // List of developer email addresses delimited by commas
 define ('DEVELOPER_EMAIL_ADDRESSES', 'vperlerin@gmail.com');
 
 // List of admins email
-define ('ADMINS',   serialize(array('imc2018@imo.net')));    
+define ('ADMINS',   serialize(array('imc2019@imo.net')));    
  
 // List of emails that will receive payment confirmation and reminders from the email_api 
 // treasurer@imo.net
