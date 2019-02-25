@@ -14,7 +14,7 @@ define ('MAIN_CONTACT', 'imc2019@imo.net');
 define ('PUBLIC_URL', 'https://imc2019.imo.net');
 
 define ('BASE_URL', 'http://imc2019.amsmeteors.org');
-define ('ROOT_DIR', '/usr/sites/imc2019.imo.net');
+define ('ROOT_DIR', '/DATA/sites/imc2019.imo.net');
 define ('HTDOCS_DIR', ROOT_DIR . '/htdocs');
 define ('GEOIP_DIR', ROOT_DIR . '/application/system/vendors/maxmind');
 define ('APP_DIR',  ROOT_DIR . '/application');
@@ -76,13 +76,13 @@ define ('ENC_KEY', 'your_crypt_key_here');
 
 
 // Conference official email (for the confimation email)
-define ('IMC_EMAIL','imc2018@imo.net');
+define ('IMC_EMAIL','imc2019@imo.net');
 
 // List of developer email addresses delimited by commas
 define ('DEVELOPER_EMAIL_ADDRESSES', 'vperlerin@gmail.com');
 
 // List of admins email
-define ('ADMINS',   serialize(array('imc2018@imo.net')));    
+define ('ADMINS',   serialize(array('imc2019@imo.net')));    
  
 // List of emails that will receive payment confirmation and reminders from the email_api 
 // treasurer@imo.net
