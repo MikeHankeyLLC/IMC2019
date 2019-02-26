@@ -14,7 +14,7 @@ define ('MAIN_CONTACT', 'imc2019@imo.net');
 define ('PUBLIC_URL', 'https://imc2019.imo.net');
 
 define ('BASE_URL', 'http://imc2019.amsmeteors.org');
-define ('ROOT_DIR', '/usr/sites/imc2019.imo.net');
+define ('ROOT_DIR', '/DATA/sites/imc2019.imo.net');
 define ('HTDOCS_DIR', ROOT_DIR . '/htdocs');
 define ('GEOIP_DIR', ROOT_DIR . '/application/system/vendors/maxmind');
 define ('APP_DIR',  ROOT_DIR . '/application');
