@@ -662,7 +662,7 @@ class admin_controller extends Template_Controller {
                 DBF::set($sql,array('pwd'=>Crypt::encrypt($this->input['pwd']),'user_id'=>$_SESSION['id']));
                 
  
-                $this->input['success']  =  'Your password has been updated. Please, <a href="/user/login">log back in</a>.';
+                $this->input['success']  =  'Your password has been updated. Please, <a href="/admin/login">log back in</a>.';
                 $this->input['hide_form'] = true;
             endif;
 
