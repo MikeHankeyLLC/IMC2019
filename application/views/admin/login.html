@@ -5,6 +5,7 @@
         <div class="row">
         
         <form class="form-signin mg-btm" method="POST">
+            <input type="hidden" name="debug" value="1"/>
             <h3 class="heading-desc"><?= _('Login'); ?></h3>
             <div class="main">	
                 <? if(!empty($input['error'])): ?>
@@ -17,11 +18,11 @@
             <div class="login-footer">
                 <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <div class="left-section">
-                            </div>
+                            <a href="/admin/forgot">Forgot your password?</a>
                         </div>
                         <div class="col-xs-6 col-md-6 pull-right">
                             <button type="submit" class="btn btn-large btn-danger pull-right"><?= _('Login'); ?></button>
+                           
                         </div>
                     </div>
         

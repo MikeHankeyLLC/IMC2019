@@ -11,11 +11,7 @@ class DBF {
     }
     
     final static function set($sql, $binds = array(), $which_db=null) {
-       
-        // Default DB: both
-        if(!empty(self::$db) && (self::$db->dbname=='ams_org' || self::$db->dbname=='db338761497') && empty($which_db)):
-            $which_db = 'both';
-        endif;
+        
         
         // Connect to the db if its not already
         if (empty(self::$db) || !empty($which_db)) {
@@ -32,10 +28,7 @@ class DBF {
 
     final static public function query($sql, $binds = array(), $return_type = 'none', $which_db=null) {
         
-         // Default DB: both
-        if(!empty(self::$db) && (self::$db->dbname=='ams_org'  || self::$db->dbname=='db338761497') && empty($which_db)):
-            $which_db = 'both';
-        endif;
+        
            
         // Connect to the db if its not already
         if (empty(self::$db) || !empty($which_db)) {

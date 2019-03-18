@@ -1,0 +1,36 @@
+<div id="main-col" class="dmt">  
+  
+        <div class="container dmt">
+         
+            <div class="row">
+            
+            <form class="form-signin mg-btm" method="POST" style="max-width: 500px;">
+                <input type="hidden" name="submit" value="1"/> 
+                <h3 class="heading-desc"><?= _('Enter your new password'); ?></h3>
+                <div class="main">	
+                    <? if(!empty($input['error'])): ?>
+                        <div class="alert alert-danger"><?= $input['error']; ?></div>
+                    <? endif; ?> 
+                    <? if(!empty($input['success'])): ?>
+                        <div class="alert alert-success"><?= $input['success']; ?></div>
+                    <? endif; ?>  
+                    <input name="pwd" type="password" required class="form-control" placeholder="<?= _('Your new password'); ?>" autofocus />
+                    <span class="clearfix"></span>	
+                </div>
+                <div class="login-footer">
+                    <div class="row">
+                            <div class="col-xs-6 col-md-6">
+                                <a href="/admin/login">Login</a>
+                            </div>
+                            <div class="col-xs-6 col-md-6 pull-right">
+                                <button type="submit" class="btn btn-large btn-danger pull-right"><?= _('Update'); ?></button>
+                               
+                            </div>
+                        </div>
+            
+                </div>
+            </form>
+            
+         </div>
+         </div>
+     </div> 

@@ -7,7 +7,7 @@ class admin_controller extends Template_Controller {
 	
  	function __construct($cont, $func) {
         parent::__construct($cont, $func);
-        if($func!='login') {
+        if($func!='login' && $func!='forgot' && $func!='update_pwd') {
 			$this->logged_in_required();
 		}
 	}
@@ -518,22 +518,179 @@ class admin_controller extends Template_Controller {
     }
     
     
-    
+
+    /*
+	 * Forgot password (admin)
+	 */
+	public function forgot() {
+		
+		$content = new View('/admin/forgot.html');
+		
+		if( !empty($this->input['submit']) && !empty($this->input['email']) && filter_var($this->input['email'], FILTER_VALIDATE_EMAIL) ):
+			 
+            // Test if the email is in the admin table
+            $sql = "SELECT * from admin_users where email= :email";
+            $user = DBF::query($sql,$this->input,'num');
+
+            if(empty($user)):
+                $this->input['error'] = _('Unknown email address, please try again or contact Vincent.'); 
+            else:
+ 
+                $user_id = $user[0]['id'];
+
+                // Generate a pwd_link
+                $unique = false;
+                while(!$unique) {
+                    $pwd_link = md5(rand(99999,999999));
+                    $sql = "SELECT user_id from admin_users where pwd_link = :pwd_link";
+                    $res = DBF::query($sql,$this->input,'num');
+                    $unique = (empty($res));
+                    unset($res);
+                }  
+                unset($unique);
+
+
+                // Add the pwd_link to the user records
+                $sql = "UPDATE  admin_users 
+                        set     pwd_link = :pwd_link
+                        WHERE   id = :id";
+                DBF::set($sql,array('pwd_link'=>$pwd_link, 'id'=> $user_id));
+                
+                $user = $user[0];
+
+                /****************************
+                * Send email to user
+                ****************************/
+                $message  =  "<html><body>";
+                $message  .= '<p>Click the link below to update your IMC'.CONF_YEAR.' admin password.</p>';
+                $message  .= '<p><strong>IMPORTANT</strong> This link is for single use only.</p>';
+                $message  .= '<a href="'.PUBLIC_URL.'/admin/update_pwd/?chp='.$pwd_link.'">'.PUBLIC_URL.'/admin/update_pwd/?chp='.$pwd_link.'</a>';
+                $message .=  "</body></html>";
+                        
+                $from     = MAIN_CONTACT; 
+                   
+                
+                Mail::send(
+                     array(  'from'      => MAIN_CONTACT,
+                             'from_name' => 'IMC ' . CONF_YEAR . ' Admins',
+                             'to'        => $user['email'],
+                             'to_name'   => $user['firstname'] . ' ' . $user['lastname'],
+                             'subject'   => 'Reset your password',
+                             'message'   => $message,
+                             'cc_name'   => 'IMC ' . CONF_YEAR . ' ',
+                             'cc_email'  => 'vperlerin@gmail.com',
+                      )
+                );
+  
+                $this->input['success'] = 'We just sent an email containing a link for resetting your password.';
+                 
+
+            endif;
+           
+            
+
+        elseif(!empty($this->input['submit'])):
+            $this->input['error'] = _('Unknown email address, please try again or contact Vincent.'); 
+        endif;
+		
+		$this->template->header = new View('/admin/header.html');
+		$this->template->header->title = _('Forgot your password'); 
+        $this->template->header->no_menu = true;
+        $this->template->content = $content;
+        $content->input = $this->input; 
+	    $this->template->footer = new View('/admin/footer.html');
+    }    
+
+
+         /**
+         * Update Password from Email (see forgot password)
+         */
+        public function update_pwd() {
+ 
+            if(empty($this->input['chp'])):
+                redirect('/admin/login');
+            endif;
+             
+            if(!empty($this->input['chp']) && empty($this->input['submit'])):
+                
+                // We test the chp
+                $sql = "SELECT * from admin_users where pwd_link = :chp";
+                $user = DBF::query($sql,$this->input,'num');
+               
+                if(!empty($user)):
+                    $user = $user[0];
+ 
+                    // Replace the pwd_link so it expires
+                    // Generate a new pwd_link
+                    $unique = false;
+                    while(!$unique) {
+                        $pwd_link = md5(rand(99999,999999));
+                        $sql = "SELECT user_id from admin_users where pwd_link = :pwd_link";
+                        $res = DBF::query($sql,$this->input,'num');
+                        $unique = (empty($res));
+                        unset($res);
+                    }  
+                    unset($unique);
+  
+                    // Add the new pwd_link to the user records
+                    $sql = "UPDATE  admin_users 
+                            set     pwd_link = :pwd_link
+                            WHERE   id = :id";
+                    DBF::set($sql,array('pwd_link'=>$pwd_link, 'id'=> $user['id']));
+                    
+                    // Add the User_id to the session
+                    $_SESSION['id'] = $user['id'];
+
+                else:
+                    $this->input['error'] =  'This link is not valid anymore. Please, <a href="/user/forget_password">try again</a>.';
+                    $this->input['hide_form'] = true;
+                endif;
+            elseif(empty($this->input['submit'])):
+                    $this->input['error'] =  'This link is not valid.';
+                    $this->input['hide_form'] = true;
+            
+            endif;
+ 
+            
+            if(!empty($this->input['submit']) && !empty($this->input['pwd'])):
+ 
+
+                // Update the password 
+                $sql = "UPDATE admin_users
+                        SET _pwd = :pwd
+                        WHERE id = :user_id";
+                DBF::set($sql,array('pwd'=>Crypt::encrypt($this->input['pwd']),'user_id'=>$_SESSION['id']));
+                
+ 
+                $this->input['success']  =  'Your password has been updated. Please, <a href="/user/login">log back in</a>.';
+                $this->input['hide_form'] = true;
+            endif;
+
+            $this->template->header = new View('/shared/header.html');
+            $content = new View('/admin/update_pwd.html');
+            $content->input = $this->input; 
+            $this->template->content = $content;
+            $this->template->footer = new View('/shared/footer.html'); 
+            
+        }
+
     /*
 	 * Login (admin)
 	 */
 	public function login() {
 		
-		$content = new View('/admin/login.html');
-		
+        $content = new View('/admin/login.html');
+        
+ 
 		if(!empty($this->input['email']) &&  !empty($this->input['pwd']) ) {
-			
+         
 			// Test if he's admin
-			$res = Admins_model::is_admin_user($this->input); 
+            $res = Admins_model::is_admin_user($this->input); 
+         
             
 			// Set cookie session
 			if ($res) {
-			    $session = md5(date("YmdHis") . $res['email'] . rand(99999,999999));
+			    $session = md5(date("YmdHis")   . rand(99999,999999));
 			    Cookie::set('sc_381', $session, false);
             }
 
@@ -547,7 +704,7 @@ class admin_controller extends Template_Controller {
              
                 redirect($this->default_admin_page);
 			} else {
-				$input['error'] = _('Unknown user, please try again'); 
+				$input['error'] = _('Unknown user/email combination, please try again'); 
 				$content->input = $input;
 			}
 			

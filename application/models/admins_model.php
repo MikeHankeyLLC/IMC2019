@@ -7,21 +7,30 @@ class Admins_Model {
      */
      public static function is_admin_user($binds) {
          
-        $sql = "SELECT count(*)  as c
+        $sql = "SELECT  *
                 FROM    admin_users  
                 WHERE   email  = :email
-                AND     pwd = :pwd   
                 AND     active = 1
          ";
          
         
-         $res = DBF::query($sql, $binds,'num');
-           
-         if(!empty($res) && !empty($res[0]['c'])):
-            return true;
-         else:
+        $res = DBF::query($sql, $binds,'num');
+ 
+        
+        // Test the password
+        if(!empty($res)): 
+
+            if(strcmp( Crypt::decrypt($res[0]['_pwd']), $binds['pwd'])  == 0):
+              return true;
+            else:       
+              return false;
+            endif;
+ 
+        else:
+
             return false;
-         endif;
+        endif;
+
      }
     
 }

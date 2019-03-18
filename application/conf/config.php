@@ -7,6 +7,12 @@
 	define('SMTPSecure','tls');
 	define('SMTP_TLS_PORT','587');
 
+
+    // Encryption Variables
+    const ENC_ALGO = 'AES-256-CBC';
+    const ENC_HASHING = 'sha256';
+    const ENC_SEC = 'Met30rsAreB3autiful!';
+
     // Cookie Variables
 	define ('COOKIE_EXPIRES', 3600);
 
