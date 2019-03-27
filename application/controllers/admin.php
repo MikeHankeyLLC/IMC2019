@@ -680,7 +680,7 @@ class admin_controller extends Template_Controller {
 	public function login() {
 		
         $content = new View('/admin/login.html');
-        
+       
  
 		if(!empty($this->input['email']) &&  !empty($this->input['pwd']) ) {
          

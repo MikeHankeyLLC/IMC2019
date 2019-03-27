@@ -84,7 +84,7 @@
    )));
    
    //  DEADLINE  SUBMIT PAPER
-   define('DEADLINE_PAPER','2019-09-23 23:59:59.9');
+   define('DEADLINE_PAPER','2019-10-20 23:59:59.9');
    
 
 
@@ -112,7 +112,7 @@
     
     
    // REGISTER DEADLINE  
-   define('DEADLINE','2019-10-01 23:59:59.9');
+   define('DEADLINE','2019-08-31 23:59:59.9');
     
     // REGISTER DEADLINE  
    define('PHOTO_DEADLINE','2019-09-20 23:59:59.9');
