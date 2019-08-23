@@ -84,7 +84,7 @@
    )));
    
    //  DEADLINE  SUBMIT PAPER
-   define('DEADLINE_PAPER','2019-10-20 23:59:59.9');
+   define('DEADLINE_PAPER','2019-09-10 23:59:59.9');
    
 
 
