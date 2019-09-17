@@ -82,7 +82,7 @@
         
         <? 
             // Find the active by default
-        $days = array('03.11.2018','04.11.2018','05.11.2018','06.11.2018');
+            $days = array('03.10.2019','04.10.2019','05.10.2019','06.10.2019');
             $d = date('d.m.Y'); 
         ?>
  
@@ -97,23 +97,29 @@
         <div class="tab-content">
             <div class="tab-pane <? if($d==$days[0] || !in_array($d,$days)):?>active<? endif; ?>" id="thursday">
                  <h3> Thursday, 3 October 2019</h3>
-                    <dl class="dl-horizontal" style="display:none">
-                        <dt>14:00-18:00</dt><dd><strong>Arrival of participants</strong></dd>
-                        <dt>18:00-18:45</dt><dd><strong>Welcome reception and opening of the conference by president of IMO and LOC</strong></dd>
-                        <dt>18:45-20:00</dt><dd><strong>Dinner</strong></dd>
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem"><strong>SESSION 1 - Introductory Session</strong><br> <span style="text-transform:none">Session Chair: <em>Juraj Toth</em></span></dd>
-                        <dt class="mb">20:00-20:30</dt> <dd class="mb"><strong>Detection of bolides from space with the Global Lightning Mapper on GOES.</strong><br/><em>Peter Jenniskens</em></dd>
-                        <dt class="mb">20:30-21:00</dt> <dd class="mb"><strong>Current status of the European Fireball Network - instruments, methods and examples of data.</strong><br/><em>Pavel Spurný and Jiří Borovička</em></dd>
-                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>14:00-...</dt><dd><strong>Arrival of participants</strong></dd>
+                        <dt>18:00-19:30</dt><dd><strong>Dinner</strong></dd>
+                        <dt>20:00-...</dt><dd><strong>Welcome reception and opening of the conference by president of IMO and LOC</strong></dd>
+                     </dl>
             </div>  
               
             <div class="tab-pane <? if($d==$days[1] ):?>active<? endif; ?>" id="friday">
                 <h3>Friday, 4 October 2019</h3>
-                <dl class="dl-horizontal" style="display:none">
-                        <dt>07:30-09:00</dt> <dd>Breakfast</dd>
+                <dl class="dl-horizontal">
+                        <dt>08:00-09:00</dt> <dd>Breakfast</dd>
                         <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION 2 - Observing techniques</strong><br>
-                            <span style="text-transform:none">Session Chair: <em>Denis Vida</em></span></dd>
+                            <strong>SESSION</strong><br>
+                            <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                            <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
+                        <dt>12:00-13:30</dt> <dd><b>Lunch</b></dd>
+                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                           <dt class="mb">13:30-18:00</dt> <dd class="mb"><em>Program soon available</em></dd>
+                        <dt>18:00-19:00</dt> <dd><b>Dinner</b></dd>
+                        
+                        <? /*
                         <dt class="mb">09:00-09:20</dt> <dd class="mb"><strong>The perfect observing direction.</strong><br/><em>Sirko Molau</em></dd>
                         <dt class="mb">09:20-09:40</dt> <dd class="mb"><strong>SCAMPI - Single Camera Measurement of the Population Index.</strong><?= get_p(1,$pdf); ?><br/><em>Peter C. Slansky</em></dd>
                         <dt class="mb">09:40-09:55</dt> <dd class="mb"><strong>Numerical Simulation of Meteors as a Means of Debiasing AMOS Data.</strong> <?= get_p(0,$pdf); ?><br/><em>Martin Balaz and Juraj Toth</em></dd>    
@@ -125,7 +131,7 @@
                             <dt class="mb">10:25-10:45</dt> <dd class="mb"><strong>Which trajectory solver is best for your optical meteor data? Algorithm implications for radiant and orbit accuracy.</strong><br/><em>Denis Vida, Peter Brown, Margaret Campbell-Brown, Paul Wiegert and Peter Gural</em></dd>
                        
                       
-                        <dt class="mb">10:45-11:00</dt> <dd class="mb"><strong>Truth about videometeor photometry.</strong><br/><em>Roman Piffl</em></dd>
+                       
                         <dt class="mb">11:00-11:30</dt> <dd class="mb">Coffee break and <strong>poster session</strong></dd>
                         <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>Improving Astrometry and Photometry reduction for all-sky cameras.</strong><?= get_p(5,$pdf); ?><br/><em>Dario Barghini, Daniele Gardiol and Albino Carbognani </em></dd>
                         <dt class="mb">11:45-12:00</dt> <dd class="mb"><strong>Spectral sensitivity of photographic emulsions.</strong><?= get_p(3,$pdf); ?><br/><em>Željko Andreić, Damir Šegon and Peter Gural</em></dd>
@@ -137,7 +143,7 @@
                         <dt class="mb">12:15-12:30</dt> <dd class="mb"><strong>Universal Cam Network API. 
                         </strong><?= get_p(6,$pdf); ?><br/><em>Vincent Perlerin and Mike Hankey</em></dd>
                         <dt>12:30</dt> <dd> Group photo in front of the horse statue </dd>
-                        <dt>12:45-14:15</dt> <dd>Lunch</dd>
+                        
                         <dt class="mb mt">14:15-14:30</dt> <dd class="mb mt"><strong>Encontreitor: a new approach to meteor shower research software.
                         </strong><?= get_p(2,$pdf); ?><br/><em>Leonardo Scanferla Amaralil,Carlos Augusto Di Pietro Bella, Lauriston Trindade and Carlos Fernando Jung 
                         </em></dd>
@@ -182,14 +188,24 @@
                         <dt class="mb">18:00</dt> <dd>Dinner</dd>
                         <dt class="mb">20:00-21:00</dt> <dd class="mb"><strong>IMO General Assembly Meeting</strong></dd>    
 
-                         
+                        */ ?>
                 </dl>
             </div>
              
             <div class="tab-pane <? if($d==$days[2] ):?>active<? endif; ?>" id="saturday">
                 <h3>Saturday, 5 October 2019</h3>
-                <dl class="dl-horizontal" style="display:none">
-                    <dt>07:30-09:00</dt> <dd>Breakfast</dd>
+                <dl class="dl-horizontal">
+                     <dt>08:00-09:00</dt> <dd>Breakfast</dd>
+                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                         <strong>SESSION</strong><br>
+                         <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                         <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
+                     <dt>12:00-13:00</dt> <dd><b>Lunch</b></dd>
+                     <dt>13:00-19:00</dt> <dd><b><a href="/excursion" target="_blank">Excursion</a></b></dd>
+                     <dt>19:30-...</dt> <dd><b>Barbecue</b></dd>
+                     
+                     <? /*
+                    <dt>08:00-09:00</dt> <dd>Breakfast</dd>
                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
                             <strong>SESSION 6 - Camera Networks</strong><br>
                             <span style="text-transform:none">Session chair: <em>Mike Hankey</em></span></dd>
@@ -217,7 +233,7 @@
                     <dt>21:00</dt> <dd>Traditional folklore performance</dd>   
                     
                         </dd>  
-
+                        */ ?>
                 </dl>
             </div>
  
@@ -232,7 +248,16 @@
          
             <div class="tab-pane <? if($d==$days[3] ):?>active<? endif; ?>" id="sunday">
                 <h3>Sunday, 6 October 2019</h3>
-                <dl class="dl-horizontal" style="display:none">
+                <dl class="dl-horizontal">
+                     <dt>08:00-09:00</dt> <dd>Breakfast</dd>
+                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                         <strong>SESSION</strong><br>
+                         <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                         <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
+                     <dt>12:00-13:00</dt> <dd><b>Lunch</b></dd> 
+                     <dt>13:00-...</dt> <dd><b>Departure of the participants</b></dd>
+                     
+                    <?/*
                     <dt>07:45-09:45</dt> <dd>Breakfast</dd>
                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
                             <strong>SESSION  7 - Atmospheric processes and phenomena (part II)</strong><br>
@@ -244,7 +269,6 @@
                             <strong>SESSION  8 - Ongoing meteor work - Radio technique</strong><br>
                             <span style="text-transform:none">Session chair: <em>Christian Steyaert </em></span></dd>    
                     <dt class="mb">10:15-10:30</dt> <dd class="mb"><strong>BRAMS radio observations analyzed: activity of some major meteor showers. </strong><?= get_p(30,$pdf); ?><br/><em>Cis Verbeeck, Hervé Lamy, Stijn Calders, Cédric Tétard and Antonio Martínez Picar </em></dd>    
-                    <? /* <dt class="mb">10:15-10:30</dt> <dd class="mb"><strong>First comparisons of BRAMS/CAMS-Benelux observations. </strong><br/><em>Hervé Lamy, Michel Anciaux, Cédric Tétard, Sylvain Ranvier, Stijn Calders, Cis Verbeeck and Antonio Martinez Picar </em></dd>  */ ?>  
                     <dt class="mb">10:30-10:45</dt> <dd class="mb"><strong>Sun influence in meteor height. </strong><br/><em>Lorenzo Barbieri </em></dd>    
                     <dt class="mb">10:45-11:05</dt> <dd class="mb"><strong>EARS Geminids 2017 Radio Observation.</strong><?= get_p(29,$pdf); ?><br/><em> Giancarlo Tomezzoli</em></dd>    
                     <dt>11:05-11:35</dt> <dd>Coffee break and <strong>poster session</strong></dd>
@@ -258,6 +282,7 @@
  
                     <dt>13:00-14:00</dt> <dd>Lunch</dd>
                     <dt>14:00-</dt>      <dd>Departure of the participants</dd>
+                    */ ?>
                 </dl>
             </div> 
             
