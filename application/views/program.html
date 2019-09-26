@@ -1,19 +1,18 @@
-
+<style>.grc{background: #f5f5f5; padding-left: .5rem;}</style>
 <div id="main-col">          
 <div id="illustration" class="title">
     <div class="container clearfix">
         <h1 class="pull-left">Program</h1>
-        <? /*
-        <a class="btn btn-info pull-right dmt" href="/program_pdf/IMC2016 Program v1.3.pdf" target="_blank">
-                <span class="fa fa-file-pdf-o"></span> Download (PDF)
-        </a>
-        */ ?>
+        
+       
     </div>
 </div> 
 <div class="container">
 
 <div class="row">
-      
+      <a class="btn btn-info mt dmb" href="/program_pdf/asbtracts.pdf" target="_blank" style="margin: 0 auto 2rem; border-radius:5px; display:block; max-width:300px; padding:.6rem 1rem; background-color:#535da4; font-weight: bold; border:2px solid #fff">
+         <span class="fa fa-file-pdf-o"></span> Download All Abstracts (PDF)
+      </a> 
     <? /*
 
         $pdf = array(
@@ -72,26 +71,30 @@
         } ?>
     
     <div class="col-md-12 text-only">
-       
+       <? /*
          <div class="alert alert-info">
             <span class="fa fa-info-circle"></span> 
-            <? /* <strong>You can download the presentation (PDF format) of some of the lectures by clicking "PDF" next to the title.</strong> */ ?>
+             <strong>You can download the presentation (PDF format) of some of the lectures by clicking "PDF" next to the title.</strong> 
             <strong>The official IMC2019 program will be soon available.</strong>
         </div>
-       
+       */ ?>
         
         <? 
             // Find the active by default
             $days = array('03.10.2019','04.10.2019','05.10.2019','06.10.2019');
             $d = date('d.m.Y'); 
         ?>
+
+        <? /*
+        <li><a href="#posters" role="tab" data-toggle="tab"><strong>Posters</strong><br> <em>Poster sessions</em></a></li>
+        */   ?>
  
         <ul class="nav nav-tabs nav-justified" role="tablist">
             <li <? if($d==$days[0] || !in_array($d,$days)):?>class="active"<? endif; ?>><a href="#thursday" role="tab" data-toggle="tab"><strong>Thursday</strong>,<br> 3 October 2019</a></li>
             <li <? if($d==$days[1] ):?>class="active"<? endif; ?>><a href="#friday" role="tab" data-toggle="tab"><strong>Friday</strong>,<br> 4 October 2019</a></li>
             <li <? if($d==$days[2] ):?>class="active"<? endif; ?>><a href="#saturday" role="tab" data-toggle="tab"><strong>Saturday</strong>,<br> 5 October 2019</a></li>
             <li <? if($d==$days[3] ):?>class="active"<? endif; ?>><a href="#sunday" role="tab" data-toggle="tab"><strong>Sunday</strong>,<br> 6 October 2019</a></li>
-            <li><a href="#posters" role="tab" data-toggle="tab"><strong>Posters</strong><br> <em>Poster sessions</em></a></li>
+           
         </ul>
   
         <div class="tab-content">
@@ -107,182 +110,145 @@
             <div class="tab-pane <? if($d==$days[1] ):?>active<? endif; ?>" id="friday">
                 <h3>Friday, 4 October 2019</h3>
                 <dl class="dl-horizontal">
-                        <dt>08:00-09:00</dt> <dd>Breakfast</dd>
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION</strong><br>
-                            <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
-                            <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
-                        <dt>12:00-13:30</dt> <dd><b>Lunch</b></dd>
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                           <strong>SESSION</strong><br>
-                           <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
-                           <dt class="mb">13:30-18:00</dt> <dd class="mb"><em>Program soon available</em></dd>
-                        <dt>18:00-19:00</dt> <dd><b>Dinner</b></dd>
+                        <dt>08:00-09:00</dt> <dd class="grc">Breakfast</dd>
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 1 - Video (FRIPON and AllSky 6)</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>Detlef Koshny</em></span></dd>
+                           <dt class="mb">09:00-09:15</dt> <dd class="mb"><strong>NEMO Vol 3. - Status of the NEar real-time MOnitoring system</strong><br/><em>Theresa Ott, Esther Drolshagen</em></dd>
+                           <dt class="mb">09:15-09:35</dt> <dd class="mb"><strong>FRIPON vs. AllSky6 : A Practial Comparison</strong><br/><em>Sirko Molau</em></dd>     
+                           <dt class="mb">09:35-09:55</dt> <dd class="mb"><strong>The All Sky 6 and Video Meteor Program of the AMS Ltd.</strong><br/><em>Mike Hankey, Vincent Perlerin and David Meisel</em></dd> 
+                           <dt class="mb">09:55-10:10</dt> <dd class="mb"><strong>FRIPON first results after 3 years of observations</strong><br/><em>François Colas</em></dd>     
                         
-                        <? /*
-                        <dt class="mb">09:00-09:20</dt> <dd class="mb"><strong>The perfect observing direction.</strong><br/><em>Sirko Molau</em></dd>
-                        <dt class="mb">09:20-09:40</dt> <dd class="mb"><strong>SCAMPI - Single Camera Measurement of the Population Index.</strong><?= get_p(1,$pdf); ?><br/><em>Peter C. Slansky</em></dd>
-                        <dt class="mb">09:40-09:55</dt> <dd class="mb"><strong>Numerical Simulation of Meteors as a Means of Debiasing AMOS Data.</strong> <?= get_p(0,$pdf); ?><br/><em>Martin Balaz and Juraj Toth</em></dd>    
-                        <dt class="mb">09:55-10:15</dt> <dd class="mb"><strong>New spectroscopic program of the European Fireball Network.</strong> <br/><em>Jiří Borovička and Pavel Spurny</em></dd>
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION 3 - Instruments, data pipelines and software</strong><br>
-                            <span style="text-transform:none">Session chair:<em> Theresa Ott and Esther Drolshagen</em></span></dd>
-                            <dt class="mb">10:15-10:25</dt> <dd class="mb"><strong>Correction for meteor centroids obtained using rolling shutter cameras.</strong><br/><em>Patrik Kukić, Denis Vida, Peter Gural, Damir Šegon and Aleksandar Merlak </em></dd>
-                            <dt class="mb">10:25-10:45</dt> <dd class="mb"><strong>Which trajectory solver is best for your optical meteor data? Algorithm implications for radiant and orbit accuracy.</strong><br/><em>Denis Vida, Peter Brown, Margaret Campbell-Brown, Paul Wiegert and Peter Gural</em></dd>
-                       
-                      
-                       
-                        <dt class="mb">11:00-11:30</dt> <dd class="mb">Coffee break and <strong>poster session</strong></dd>
-                        <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>Improving Astrometry and Photometry reduction for all-sky cameras.</strong><?= get_p(5,$pdf); ?><br/><em>Dario Barghini, Daniele Gardiol and Albino Carbognani </em></dd>
-                        <dt class="mb">11:45-12:00</dt> <dd class="mb"><strong>Spectral sensitivity of photographic emulsions.</strong><?= get_p(3,$pdf); ?><br/><em>Željko Andreić, Damir Šegon and Peter Gural</em></dd>
-                      
-                        <dt class="mb">12:00-12:15</dt> <dd class="mb"><strong>Adapter to meteor TV camera for observation of shower’s weakest meteors. 
-                            </strong><?= get_p(4,$pdf); ?><br/>
-                                        <em>Vladislav Leonov and Alexander Bagrov 
-                                            </em></dd>
-                        <dt class="mb">12:15-12:30</dt> <dd class="mb"><strong>Universal Cam Network API. 
-                        </strong><?= get_p(6,$pdf); ?><br/><em>Vincent Perlerin and Mike Hankey</em></dd>
-                        <dt>12:30</dt> <dd> Group photo in front of the horse statue </dd>
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 1A - Poster Pitches</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>Esther Drolshagen, Theresa Ott</em></span></dd>
+                           <dt class="mb">10:10-10:25</dt> 
+                           <dd class="mb">
+                                 <ul>
+                                       <li><strong>Python Ablation and Dark Flight Calulator</strong> <br> <em>Dušan Bettonvil</em></li>
+                                       <li><strong>My first visual observation</strong> <br> <em>Uroš Bettonvil</em></li>
+                                       <li><strong>Comparison of radio meteor observations during the period from 1. to 17. August 2019</strong> <br> <em>Peter Dolinsky</em></li>
+                                       <li><strong>Deep Learning Applied to Post-Detection Meteor Classification</strong> <br> <em>Pete Gural</em></li>
+                                       <li><strong>The All Sky 6 and Video Meteor Program of the AMS Ltd.</strong> <br> <em>Mike Hankey, Vincent Perlerin and David Meisel</em></li>
+                                       <li><strong>Application of High Power Lasers for a Laboratory Simulation of Meteor Plasma</strong> <br> <em>Anna Křivková, Lukas Petera and Martin Ferus</em></li>
+                                       <li><strong>Numerical model of flight and scattering of meteor body fragments in the Earth's atmosphere</strong> <br> <em>Vladislav Lukashenko</em></li>
+                                       <li><strong>Nachtlicht-BüHNE: a citizen science project for the development of an mobile app for night light phenomena</strong> <br> <em>Anastasios Margonis</em></li>
+                                       <li><strong>Automated determination of dust particles trajectories in the coma of comet 67P</strong> <br> <em>Julia Marin-Yaseli de la Parra</em></li>
+                                       <li><strong>Elemental Composition, Mineralogy and Orbital Parameters of the Porangaba Meteorite</strong> <br> <em>Lukas Petera</em></li>
+                                       <li><strong>Geminids 2018</strong> <br> <em>Jürgen Rendtel</em></li>
+                                       <li><strong>Meteor Candidate Observations from Automated Sampling of Weather Cameras in VBA</strong> <br> <em>Travis Stenborg</em></li>
+                                 </ul>
+                           </dd>
+                        <dt>10:25-10:45</dt> <dd dd class="grc">Coffee break and <strong>poster session</strong></dd>
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                              <strong>SESSION 2 - Radio</strong><br>        
+                              <span style="text-transform:none">Session Chair: <em>Jean-Louis Rault</em></span></dd>                
+                              <dt class="mb">10:45-10:55</dt> <dd class="mb"><strong>BRAMS forward scatter observations of major meteor showers in 2016-2019</strong><br/><em>Cis Verbeeck</em></dd>
+                              <dt class="mb">10:55-11:10</dt> <dd class="mb"><strong>The Radio Meteor Zoo: identifying meteor echoes using artificial intelligence</strong><br/><em>Stijn Calders</em></dd>
+                              <dt class="mb">11:10-11:30</dt> <dd class="mb"><strong>Calibration of the BRAMS interferometer</strong><br/><em>Hervé Lamy</em></dd>
+                              <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>The BRAMS receiving station v2.0</strong><br/><em>Antonio Martínez Picar</em></dd>
+
+                        <dt>11:45-12:00</dt> <dd dd class="grc">Group Photo</dd>
+                        <dt>12:00-13:30</dt> <dd dd class="grc"><b>Lunch</b></dd>
+                         
                         
-                        <dt class="mb mt">14:15-14:30</dt> <dd class="mb mt"><strong>Encontreitor: a new approach to meteor shower research software.
-                        </strong><?= get_p(2,$pdf); ?><br/><em>Leonardo Scanferla Amaralil,Carlos Augusto Di Pietro Bella, Lauriston Trindade and Carlos Fernando Jung 
-                        </em></dd>
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 3 - Meteoroid properties</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>Travis Stenborg</em></span></dd>
+                           <dt class="mb">13:30-13:40</dt> <dd class="mb"><strong>Mass determination of iron meteoroids</strong><br/><em>David Capek</em></dd>
+                           <dt class="mb">13:40-13:55</dt> <dd class="mb"><strong>The study of meteoroid parameters with multi-techniques data</strong><br/><em>Anna Kartashova</em></dd>
+                           <dt class="mb">13:55-14:10</dt> <dd class="mb"><strong>Simulation of meteors by TW-class high power laser - advantages, limits and future challenges</strong><br/><em>Martin Ferus</em></dd>
+                           <dt class="mb">14:10-14:25</dt> <dd class="mb"><strong>A spectral mystery</strong><br/><em>Bill Ward</em></dd>
+                           
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 4 - Video and Visual</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>Ella Ratz</em></span></dd>
+                           <dt class="mb">14:25-14:45</dt> <dd class="mb"><strong>MeteorFlux reloaded</strong><br/><em>Sirko Molau</em></dd>
+                           <dt class="mb">14:45-15:05</dt> <dd class="mb"><strong>Double and Triple Meteor Detections</strong><br/><em>Mohammed Talafha</em></dd>
+                           <dt class="mb">15:05-15:25</dt> <dd class="mb"><strong>Minor meteor shower anomalies: predictions and observations</strong><br/><em>Jürgen Rendtel</em></dd>
+                           <dt class="mb">15:25-15:35</dt> <dd class="mb"><strong>School of Meteor Astronomy at Petnica Science Center</strong><br/><em>Dusan Pavlovic</em></dd>
+                           <dt>15:35-16:05</dt> <dd>Coffee break and <strong>poster session</strong></dd>
 
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                                <strong>SESSION 4 - Fireballs and meteorite recovery</strong><br>
-                                <span style="text-transform:none">Session chair:<em> Hadrien Devillepoix</em></span></dd>
-                                <dt class="mb">14:30-14:45</dt> <dd class="mb"><strong>Fireball over Germany and Poland, 6-th October 2017.
-                                    </strong><?= get_p(7,$pdf); ?><br/><em>Przemysław Żołądek, Arkadiusz Olech, Mariusz Wiśniewski, Dieter Heinlein, Anastasios Margonis, Sirko Molau, Jurgen Oberst and Marcin Stolarz 
-                                    </em></dd>
-                                    <dt class="mb">14:45-15:00</dt> <dd class="mb"><strong>Results of Polish Fireball Network 2017. 
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                              <strong>SESSION 5 - Parent bodies, showers, sporadics</strong><br>
+                              <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                              <dt class="mb">16:05-16:20</dt> <dd class="mb"><strong>Meteor pairs among Geminids</strong><br/><em>Pavel Koten</em></dd>
+                              <dt class="mb">16:20-16:35</dt> <dd class="mb"><strong>Analysis of a boulder in the surroundings of 67P</strong><br/><em>Julia Marin-Yaseli de la Parra</em></dd>
+                              <dt class="mb">16:35-16:50</dt> <dd class="mb"><strong>Parent bodies of some minor meteor showers</strong><br/><em>Mária Hajduková</em></dd>
+                              <dt class="mb">16:50-17:00</dt> <dd class="mb"><strong>How many `sporadics' are sporadic meteors</strong><br/><em>Roman Piffl</em></dd>
 
-                                        </strong><?= get_p(8,$pdf); ?><br/><em>Mariusz Wiśniewski, Przemysław  Żołądek, Arkadiusz Olech, A. Raj,  Zbigniew Tyminski, Maciej Maciejewski, Karol  Fietkiewicz,  Maciej  Myszkiewicz, Marcin Przemysław Gawroński, Tomasz Suchodolski,  Marcin Stolarz and Mariusz  Gozdalski 
- 
-                                        </em></dd>
-                                        <dt class="mb">15:00-15:20</dt> <dd class="mb"><strong>Simulating meteorite impacts - an outdoor field experiment. 
-
-                                            </strong><?= get_p(9,$pdf); ?><br/><em>Felix Bettonvil
-
-                                            </em></dd>
-                                            <dt class="mb">15:20-15:35</dt> <dd class="mb"><strong>NEMO Vol 2. – Status of the NEar real-time MOnitoring system. 
-                                                </strong><?= get_p(10,$pdf); ?><br/><em> Esther Drolshagen, Theresa Ott, Detlef Koschny, Gerhard Drolshagen, Pierrick Mialle, Jeremie Vaubaillon and Björn Poppe 
-                                                </em></dd>
-                                                <dt class="mb  ">15:35-16:05</dt> <dd class="mb  ">Coffee break and <strong>poster session</strong></dd>                                                                                          
-                                           
-                                    <dt class="mb">16:05-16:20</dt> <dd class="mb"><strong>Connecting meteors and meteorites: flight track, spectra, finding and laboratory analysis – suggestion for a collaborative action.
-                                                    </strong><?= get_p(11,$pdf); ?><br/><em>Akos Kereszturi, Martin Ferus, Krisztián Sárneczky, Alexey Berezhnoy, Elias Chatzitheodoridis, Jakub Koukal, Libor Lenža and Miroslav Krůs 
-                                                    </em></dd>                                            
-                                    <dt class="mb">16:20-16:40</dt> <dd class="mb"><strong>Calculating Orbits and Finding Meteorites with the Desert Fireball Network. </strong><br/><em> Eleanor K. Sansom, Hadrien Devillepoix, Phillip A. Bland, Trent Jansen-Sturgeon, Robert M. Howie, Benjamin A. D. Hartig, Martin C. Towner, Martin Cupák and Morgan A. Cox </em></dd>                                            
-                                    <dt class="mb">16:40-16:50</dt> <dd class="mb"><strong>The appearances of meteorite streams.</strong><?= get_p(12,$pdf); ?><br/><em> Yang I-Ching, Jann-Yenq Liu </em></dd>                                            
-
-                        <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                                            <strong>SESSION 5 - Miscellaneous </strong><br>
-                                            <span style="text-transform:none">Session chair: <em>David Asher</em></span></dd>                                    
-                        <dt class="mb">16:50-17:00</dt> <dd class="mb"><strong>Visual Workshop 2018: analyzing the Perseids 2016.</strong><?= get_p(13,$pdf); ?><br/><em>Cis Verbeeck, Jürgen Rendtel, Kristina Veljković, Vincent Perlerin and Mike Hankey </em></dd>                                            
-                        <dt class="mb">17:00-17:15</dt> <dd class="mb"><strong>Spectroscopy Workshop 2018. </strong><?= get_p(14,$pdf); ?><br/><em>Regina Rudawska and Juraj Tóth </em></dd>                                            
-                        <dt class="mb">17:15-17:25</dt> <dd class="mb"><strong>The MALBEC project.</strong><?= get_p(15,$pdf); ?><br/><em>J. Vaubaillon, A. Caillou, C. Colomer, P. Deverchere, A. Christou, D. Baratoux, P. Beck, M. Birlan, B. Carry, S. Bouley, F. Colas, L. Maquet, P. Vernazza</em></dd>    
-                        <dt class="mb">17:25-17:35</dt> <dd class="mb"><strong>Balloon-borne video observations of Geminids 2016.</strong><?= get_p(16,$pdf); ?><br/><em>
-                            Francisco Ocaña</em></dd>    
-                        <dt class="mb">17:35-17:45</dt> <dd class="mb"><strong>Using SPADE for radio meteor observations – Status Update.</strong><?= get_p(17,$pdf); ?><br/><em> Antonio Martínez Picar and Christophe Marqué </em></dd>    
-                        <dt class="mb">17:45-18:00</dt> <dd class="mb"><strong>Spurious meteoroid orbits.</strong><?= get_p(18,$pdf); ?><br/><em>Maria Hajdukova and Leonard Kornoš</em></dd>    
-                        <dt class="mb">18:00</dt> <dd>Dinner</dd>
-                        <dt class="mb">20:00-21:00</dt> <dd class="mb"><strong>IMO General Assembly Meeting</strong></dd>    
-
-                        */ ?>
+                        <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                              <strong>SESSION 6 - Modelling and analysis</strong><br>
+                              <span style="text-transform:none">Session Chair: <em>Regina Rudawska</em></span></dd>
+                              <dt class="mb">17:00-17:10</dt> <dd class="mb"><strong>Where are the missing Fireballs?</strong><br/><em>Ákos Kereszturi</em></dd>
+                              <dt class="mb">17:10-17:25</dt> <dd class="mb"><strong>Impact Fluxes on the Columbus module of the ISS: survey and predictions</strong><br/><em>Maximilian Klass</em></dd>
+                              <dt class="mb">17:25-17:40</dt> <dd class="mb"><strong>De-Biasing of meteor radiant distributions obtained by the Canary Island Long-Baseline Observatory (CILBO)</strong><br/><em>Athleen Rietze</em></dd>
+                              <dt class="mb">17:40-18:00</dt> <dd class="mb"><strong>How to test whether the magnitude distribution of the meteors is exponential</strong><br/><em>Janko Richter</em></dd>                              
+                        
+                        <dt>18:00-19:00</dt> <dd class="grc"><b>Dinner</b></dd>
+                        
+       
                 </dl>
             </div>
              
             <div class="tab-pane <? if($d==$days[2] ):?>active<? endif; ?>" id="saturday">
                 <h3>Saturday, 5 October 2019</h3>
                 <dl class="dl-horizontal">
-                     <dt>08:00-09:00</dt> <dd>Breakfast</dd>
-                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                         <strong>SESSION</strong><br>
-                         <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
-                         <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
-                     <dt>12:00-13:00</dt> <dd><b>Lunch</b></dd>
-                     <dt>13:00-19:00</dt> <dd><b><a href="/excursion" target="_blank">Excursion</a></b></dd>
-                     <dt>19:30-...</dt> <dd><b>Barbecue</b></dd>
+                     <dt>08:00-09:00</dt> <dd class="grc">Breakfast</dd>
+                     <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                        <strong>SESSION 7 - Video observation networks and campaigns</strong><br>
+                        <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                        <dt class="mb">09:00-09:25</dt> <dd class="mb"><strong>3414-2018: A Perseid Fireball with exceptional Light Effects</strong><br/><em>Peter C. Slansky</em></dd>
+                        <dt class="mb">09:25-09:35</dt> <dd class="mb"><strong>Results of Polish Fireball Network in 2018</strong><br/><em>Mariusz Wisniewski</em></dd>     
+                        <dt class="mb">09:35-09:55</dt> <dd class="mb"><strong>Beta Taurids video campaign</strong><br/><em>Przemyslaw Zoladek</em></dd> 
+                        <dt class="mb">09:55-10:15</dt> <dd class="mb"><strong>AMOS and interesting Fireballs</strong><br/><em>Juraj Tóth</em></dd>     
                      
-                     <? /*
-                    <dt>08:00-09:00</dt> <dd>Breakfast</dd>
-                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION 6 - Camera Networks</strong><br>
-                            <span style="text-transform:none">Session chair: <em>Mike Hankey</em></span></dd>
-                    <dt class="mb">09:00-09:20</dt> <dd class="mb"><strong>ANDES-FIRE: The Argentina All-sky Video System.</strong><?= get_p(19,$pdf); ?><br/><em>Peter Gural</em></dd>    
-                    <dt class="mb">09:20-09:40</dt> <dd class="mb"><strong>Croatian Meteor Network - Ongoing Work 2017-2018. </strong><?= get_p(20,$pdf); ?><br/><em>Damir Šegon et al. </em></dd> 
-                    <dt class="mb">09:40-09:55</dt> <dd class="mb"><strong>News from the italian PRISMA fireball network. </strong><?= get_p(21,$pdf); ?><br/><em>Daniele Gardiol </em></dd> 
-                    <dt class="mb">09:55-10:05</dt> <dd class="mb"><strong>Mendocino College - Ukiah Latitude Observatory CAMS Project: First Light. </strong><?= get_p(22,$pdf); ?><br/><em>Timothy William Beck, Martin Bradley, Edward Cannon, Jesse Glazier, Daniel Hunchard, Jeremy Ronco, Emerald Sherwood and Chatnaree Upton </em></dd> 
-                    <dt class="mb">10:05-10:25</dt> <dd class="mb"><strong>Towards a Global Fireball Observatory: new fireball observation hardware. </strong><br/><em>Hadrien Devillepoix, Robert Howie, Benjamin Hartig, Philip Bland, Eleanor Sansom, Daniel-Cristian Busan, Stuart Buchan, Martin Towner, Martin Cupák, Trent Jansen-Sturgeon, Patrick Shober and Jonathan Paxman </em></dd> 
-                    <dt>10:25-10:55</dt> <dd>Coffee break and <strong>poster session</strong></dd>
-
-                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION  7 - Atmospheric processes and phenomena (part I)</strong><br>
-                            <span style="text-transform:none">Session chair: <em>Eleanor Sansom</em></span></dd>    
-                    <dt class="mb">10:55-11:15</dt> <dd class="mb"><strong>Simulation of Meteor Plasma using Terawatt Laser. </strong><?= get_p(25,$pdf); ?><br/><em>Martin Ferus, Petr Kubelík, Jakub Koukal, Libor Lenža, Miroslav Krůs, Vojtěch Laitl, Lukáš Petera and Svatopluk Civiš </em></dd>    
-                    <dt class="mb">11:15-11:30</dt> <dd class="mb"><strong>Yet another result of the spectral and fragmentation study of small meteoroids. </strong><br/><em>Vlastimil Vojáček, Jiří  Borovička, Pavel Koten, Pavel Spurný and Rostislav Štork </em></dd>    
-                    <dt class="mb">11:30-11:45</dt> <dd class="mb"><strong>On the energy release after meteoroids fragmentation.</strong><?= get_p(27,$pdf); ?><br/><em>Lidia Egorova and Valeriy Lokhin</em></dd>    
-                    <dt class="mb">11:30-12:00</dt> <dd class="mb"><strong>Testing of the new meteoroid fragmentation model applied to the Chelyabinsk event. </strong><?= get_p(28,$pdf); ?><br/><em>Irina Brykina and Michael Bragin </em></dd>    
-
-                    <dt>12:00</dt> <dd>Lunch</dd>
-
-                    <dt>13:30</dt> <dd>Buses leave for the excursion: Red Stone castle and AGO Observatory </dd> 
-                    <dt>17:00</dt> <dd>Buses leave from the Red Stone castle to the AGO Observatory</dd> 
-                    <dt>19:00</dt> <dd>Buses leave from the AGO Observatory back to Rozalka Hotel, Pezinok</dd>  
-                    <dt>20:00</dt> <dd><strong>Conference dinner</strong>
-                    <dt>21:00</dt> <dd>Traditional folklore performance</dd>   
-                    
-                        </dd>  
-                        */ ?>
+                     <dt>10:25-10:45</dt> <dd dd class="grc">Coffee break and <strong>poster session</strong></dd>
+                     
+                     <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 8 - Instruments, software</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
+                           <dt class="mb">10:35-10:50</dt> <dd class="mb"><strong>A little tour across the wonderful realm of meteor radiometry</strong><br/><em>Jean-Louis Rault</em></dd>
+                           <dt class="mb">10:50-11:05</dt> <dd class="mb"><strong>FRIPON Network internal structure</strong><br/><em>François Colas</em></dd>     
+                           <dt class="mb">11:05-11:25</dt> <dd class="mb"><strong>Optimizing the scientific output of satellite formation for a stereoscopic observation</strong><br/><em>Jona Petri</em></dd> 
+                           <dt class="mb">11:25-11:40</dt> <dd class="mb"><strong>Investigation of meteor properties using a numerical simulation</strong><br/><em>Martin Baláz</em></dd>  
+                           <dt class="mb">11:40-12:00</dt> <dd class="mb"><strong>The Bridge of Spies</strong><br/><em>Peter C. Slansky</em></dd>  
+                     
+                     <dt>12:00-13:30</dt> <dd dd class="grc"><b>Lunch</b></dd>      
+                     <dt>13:30-...</dt> <dd dd class="grc"><b><a href="/excursion">Excursion</a></b>, BBQ and more...</dd>  
                 </dl>
             </div>
  
-            
-           
              
-             
-            
-            
- 
 
          
             <div class="tab-pane <? if($d==$days[3] ):?>active<? endif; ?>" id="sunday">
                 <h3>Sunday, 6 October 2019</h3>
                 <dl class="dl-horizontal">
-                     <dt>08:00-09:00</dt> <dd>Breakfast</dd>
-                     <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                         <strong>SESSION</strong><br>
-                         <span style="text-transform:none">Session Chair: <em>TBD</em></span></dd>
-                         <dt class="mb">09:00-12:00</dt> <dd class="mb"><em>Program soon available</em></dd>
-                     <dt>12:00-13:00</dt> <dd><b>Lunch</b></dd> 
-                     <dt>13:00-...</dt> <dd><b>Departure of the participants</b></dd>
-                     
-                    <?/*
-                    <dt>07:45-09:45</dt> <dd>Breakfast</dd>
-                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION  7 - Atmospheric processes and phenomena (part II)</strong><br>
-                            <span style="text-transform:none">Session chair: <em>Eleanor Sansom</em></span></dd>    
-                    <dt class="mb">09:45-10:00</dt> <dd class="mb"><strong>The effect of the solar wind on the evolution of dust grains trapped in the mean motion orbital resonance with Jupiter
-                    </strong><?= get_p(23,$pdf); ?><br/><em>Jozef Klačka, Roman Nagy, Milan Jurči</em></dd>    
-                     <dt class="mb">10:00-10:15</dt> <dd class="mb"><strong>Spectral properties of slow meteors: Na-rich spectra as tracers of Apollo-type meteoroids. </strong><?= get_p(24,$pdf); ?><br/><em>Pavol Matlovič, Juraj Tóth and Leonard Kornoš </em></dd>    
-                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION  8 - Ongoing meteor work - Radio technique</strong><br>
-                            <span style="text-transform:none">Session chair: <em>Christian Steyaert </em></span></dd>    
-                    <dt class="mb">10:15-10:30</dt> <dd class="mb"><strong>BRAMS radio observations analyzed: activity of some major meteor showers. </strong><?= get_p(30,$pdf); ?><br/><em>Cis Verbeeck, Hervé Lamy, Stijn Calders, Cédric Tétard and Antonio Martínez Picar </em></dd>    
-                    <dt class="mb">10:30-10:45</dt> <dd class="mb"><strong>Sun influence in meteor height. </strong><br/><em>Lorenzo Barbieri </em></dd>    
-                    <dt class="mb">10:45-11:05</dt> <dd class="mb"><strong>EARS Geminids 2017 Radio Observation.</strong><?= get_p(29,$pdf); ?><br/><em> Giancarlo Tomezzoli</em></dd>    
-                    <dt>11:05-11:35</dt> <dd>Coffee break and <strong>poster session</strong></dd>
-                    <dd class="mt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
-                            <strong>SESSION 9 - Meteor showers (observations and modelling)</strong><br>
-                            <span style="text-transform:none">Session chair:<em> Maria Hadjukova</em></span></dd>                     
-                    <dt class="mb">11:35-11:50</dt> <dd class="mb"><strong>Modelling the Geminid meteor shower activity.</strong><?= get_p(31,$pdf); ?><br/><em>  Galina O. Ryabova </em></dd>    
-                    <dt class="mb">11:50-12:10</dt> <dd class="mb"><strong>Geminid rates over century. </strong><?= get_p(32,$pdf); ?><br/><em> Jurgen Rendtel</em></dd>    
-                    <dt class="mb">12:20-12:40</dt> <dd class="mb"><strong>September ε Perseids observed by the Czech Fireball Network in 2013, 2015, 2016, and 2017. </strong><?= get_p(33,$pdf); ?><br/><em>Lukáš Shrbený, Pavel Spurný and Jiří Borovička </em></dd>    
-                    <dt class="mb">12:40-12:55</dt> <dd class="mb"><strong>What resonances are manifested in the Quadrantid meteoroid stream and asteroid (196256) 2003 EH1? </strong><?= get_p(34,$pdf); ?><br/><em> Georgy Sambarov, Tatyana Galushina and Olga Syusina  </em></dd>    
- 
-                    <dt>13:00-14:00</dt> <dd>Lunch</dd>
-                    <dt>14:00-</dt>      <dd>Departure of the participants</dd>
-                    */ ?>
+                     <dt>08:00-09:00</dt> <dd class="grc">Breakfast</dd>
+                     <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                        <strong>SESSION 9 - Fireballs and meteorites</strong><br>
+                        <span style="text-transform:none">Session Chair: <em>Antal Igaz</em></span></dd>
+                        <dt class="mb">09:00-09:15</dt> <dd class="mb"><strong>Daytime Fireball capturing</strong><br/><em>Felix Bettonvil</em></dd>
+                        <dt class="mb">09:15-09:30</dt> <dd class="mb"><strong>The daylight fireball of September 12, 2019</strong><br/><em>Sirko Molau</em></dd>     
+                        <dt class="mb">09:30-09:45</dt> <dd class="mb"><strong>ESA's activities on fireballs in Planetary Defence</strong><br/><em>Regina Rudawska</em></dd> 
+                        <dt class="mb">09:45-09:55</dt> <dd class="mb"><strong>Service Level Agreement (SLA) for European Network Fireball Data Provision</strong><br/><em>Anastasios Margonis</em></dd>   
+                        <dt class="mb">09:55-10:20</dt> <dd class="mb"><strong>Evidence of shock metamorphism in Bursa L6 chondrite: Raman and Infrared Spectroscopic Approach</strong><br/><em>Ozan Unsalan</em></dd>     
+                
+                     <dt>10:20-10:30</dt> <dd dd class="grc">Announcement of poster and photo competition winners</dd>
+                     <dt>10:30-10:40</dt> <dd dd class="grc">Coffee break and <strong>poster session</strong></dd>
+
+                     <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
+                           <strong>SESSION 10 - Observations</strong><br>
+                           <span style="text-transform:none">Session Chair: <em>Mike Hankey</em></span></dd>
+                           <dt class="mb">10:40-10:50</dt> <dd class="mb"><strong>Update on the MALBEC project</strong><br/><em>Jeremie Vaubaillon</em></dd>
+                           <dt class="mb">10:50-11:15</dt> <dd class="mb"><strong>Polarization of the night sky in Chile 2019</strong><br/><em>Bernd Gährken</em></dd>     
+                           <dt class="mb">11:15-11:35</dt> <dd class="mb"><strong>The ESA Leonids 2002 Expedition</strong><br/><em> Detlef Koshny</em></dd> 
+                           <dt class="mb">11:35-11:50</dt> <dd class="mb"><strong>Conference summary</strong><br/><em>Felix Bettonvil</em></dd>   
+                           
+                     <dt>11:50-12:00</dt> <dd dd class="grc">Closing of the 38th IMC</dd>
+                     <dt>12:00-...</dt> <dd dd class="grc"><b>Lunch</b></dd>      
+
                 </dl>
             </div> 
             
