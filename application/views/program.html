@@ -85,36 +85,25 @@
             $d = date('d.m.Y'); 
         ?>
 
-        <? /*
-        <li><a href="#posters" role="tab" data-toggle="tab"><strong>Posters</strong><br> <em>Poster sessions</em></a></li>
-        */   ?>
- 
+       
         <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li <? if($d==$days[0] || !in_array($d,$days)):?>class="active"<? endif; ?>><a href="#thursday" role="tab" data-toggle="tab"><strong>Thursday</strong>,<br> 3 October 2019</a></li>
-            <li <? if($d==$days[1] ):?>class="active"<? endif; ?>><a href="#friday" role="tab" data-toggle="tab"><strong>Friday</strong>,<br> 4 October 2019</a></li>
+            <li <? if($d==$days[1] || !in_array($d,$days)):?>class="active"<? endif; ?>><a href="#friday" role="tab" data-toggle="tab"><strong>Friday</strong>,<br> 4 October 2019</a></li>
             <li <? if($d==$days[2] ):?>class="active"<? endif; ?>><a href="#saturday" role="tab" data-toggle="tab"><strong>Saturday</strong>,<br> 5 October 2019</a></li>
             <li <? if($d==$days[3] ):?>class="active"<? endif; ?>><a href="#sunday" role="tab" data-toggle="tab"><strong>Sunday</strong>,<br> 6 October 2019</a></li>
            
         </ul>
   
-        <div class="tab-content">
-            <div class="tab-pane <? if($d==$days[0] || !in_array($d,$days)):?>active<? endif; ?>" id="thursday">
-                 <h3> Thursday, 3 October 2019</h3>
-                    <dl class="dl-horizontal">
-                        <dt>14:00-...</dt><dd><strong>Arrival of participants</strong></dd>
-                        <dt>18:00-19:30</dt><dd><strong>Dinner</strong></dd>
-                        <dt>20:00-...</dt><dd><strong>Welcome reception and opening of the conference by president of IMO and LOC</strong></dd>
-                     </dl>
-            </div>  
+        <div class="tab-content"> 
+           
               
-            <div class="tab-pane <? if($d==$days[1] ):?>active<? endif; ?>" id="friday">
+            <div class="tab-pane <? if($d==$days[1] || !in_array($d,$days)):?>active<? endif; ?>" id="friday">
                 <h3>Friday, 4 October 2019</h3>
                 <dl class="dl-horizontal">
                         <dt>08:00-09:00</dt> <dd class="grc">Breakfast</dd>
                         <dd class="dmt mb session" style="border-bottom:1px solid #000; padding-bottom: .3rem">
                            <strong>SESSION 1 - Video (FRIPON and AllSky 6)</strong><br>
                            <span style="text-transform:none">Session Chair: <em>Detlef Koshny</em></span></dd>
-                           <dt class="mb">09:00-09:15</dt> <dd class="mb"><strong>NEMO Vol 3. - Status of the NEar real-time MOnitoring system</strong><br/><em>Theresa Ott, Esther Drolshagen</em></dd>
+                           <dt class="mb">09:00-09:15</dt> <dd class="mb"><strong>NEMO Vol 3. - Status of the NEar real-time MOnitoring system</strong> S[PPT] <br/><em>Theresa Ott, Esther Drolshagen</em></dd>
                            <dt class="mb">09:15-09:35</dt> <dd class="mb"><strong>FRIPON vs. AllSky6 : A Practial Comparison</strong><br/><em>Sirko Molau</em></dd>     
                            <dt class="mb">09:35-09:55</dt> <dd class="mb"><strong>The All Sky 6 and Video Meteor Program of the AMS Ltd.</strong><br/><em>Mike Hankey, Vincent Perlerin and David Meisel</em></dd> 
                            <dt class="mb">09:55-10:10</dt> <dd class="mb"><strong>FRIPON first results after 3 years of observations</strong><br/><em>François Colas</em></dd>     
