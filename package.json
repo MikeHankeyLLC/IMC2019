@@ -22,7 +22,7 @@
     "gulp-install": "^0.6.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
-    "node-sass": "^3.6.0",
+    "node-sass": "^4.13.1",
     "gulp-uglifycss": "*"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-uglifycss": "*",
     "imagemin-pngquant": "^5.0.0",
-    "node-sass": "^3.6.0",
+    "node-sass": "^4.13.1",
     "video.js": "^5.11.6"
   },
   "license": "MIT"
