@@ -14,7 +14,7 @@
   ],
   "man": "gulp.1",
   "dependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "browser-sync": "^2.12.2",
     "gulp-clean-css": "*",
     "gulp-concat": "*",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.12.2",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-clean-css": "*",
     "gulp-concat": "*",
     "gulp-imagemin": "^2.4.0",
